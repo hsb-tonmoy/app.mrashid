@@ -1,6 +1,21 @@
 <script>
 	import { video } from '$lib/svg/home.js';
+	import Form from '$lib/multistep-form/MasterForm.svelte';
+	import Step from '$lib/multistep-form/StepForm.svelte';
 	import Step1 from '$lib/home/Step1.svelte';
+
+	let FormComponentRef;
+	let resetSteps = false;
+
+	let multiStepOptions = {
+		formTitle: 'New Title ✍️',
+		formSubtitle: 'Subtitle should be here',
+		stepsDescription: [
+			{ title: 'Destination', icon: 'All the details to perform on this step' },
+			{ title: 'Degree', icon: 'Skip if input equals to next' },
+			{ title: 'Language', icon: 'All the details to perform on this step' }
+		]
+	};
 </script>
 
 <main class="bg-lightBodyBackground">
