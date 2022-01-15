@@ -8,7 +8,7 @@ const config = {
 				bodyBackground: '#012a4a'
 			},
 			fontFamily: {
-				sfpro: ['SF Pro Display', 'sans-serif']
+				circular: ['Circular Std Book']
 			}
 		}
 	},

@@ -1,5 +1,5 @@
 <main class="h-screen">
-	<h1 class="text-white text-5xl font-sfpro">Welcome to app.mrashid.net</h1>
+	<h1 class="text-white text-5xl font-circular">Welcome to app.mrashid.net</h1>
 </main>
 
 <style>
