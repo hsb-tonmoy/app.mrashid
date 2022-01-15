@@ -5,7 +5,12 @@ const config = {
 	theme: {
 		extend: {
 			colors: {
-				bodyBackground: '#012a4a'
+				lightBodyBackground: '#FAFCFE',
+				lightText: '#171C2C',
+				lightTextBody: '#5b617c',
+				accent1: '#5B3ACC',
+				accent2: '#7839F3',
+				accent3: '#393BE3'
 			},
 			fontFamily: {
 				circular: ['Circular Std Book']
