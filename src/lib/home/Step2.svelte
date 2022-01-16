@@ -1,5 +1,5 @@
 <script>
-	import 'animate.css';
+
 	const options = [
 		{ name: "Bachelor's" },
 		{ name: "Master's" },

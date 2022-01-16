@@ -1,5 +1,5 @@
 <script>
-	import 'animate.css';
+	
 	const options = [
 		{ name: 'United States', icon: '/images/flags/usa.svg' },
 		{ name: 'Canada', icon: '/images/flags/canada.svg' },

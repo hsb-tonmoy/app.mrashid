@@ -1,5 +1,4 @@
 <script>
-	import 'Animate.css';
 	import Form from '$lib/multistep-form/MasterForm.svelte';
 	import Step from '$lib/multistep-form/StepForm.svelte';
 	import Button from '$lib/home/Button.svelte';
