@@ -1,5 +1,4 @@
 <script>
-	
 	const options = [
 		{ name: 'United States', icon: '/images/flags/usa.svg' },
 		{ name: 'Canada', icon: '/images/flags/canada.svg' },
@@ -31,7 +30,7 @@
 <img
 	src="/images/home-ill-destination.png"
 	alt="fly-illustration"
-	class="animate__animated animate__zoomInRight absolute bottom-0 right-0 object-cover w-[200px] xl:w-[450px] 2xl:w-[550px] z-0"
+	class="animate__animated animate__zoomInRight absolute bottom-[8vh] right-0 object-cover w-[200px] xl:w-[450px] 2xl:w-[550px] z-0"
 	style="--animate-duration: 1000ms"
 />
 

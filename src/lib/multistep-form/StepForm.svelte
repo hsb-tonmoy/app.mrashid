@@ -1,12 +1,12 @@
-<style>
-  .step-is-active {
-    display: block;
-  }
-  .step-not-active {
-    display: none;
-  }
-</style>
-
 <div class="step step-not-active">
-  <slot />
+	<slot />
 </div>
+
+<style>
+	:global(.step-is-active) {
+		display: block;
+	}
+	:global(.step-not-active) {
+		display: none;
+	}
+</style>

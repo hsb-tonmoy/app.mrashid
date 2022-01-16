@@ -3,8 +3,11 @@
 	import Step from '$lib/multistep-form/StepForm.svelte';
 	import Button from '$lib/home/Button.svelte';
 	import { selections } from '$lib/home/stores.js';
+	import { currentStep } from '$lib/multistep-form/stores.js';
 	import Step1 from '$lib/home/Step1.svelte';
 	import Step2 from '$lib/home/Step2.svelte';
+
+	import { destination, degree } from '$lib/svg/form-icons.js';
 
 	let FormComponentRef;
 
@@ -12,11 +15,11 @@
 		stepsDescription: [
 			{
 				title: 'Destination',
-				icon: 'All the details to perform on this step'
+				icon: destination
 			},
 			{
 				title: 'Degree',
-				icon: 'All the details to perform on this step'
+				icon: degree
 			}
 		]
 	};
@@ -63,9 +66,26 @@
 			</Form>
 		</section>
 	</div>
+	<footer
+		class="relative flex items-center gap-x-8 bottom-0 left-0 bg-white w-full px-6 lg:px-12 2xl:px-16 border-b-8 border-thinAccent"
+	>
+		{#each multiStepOptions.stepsDescription as step, index}
+			<span
+				class:step-active={$currentStep === index}
+				class:step-done={$currentStep > index}
+				class="w-10 h-10 text-gray-500"
+			>
+				{@html step.icon}
+			</span>
+			<hr
+				class:step-done={$currentStep > index}
+				class="w-[12.5%] border-dotted border-[1.5px] border-gray-300"
+			/>
+		{/each}
+	</footer>
 </main>
 
-<style>
+<style lang="postcss">
 	:root {
 		--header-height: 8vh;
 	}
@@ -75,6 +95,19 @@
 	}
 
 	.body {
-		height: calc(100vh - var(--header-height));
+		height: calc(100vh - 2 * var(--header-height));
+	}
+
+	footer {
+		height: var(--header-height);
+		box-shadow: 1px -1px -35px 0 rgba(198, 211, 255, 0.9);
+	}
+
+	:global(.step-active) {
+		@apply text-white bg-accent1 shadow-2xl shadow-accent1;
+	}
+
+	:global(.step-done) {
+		@apply text-accent1 border-solid border-accent1;
 	}
 </style>

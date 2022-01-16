@@ -42,16 +42,14 @@
 
 <div class="multistep-master-form">
 	<div id="multistep-error-messages" />
-	<form class=" multistep-form">
-		<!-- This slot represents StepForm  -->
-		<div class="flex flex-col multistep-right-sidebar">
+	<form class="multistep-form">
+		<div class="flex flex-col">
 			<slot />
 		</div>
-		<!-- end of  StepForm  -->
 	</form>
 </div>
 
-<style>
+<style lang="postcss">
 	.multistep-form {
 		display: flex;
 	}
