@@ -27,7 +27,7 @@
 <img
 	src="/images/home-ill-degree.svg"
 	alt="fly-illustration"
-	class="animate__animated animate__fadeInBottomRight absolute bottom-0 right-0 object-cover w-[200px] lg:w-[450px] xl:w-[550px] z-0"
+	class="animate__animated animate__fadeInUp absolute bottom-0 right-0 object-cover w-[200px] lg:w-[450px] xl:w-[550px] z-0"
 	style="--animate-duration: 1000ms"
 />
 

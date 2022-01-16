@@ -1,4 +1,5 @@
 <script>
+	import 'Animate.css';
 	import Form from '$lib/multistep-form/MasterForm.svelte';
 	import Step from '$lib/multistep-form/StepForm.svelte';
 	import Button from '$lib/home/Button.svelte';
@@ -29,7 +30,11 @@
 				<a href="/" class="text-accent2 font-medium text-lg lg:text-xl">app.mrashid.net</a>
 			</div>
 			<div id="promotion" class="flex items-center gap-x-2">
-				<img src="/images/play-button.png" alt="play button" class="w-8 h-8 animate-bounce" />
+				<img
+					src="/images/play-button.png"
+					alt="play button"
+					class="w-8 h-8 animate__animated animate__headShake animate__slow animate__infinite"
+				/>
 				<span class="text-sm lg:text-base text-accent2 opacity-70"
 					>Hear from Dr. Rashid himself</span
 				>
