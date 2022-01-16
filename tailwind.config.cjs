@@ -18,7 +18,11 @@ const config = {
 		}
 	},
 
-	plugins: [require('@tailwindcss/forms')]
+	plugins: [
+		require('@tailwindcss/forms')({
+			strategy: 'class'
+		})
+	]
 };
 
 module.exports = config;

@@ -5,15 +5,19 @@
 	import Step1 from '$lib/home/Step1.svelte';
 
 	let FormComponentRef;
-	let resetSteps = false;
 
 	let multiStepOptions = {
 		formTitle: 'New Title ✍️',
 		formSubtitle: 'Subtitle should be here',
 		stepsDescription: [
-			{ title: 'Destination', icon: 'All the details to perform on this step' },
-			{ title: 'Degree', icon: 'Skip if input equals to next' },
-			{ title: 'Language', icon: 'All the details to perform on this step' }
+			{
+				title: 'Destination',
+				icon: 'All the details to perform on this step'
+			},
+			{
+				title: 'Degree',
+				icon: 'All the details to perform on this step'
+			}
 		]
 	};
 </script>
@@ -30,7 +34,19 @@
 			</div>
 		</header>
 		<section class="body flex flex-col justify-center">
-			<Step1 />
+			<Form {multiStepOptions} bind:this={FormComponentRef}>
+				<Step>
+					<Step1 />
+
+					<div class="buttons flex mt-4">
+						<button
+							on:click|preventDefault={() => FormComponentRef.nextStep()}
+							class="relative px-6 py-2 bg-accent1 hover:bg-accent2 text-white text-sm uppercase rounded"
+							type="button">Next</button
+						>
+					</div>
+				</Step>
+			</Form>
 		</section>
 	</div>
 </main>
