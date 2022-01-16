@@ -17,11 +17,9 @@
 	class="absolute bottom-0 right-0 object-cover w-[300px] lg:w-[550px] z-0"
 />
 
-<fieldset class="flex gap-x-4 text-sm font-normal mt-6">
+<fieldset class="flex gap-x-4 text-sm text-accent2 font-normal mt-16">
 	{#each options as option}
-		<label
-			class="inline-flex justify-center items-center min-w-[9.375rem] h-[8.75rem] border border-accent1"
-		>
+		<label class="relative appearance-none cursor-pointer">
 			<input
 				class="appearance-none"
 				type="checkbox"
@@ -29,7 +27,20 @@
 				name="destination"
 				value={option}
 			/>
-			{option}
+			<span>{option}</span>
 		</label>
 	{/each}
 </fieldset>
+
+<style lang="postcss">
+	[type='checkbox'] + span {
+		@apply inline-flex justify-center items-center min-w-[9.375rem] h-[8.75rem] border rounded-lg transition ease-in-out delay-150;
+		border-color: rgba(62, 52, 200, 0.1);
+		box-shadow: 1px 1px 35px 0 rgba(198, 211, 255, 0.28);
+	}
+
+	:checked + span {
+		background-color: rgba(120, 57, 243, 0.1);
+		@apply -translate-y-1 scale-110;
+	}
+</style>

@@ -38,10 +38,10 @@
 				<Step>
 					<Step1 />
 
-					<div class="buttons flex mt-4">
+					<div class="buttons flex justify-end mt-4">
 						<button
 							on:click|preventDefault={() => FormComponentRef.nextStep()}
-							class="relative px-6 py-2 bg-accent1 hover:bg-accent2 text-white text-sm uppercase rounded"
+							class="relative px-12 py-4 bg-accent1 hover:bg-accent2 text-white font-light text-sm uppercase rounded"
 							type="button">Next</button
 						>
 					</div>
