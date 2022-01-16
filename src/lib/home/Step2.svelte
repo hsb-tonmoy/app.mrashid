@@ -2,14 +2,14 @@
 	import { onDestroy, onMount } from 'svelte';
 	import { fly, fade, slide } from 'svelte/transition';
 	const options = [
-		{ name: 'United States', icon: '/images/flags/usa.svg' },
-		{ name: 'Canada', icon: '/images/flags/canada.svg' },
-		{ name: 'United Kingdom', icon: '/images/flags/uk.svg' },
-		{ name: 'Australia', icon: '/images/flags/aus.svg' },
-		{ name: 'Other', icon: '/images/flags/other.svg' }
+		{ name: "Bachelor's" },
+		{ name: "Master's" },
+		{ name: 'Associate' },
+		{ name: 'Doctoral' },
+		{ name: 'Other' }
 	];
 
-	export let destination = [];
+	export let degree;
 
 	let ready = false;
 	onMount(() => (ready = true));
@@ -20,21 +20,19 @@
 		in:fly={{ x: -200, duration: 1000 }}
 		class="text-xl lg:text-5xl text-lightText font-semibold drop-shadow"
 	>
-		Where do you wish to go?
+		What degree do you wish to pursue?
 	</h2>
-
 	<div in:fly={{ x: -200, duration: 1400 }} class="flex items-center gap-x-3 mt-2 ml-2">
 		<span><hr class="w-6 lg:w-10 border-[1.5px] border-lightText" /></span>
 		<p class="text-lightTextBody text-sm lg:text-base drop-shadow-sm">
-			Choose your desired destination
+			Choose your intended degree
 		</p>
 	</div>
-
 	<img
 		in:slide={{ duration: 1200 }}
 		src="/images/home-ill-1.png"
 		alt="fly-illustration"
-		class="absolute bottom-0 right-0 object-cover w-[200px] xl:w-[450px] 2xl:w-[550px] z-0"
+		class="absolute bottom-0 right-0 object-cover w-[200px] lg:w-[450px] xl:w-[550px] z-0"
 	/>
 
 	<fieldset
@@ -47,21 +45,19 @@
 			>
 				<input
 					class="appearance-none"
-					type="checkbox"
-					bind:group={destination}
+					type="radio"
+					bind:group={degree}
 					name="destination"
 					value={option.name}
 				/>
-				<span class="flex flex-col gap-y-3"
-					><img class="w-8 h-8" src={option.icon} alt="USA" /> {option.name}</span
-				>
+				<span class="flex flex-col gap-y-3">{option.name}</span>
 			</label>
 		{/each}
 	</fieldset>
 {/if}
 
 <style lang="postcss">
-	[type='checkbox'] + span {
+	[type='radio'] + span {
 		@apply inline-flex justify-center items-center min-w-[7.5rem] h-[8rem] lg:min-w-[9.375rem] lg:h-[8.75rem] border rounded-lg transition ease-in-out delay-150;
 		border-color: rgba(62, 52, 200, 0.1);
 		box-shadow: 1px 1px 35px 0 rgba(198, 211, 255, 0.28);

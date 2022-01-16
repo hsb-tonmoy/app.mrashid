@@ -1,10 +1,9 @@
 <script>
 	import { onMount, afterUpdate } from 'svelte';
 	import { currentStep } from './stores.js';
-	import { uuidv4, formHasError, updateStepStatus, updateButtonVisibility } from './helpers.js';
+	import { uuidv4, formHasError, updateStepStatus } from './helpers.js';
 
 	export let multiStepOptions;
-	export let resetSteps;
 	/*
   Lifecycle Hooks
   */
@@ -19,15 +18,6 @@
 				step.classList.add('step-is-active');
 			}
 		});
-
-		updateButtonVisibility();
-	});
-
-	afterUpdate(async () => {
-		if (resetSteps) {
-			updateStepStatus(stepStore.reset);
-			resetSteps = false;
-		}
 	});
 
 	/*
