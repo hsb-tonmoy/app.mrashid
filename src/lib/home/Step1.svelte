@@ -1,6 +1,5 @@
 <script>
-	import { onDestroy, onMount } from 'svelte';
-	import { fly, fade, slide } from 'svelte/transition';
+	import 'animate.css';
 	const options = [
 		{ name: 'United States', icon: '/images/flags/usa.svg' },
 		{ name: 'Canada', icon: '/images/flags/canada.svg' },
@@ -10,55 +9,53 @@
 	];
 
 	export let destination = [];
-
-	let ready = false;
-	onMount(() => (ready = true));
 </script>
 
-{#if ready}
-	<h2
-		in:fly={{ x: -200, duration: 1000 }}
-		class="text-xl lg:text-5xl text-lightText font-semibold drop-shadow"
-	>
-		Where do you wish to go?
-	</h2>
+<h2
+	class="animate__animated animate__slideInLeft text-xl lg:text-5xl text-lightText font-semibold drop-shadow"
+	style="--animate-duration: 800ms"
+>
+	Where do you wish to go?
+</h2>
 
-	<div in:fly={{ x: -200, duration: 1400 }} class="flex items-center gap-x-3 mt-2 ml-2">
-		<span><hr class="w-6 lg:w-10 border-[1.5px] border-lightText" /></span>
-		<p class="text-lightTextBody text-sm lg:text-base drop-shadow-sm">
-			Choose your desired destination
-		</p>
-	</div>
+<div
+	class="animate__animated animate__slideInLeft flex items-center gap-x-3 mt-2 ml-2"
+	style="--animate-duration: 1000ms"
+>
+	<span><hr class="w-6 lg:w-10 border-[1.5px] border-lightText" /></span>
+	<p class="text-lightTextBody text-sm lg:text-base drop-shadow-sm">
+		Choose your desired destination
+	</p>
+</div>
 
-	<img
-		in:slide={{ duration: 1200 }}
-		src="/images/home-ill-1.png"
-		alt="fly-illustration"
-		class="absolute bottom-0 right-0 object-cover w-[200px] xl:w-[450px] 2xl:w-[550px] z-0"
-	/>
+<img
+	src="/images/home-ill-destination.png"
+	alt="fly-illustration"
+	class="animate__animated animate__zoomInRight absolute bottom-0 right-0 object-cover w-[200px] xl:w-[450px] 2xl:w-[550px] z-0"
+	style="--animate-duration: 1000ms"
+/>
 
-	<fieldset
-		class="flex flex-wrap gap-x-2 gap-y-2 lg:gap-y-0 lg:gap-x-4 text-sm text-accent2 font-normal mt-8 lg:mt-16"
-	>
-		{#each options as option, index}
-			<label
-				in:fly={{ y: 200, duration: 1500 + 200 * index }}
-				class="relative appearance-none cursor-pointer"
+<fieldset
+	class="flex flex-wrap gap-x-2 gap-y-2 lg:gap-y-0 lg:gap-x-4 text-sm text-accent2 font-normal mt-8 lg:mt-16"
+>
+	{#each options as option, index}
+		<label
+			class="animate__animated animate__fadeInUp relative appearance-none cursor-pointer"
+			style={`--animate-duration: ${1500 + 200 * index}ms`}
+		>
+			<input
+				class="appearance-none opacity-0"
+				type="checkbox"
+				bind:group={destination}
+				name="destination"
+				value={option.name}
+			/>
+			<span class="flex flex-col gap-y-3"
+				><img class="w-8 h-8" src={option.icon} alt="USA" /> {option.name}</span
 			>
-				<input
-					class="appearance-none"
-					type="checkbox"
-					bind:group={destination}
-					name="destination"
-					value={option.name}
-				/>
-				<span class="flex flex-col gap-y-3"
-					><img class="w-8 h-8" src={option.icon} alt="USA" /> {option.name}</span
-				>
-			</label>
-		{/each}
-	</fieldset>
-{/if}
+		</label>
+	{/each}
+</fieldset>
 
 <style lang="postcss">
 	[type='checkbox'] + span {

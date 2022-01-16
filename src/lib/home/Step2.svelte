@@ -1,6 +1,5 @@
 <script>
-	import { onDestroy, onMount } from 'svelte';
-	import { fly, fade, slide } from 'svelte/transition';
+	import 'animate.css';
 	const options = [
 		{ name: "Bachelor's" },
 		{ name: "Master's" },
@@ -10,51 +9,47 @@
 	];
 
 	export let degree;
-
-	let ready = false;
-	onMount(() => (ready = true));
 </script>
 
-{#if ready}
-	<h2
-		in:fly={{ x: -200, duration: 1000 }}
-		class="text-xl lg:text-5xl text-lightText font-semibold drop-shadow"
-	>
-		What degree do you wish to pursue?
-	</h2>
-	<div in:fly={{ x: -200, duration: 1400 }} class="flex items-center gap-x-3 mt-2 ml-2">
-		<span><hr class="w-6 lg:w-10 border-[1.5px] border-lightText" /></span>
-		<p class="text-lightTextBody text-sm lg:text-base drop-shadow-sm">
-			Choose your intended degree
-		</p>
-	</div>
-	<img
-		in:slide={{ duration: 1200 }}
-		src="/images/home-ill-1.png"
-		alt="fly-illustration"
-		class="absolute bottom-0 right-0 object-cover w-[200px] lg:w-[450px] xl:w-[550px] z-0"
-	/>
+<h2
+	class="animate__animated animate__slideInLeft text-xl lg:text-5xl text-lightText font-semibold drop-shadow"
+	style="--animate-duration: 800ms"
+>
+	What degree do you wish to pursue?
+</h2>
+<div
+	class="animate__animated animate__slideInLeft flex items-center gap-x-3 mt-2 ml-2"
+	style="--animate-duration: 1000ms"
+>
+	<span><hr class="w-6 lg:w-10 border-[1.5px] border-lightText" /></span>
+	<p class="text-lightTextBody text-sm lg:text-base drop-shadow-sm">Choose your intended degree</p>
+</div>
+<img
+	src="/images/home-ill-degree.svg"
+	alt="fly-illustration"
+	class="animate__animated animate__fadeInBottomRight absolute bottom-0 right-0 object-cover w-[200px] lg:w-[450px] xl:w-[550px] z-0"
+	style="--animate-duration: 1000ms"
+/>
 
-	<fieldset
-		class="flex flex-wrap gap-x-2 gap-y-2 lg:gap-y-0 lg:gap-x-4 text-sm text-accent2 font-normal mt-8 lg:mt-16"
-	>
-		{#each options as option, index}
-			<label
-				in:fly={{ y: 200, duration: 1500 + 200 * index }}
-				class="relative appearance-none cursor-pointer"
-			>
-				<input
-					class="appearance-none"
-					type="radio"
-					bind:group={degree}
-					name="destination"
-					value={option.name}
-				/>
-				<span class="flex flex-col gap-y-3">{option.name}</span>
-			</label>
-		{/each}
-	</fieldset>
-{/if}
+<fieldset
+	class="flex flex-wrap gap-x-2 gap-y-2 lg:gap-y-0 lg:gap-x-4 text-sm text-accent2 font-normal mt-8 lg:mt-16"
+>
+	{#each options as option, index}
+		<label
+			class="animate__animated animate__fadeInLeftBig relative appearance-none cursor-pointer"
+			style={`--animate-duration: ${1500 + 200 * index}ms`}
+		>
+			<input
+				class="appearance-none opacity-0"
+				type="radio"
+				bind:group={degree}
+				name="destination"
+				value={option.name}
+			/>
+			<span class="flex flex-col gap-y-3">{option.name}</span>
+		</label>
+	{/each}
+</fieldset>
 
 <style lang="postcss">
 	[type='radio'] + span {
