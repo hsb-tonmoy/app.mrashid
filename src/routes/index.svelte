@@ -27,7 +27,9 @@
 
 <main class="bg-lightBodyBackground">
 	<div class="flex flex-col w-full max-w-screen-xl mx-auto px-6 lg:px-8 2xl:px-0">
-		<header class="flex flex-col lg:flex-row justify-between items-center py-4 lg:py-8">
+		<header
+			class="flex flex-col lg:flex-row justify-between items-center py-4 lg:py-8 mb-12 md:mb-0"
+		>
 			<div id="logo">
 				<a href="/" class="text-accent2 font-medium text-lg lg:text-xl">app.mrashid.net</a>
 			</div>
@@ -67,19 +69,19 @@
 		</section>
 	</div>
 	<footer
-		class="relative flex items-center gap-x-8 bottom-0 left-0 bg-white w-full px-6 lg:px-12 2xl:px-16 border-b-8 border-thinAccent"
+		class="hidden md:flex items-center gap-x-8 bottom-0 left-0 bg-white w-full px-6 lg:px-12 2xl:px-16 border-b-8 border-thinAccent"
 	>
 		{#each multiStepOptions.stepsDescription as step, index}
 			<span
 				class:step-active={$currentStep === index}
 				class:step-done={$currentStep > index}
-				class="w-10 h-10 text-gray-500"
+				class="relative w-12 h-12 text-gray-500 rounded-xl transition ease-in-out duration-300"
 			>
 				{@html step.icon}
 			</span>
 			<hr
 				class:step-done={$currentStep > index}
-				class="w-[12.5%] border-dotted border-[1.5px] border-gray-300"
+				class="w-[12.5%] border-dotted border-1 border-accent1 opacity-80 transition ease-in-out duration-500"
 			/>
 		{/each}
 	</footer>
@@ -88,6 +90,7 @@
 <style lang="postcss">
 	:root {
 		--header-height: 8vh;
+		--footer-height: 7vh;
 	}
 
 	header {
@@ -95,19 +98,20 @@
 	}
 
 	.body {
-		height: calc(100vh - 2 * var(--header-height));
+		height: calc(100vh - var(--header-height) - var(--footer-height));
 	}
 
 	footer {
-		height: var(--header-height);
-		box-shadow: 1px -1px -35px 0 rgba(198, 211, 255, 0.9);
+		height: var(--footer-height);
+		box-shadow: 1px -5px 100px 0px rgba(99, 71, 194, 0.2);
 	}
 
 	:global(.step-active) {
-		@apply text-white bg-accent1 shadow-2xl shadow-accent1;
+		@apply text-white bg-accent1 shadow-2xl shadow-accent1 translate-y-[-3vh] scale-95 lg:scale-105 xl:scale-125;
+		box-shadow: 1px 5px 30px 0px rgba(99, 71, 194, 0.5);
 	}
 
 	:global(.step-done) {
-		@apply text-accent1 border-solid border-accent1;
+		@apply text-accent1 border-solid border-accent1 opacity-100;
 	}
 </style>

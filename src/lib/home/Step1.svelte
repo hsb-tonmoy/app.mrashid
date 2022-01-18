@@ -40,7 +40,7 @@
 	{#each options as option, index}
 		<label
 			class="animate__animated animate__fadeInUp relative appearance-none cursor-pointer"
-			style={`--animate-duration: ${1500 + 200 * index}ms`}
+			style={`--animate-duration: ${1000 + 200 * index}ms`}
 		>
 			<input
 				class="appearance-none opacity-0"

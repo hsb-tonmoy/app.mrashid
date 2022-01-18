@@ -1,9 +1,8 @@
 <script>
 	const options = [
-		{ name: "Bachelor's" },
+		{ name: 'Undergraduate' },
 		{ name: "Master's" },
-		{ name: 'Associate' },
-		{ name: 'Doctoral' },
+		{ name: 'PhD' },
 		{ name: 'Other' }
 	];
 
@@ -26,7 +25,7 @@
 <img
 	src="/images/home-ill-degree.svg"
 	alt="fly-illustration"
-	class="animate__animated animate__fadeInUp absolute bottom-[8vh] right-0 object-cover w-[200px] lg:w-[450px] xl:w-[550px] z-0"
+	class="animate__animated animate__zoomInRight absolute bottom-[8vh] right-0 object-cover w-[200px] lg:w-[350px] xl:w-[550px] z-0"
 	style="--animate-duration: 1000ms"
 />
 
@@ -36,7 +35,7 @@
 	{#each options as option, index}
 		<label
 			class="animate__animated animate__fadeInLeftBig relative appearance-none cursor-pointer"
-			style={`--animate-duration: ${1500 + 200 * index}ms`}
+			style={`--animate-duration: ${1000 + 100 * index}ms`}
 		>
 			<input
 				class="appearance-none opacity-0"
