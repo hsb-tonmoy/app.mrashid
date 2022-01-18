@@ -2,14 +2,16 @@
 	import Form from '$lib/multistep-form/MasterForm.svelte';
 	import Step from '$lib/multistep-form/StepForm.svelte';
 	import Button from '$lib/home/Button.svelte';
-	import { selections } from '$lib/home/stores.js';
+	import { selections, personal_fields } from '$lib/home/stores.js';
 	import { currentStep } from '$lib/multistep-form/stores.js';
 	import Step1 from '$lib/home/Step1.svelte';
 	import Step2 from '$lib/home/Step2.svelte';
+	import Step3 from '$lib/home/Step3.svelte';
 
-	import { destination, degree } from '$lib/svg/form-icons.js';
+	import { destination, degree, user } from '$lib/svg/form-icons.js';
 
 	let FormComponentRef;
+	let formHasErrors;
 
 	let multiStepOptions = {
 		stepsDescription: [
@@ -20,9 +22,21 @@
 			{
 				title: 'Degree',
 				icon: degree
+			},
+			{
+				title: 'Personal Info',
+				icon: user
 			}
 		]
 	};
+
+	$: separator_width = `width: ${100 / (multiStepOptions.stepsDescription.length - 1)}%`;
+
+	function handleStepClick(index) {
+		if ($currentStep < index) {
+			FormComponentRef.previousStep();
+		}
+	}
 </script>
 
 <main class="bg-lightBodyBackground">
@@ -65,6 +79,11 @@
 
 					<Button {FormComponentRef} disabledButton={$selections.degree.length === 0} />
 				</Step>
+				<Step>
+					<Step3 bind:personal_fields={$personal_fields} bind:formHasErrors />
+
+					<Button {FormComponentRef} disabledButton={formHasErrors} />
+				</Step>
 			</Form>
 		</section>
 	</div>
@@ -73,15 +92,17 @@
 	>
 		{#each multiStepOptions.stepsDescription as step, index}
 			<span
+				on:click={() => handleStepClick(index)}
 				class:step-active={$currentStep === index}
 				class:step-done={$currentStep > index}
-				class="relative w-12 h-12 text-gray-500 rounded-xl transition ease-in-out duration-300"
+				class="relative w-12 h-12 text-gray-500 rounded-xl transition ease-in-out duration-300 cursor-pointer"
 			>
 				{@html step.icon}
 			</span>
 			<hr
 				class:step-done={$currentStep > index}
-				class="w-[12.5%] border-dotted border-1 border-accent1 opacity-80 transition ease-in-out duration-500"
+				class="border-dotted border-1 border-accent1 opacity-80 transition ease-in-out duration-500"
+				style={separator_width}
 			/>
 		{/each}
 	</footer>
@@ -113,5 +134,9 @@
 
 	:global(.step-done) {
 		@apply text-accent1 border-solid border-accent1 opacity-100;
+	}
+
+	hr:last-child {
+		display: none;
 	}
 </style>

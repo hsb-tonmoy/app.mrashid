@@ -51,7 +51,7 @@
 
 <style lang="postcss">
 	[type='radio'] + span {
-		@apply inline-flex justify-center items-center min-w-[7.5rem] h-[8rem] lg:min-w-[9.375rem] lg:h-[8.75rem] border rounded-lg transition ease-in-out delay-150;
+		@apply inline-flex justify-center items-center min-w-[7.5rem] h-[8rem] lg:min-w-[9.375rem] lg:h-[8.75rem] border focus:border-red-700 rounded-lg transition ease-in-out delay-150;
 		border-color: rgba(62, 52, 200, 0.1);
 		box-shadow: 1px 1px 35px 0 rgba(198, 211, 255, 0.28);
 	}
