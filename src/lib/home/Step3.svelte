@@ -31,9 +31,67 @@
 	style="--animate-duration: 1000ms"
 />
 
-<fieldset class="flex text-sm text-accent2 font-normal mt-8 lg:mt-16">
-	<input class="form-input" type="text" name="firstname" id="firstname" />
-	<label for="firstname">First name</label>
+<fieldset class="mt-8 lg:mt-16">
+	<div class="flex gap-x-8">
+		<span class="relative">
+			<input
+				id="firstname"
+				name="firstname"
+				type="text"
+				class="peer h-10 w-full border-b-2 border-thinAccent text-xl font-semibold text-accent2 placeholder-transparent focus:outline-none focus:border-accent1"
+				placeholder="First name"
+			/>
+			<label
+				for="firstname"
+				class="absolute left-0 -top-3.5 text-thinAccent text-sm transition-all peer-placeholder-shown:text-xl peer-placeholder-shown:text-thinAccent peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-lightText peer-focus:text-base"
+				>First name</label
+			>
+		</span>
+		<span class="relative">
+			<input
+				id="lastname"
+				name="lastname"
+				type="text"
+				class="peer h-10 w-full border-b-2 border-thinAccent text-xl font-semibold text-accent2 placeholder-transparent focus:outline-none focus:border-accent1"
+				placeholder="Last name"
+			/>
+			<label
+				for="lastname"
+				class="absolute left-0 -top-3.5 text-thinAccent text-sm transition-all peer-placeholder-shown:text-xl peer-placeholder-shown:text-thinAccent peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-lightText peer-focus:text-base"
+				>Last name</label
+			>
+		</span>
+	</div>
+	<div class="flex gap-x-8 mt-8">
+		<span class="relative">
+			<input
+				id="phone"
+				name="phone"
+				type="text"
+				class="peer h-10 w-full border-b-2 border-thinAccent text-xl font-semibold text-accent2 placeholder-transparent focus:outline-none focus:border-accent1"
+				placeholder="Phone no."
+			/>
+			<label
+				for="phone"
+				class="absolute left-0 -top-3.5 text-thinAccent text-sm transition-all peer-placeholder-shown:text-xl peer-placeholder-shown:text-thinAccent peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-lightText peer-focus:text-base"
+				>Phone no.</label
+			>
+		</span>
+		<span class="relative">
+			<input
+				id="email"
+				name="email"
+				type="text"
+				class="peer h-10 w-full border-b-2 border-thinAccent text-xl font-semibold text-accent2 placeholder-transparent focus:outline-none focus:border-accent1"
+				placeholder="Email address"
+			/>
+			<label
+				for="email"
+				class="absolute left-0 -top-3.5 text-thinAccent text-sm transition-all peer-placeholder-shown:text-xl peer-placeholder-shown:text-thinAccent peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-lightText peer-focus:text-base"
+				>Email address</label
+			>
+		</span>
+	</div>
 </fieldset>
 
 <style lang="postcss">
