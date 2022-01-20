@@ -26,6 +26,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@tailwindcss/forms": "^0.4.0"
+		"@tailwindcss/forms": "^0.4.0",
+		"svelte-forms": "^2.1.0"
 	}
 }

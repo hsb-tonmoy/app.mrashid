@@ -3,21 +3,24 @@
 	import Button from './Button.svelte';
 
 	const options = [
-		{ name: 'United States', icon: 'usa' },
-		{ name: 'Canada', icon: 'canada' },
-		{ name: 'United Kingdom', icon: 'uk' },
-		{ name: 'Australia', icon: 'aus' },
-		{ name: 'Other', icon: 'other' }
+		{ name: 'Computer Science', icon: 'compsci' },
+		{ name: 'Engineering', icon: 'engineering' },
+		{ name: 'Business Studies', icon: 'business' },
+		{ name: 'Data Science', icon: 'datasci' },
+		{ name: 'Humanities', icon: 'humanities' },
+		{ name: 'Physics', icon: 'physics' },
+		{ name: 'Chemistry', icon: 'chemistry' },
+		{ name: 'Pharmacy', icon: 'pharmacy' }
 	];
 
-	export let destination = [];
+	export let major = '';
 </script>
 
 <h2
 	class="animate__animated animate__slideInLeft text-xl lg:text-5xl text-lightText font-semibold drop-shadow"
 	style="--animate-duration: 800ms"
 >
-	Where do you wish to go?
+	What do you wish to study?
 </h2>
 
 <div
@@ -26,7 +29,7 @@
 >
 	<span><hr class="w-6 lg:w-10 border-[1.5px] border-lightText" /></span>
 	<p class="text-lightTextBody text-sm lg:text-base drop-shadow-sm">
-		Choose your desired destination
+		Choose your intended area of study
 	</p>
 </div>
 
@@ -37,33 +40,31 @@
 	style="--animate-duration: 1000ms"
 />
 
-<fieldset
-	class="flex flex-wrap gap-x-2 gap-y-2 lg:gap-y-0 lg:gap-x-4 text-sm text-accent2 font-normal mt-8 lg:mt-16"
->
+<fieldset class="flex flex-wrap gap-2 lg:gap-4 text-sm text-accent2 font-normal mt-8 lg:mt-16">
 	{#each options as option, index}
 		<label
 			class="animate__animated animate__fadeInUp relative appearance-none cursor-pointer"
 			style={`--animate-duration: ${1000 + 200 * index}ms`}
 		>
 			<input
-				class="appearance-none opacity-0"
-				type="checkbox"
-				bind:group={destination}
-				name="destination"
+				class="appearance-none "
+				type="radio"
+				bind:group={major}
+				name="major"
 				value={option.name}
 			/>
 			<span class="flex flex-col gap-y-3"
-				><img class="w-8 h-8" src={`/images/flags/${option.icon}.svg`} alt="USA" />
+				><img class="w-8 h-8" src={`/images/majors/${option.icon}.svg`} alt="USA" />
 				{option.name}</span
 			>
 		</label>
 	{/each}
 </fieldset>
-<Button firstStep="true" {FormComponentRef} disabledButton={destination.length === 0} />
+<Button {FormComponentRef} disabledButton={major.length === 0} />
 
 <style lang="postcss">
-	[type='checkbox'] + span {
-		@apply inline-flex justify-center items-center min-w-[7.5rem] h-[8rem] lg:min-w-[9.375rem] lg:h-[8.75rem] border rounded-lg transition ease-in-out delay-150;
+	[type='radio'] + span {
+		@apply inline-flex justify-center items-center min-w-[7.5rem] h-[8rem] lg:min-w-[10.25rem] lg:h-[8.75rem] border rounded-lg transition ease-in-out delay-150;
 		border-color: rgba(62, 52, 200, 0.1);
 		box-shadow: 1px 1px 35px 0 rgba(198, 211, 255, 0.28);
 	}

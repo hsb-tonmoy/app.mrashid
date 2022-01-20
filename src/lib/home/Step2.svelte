@@ -1,12 +1,13 @@
 <script>
+	import Button from './Button.svelte';
 	const options = [
 		{ name: 'Undergraduate' },
 		{ name: "Master's" },
 		{ name: 'PhD' },
 		{ name: 'Other' }
 	];
-
-	export let degree;
+	export let FormComponentRef;
+	export let degree = '';
 </script>
 
 <h2
@@ -48,6 +49,7 @@
 		</label>
 	{/each}
 </fieldset>
+<Button {FormComponentRef} disabledButton={degree.length === 0} />
 
 <style lang="postcss">
 	[type='radio'] + span {

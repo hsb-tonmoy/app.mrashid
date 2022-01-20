@@ -1,9 +1,8 @@
 <script>
-	import { onMount, afterUpdate } from 'svelte';
+	import { onMount } from 'svelte';
 	import { currentStep } from './stores.js';
 	import { uuidv4, formHasError, updateStepStatus } from './helpers.js';
 
-	export let multiStepOptions;
 	/*
   Lifecycle Hooks
   */
@@ -43,7 +42,7 @@
 <div class="multistep-master-form">
 	<div id="multistep-error-messages" />
 	<form class="multistep-form">
-		<div class="flex flex-col">
+		<div class="flex flex-col w-full lg:w-auto">
 			<slot />
 		</div>
 	</form>

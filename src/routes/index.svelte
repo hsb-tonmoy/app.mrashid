@@ -1,17 +1,15 @@
 <script>
 	import Form from '$lib/multistep-form/MasterForm.svelte';
 	import Step from '$lib/multistep-form/StepForm.svelte';
-	import Button from '$lib/home/Button.svelte';
-	import { selections, personal_fields } from '$lib/home/stores.js';
 	import { currentStep } from '$lib/multistep-form/stores.js';
 	import Step1 from '$lib/home/Step1.svelte';
 	import Step2 from '$lib/home/Step2.svelte';
 	import Step3 from '$lib/home/Step3.svelte';
+	import Step4 from '$lib/home/Step4.svelte';
 
-	import { destination, degree, user } from '$lib/svg/form-icons.js';
+	import { destination, degree, user, major } from '$lib/svg/form-icons.js';
 
 	let FormComponentRef;
-	let formHasErrors;
 
 	let multiStepOptions = {
 		stepsDescription: [
@@ -26,6 +24,10 @@
 			{
 				title: 'Personal Info',
 				icon: user
+			},
+			{
+				title: 'Area of Study',
+				icon: major
 			}
 		]
 	};
@@ -40,9 +42,9 @@
 </script>
 
 <main class="bg-lightBodyBackground">
-	<div class="flex flex-col w-full max-w-screen-xl mx-auto px-6 lg:px-8 2xl:px-0">
+	<div class="flex flex-col w-full max-w-screen-2xl mx-auto px-6 lg:px-8 2xl:px-0">
 		<header
-			class="flex flex-col lg:flex-row justify-between items-center py-4 lg:py-8 mb-12 md:mb-0"
+			class="flex flex-col lg:flex-row justify-between items-center py-4 lg:py-8 mb-32 md:mb-0"
 		>
 			<div id="logo">
 				<a href="/" class="text-accent2 font-medium text-lg lg:text-xl">app.mrashid.net</a>
@@ -63,26 +65,19 @@
 				/>
 			</div>
 		</header>
-		<section class="body flex flex-col justify-center">
+		<section class="body flex flex-col md:justify-center">
 			<Form {multiStepOptions} bind:this={FormComponentRef}>
 				<Step>
-					<Step1 bind:destination={$selections.destination} />
-
-					<Button
-						firstStep="true"
-						{FormComponentRef}
-						disabledButton={$selections.destination.length === 0}
-					/>
+					<Step1 {FormComponentRef} />
 				</Step>
 				<Step>
-					<Step2 bind:degree={$selections.degree} />
-
-					<Button {FormComponentRef} disabledButton={$selections.degree.length === 0} />
+					<Step2 {FormComponentRef} />
 				</Step>
 				<Step>
-					<Step3 bind:personal_fields={$personal_fields} bind:formHasErrors />
-
-					<Button {FormComponentRef} disabledButton={formHasErrors} />
+					<Step3 {FormComponentRef} />
+				</Step>
+				<Step>
+					<Step4 {FormComponentRef} />
 				</Step>
 			</Form>
 		</section>
