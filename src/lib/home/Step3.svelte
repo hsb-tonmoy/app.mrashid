@@ -155,7 +155,8 @@
 	</div>
 </fieldset>
 
-<Button {FormComponentRef} disabledButton={!$personalForm.valid} />
+<!-- <Button {FormComponentRef} disabledButton={!$personalForm.valid} /> -->
+<Button {FormComponentRef} disabledButton={false} />
 
 <style lang="postcss">
 	small {

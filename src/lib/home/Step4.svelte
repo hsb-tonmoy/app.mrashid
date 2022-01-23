@@ -2,15 +2,15 @@
 	export let FormComponentRef;
 	import Button from './Button.svelte';
 
-	const options = [
+	const majors = [
 		{ name: 'Computer Science', icon: 'compsci' },
+		{ name: 'Aviation', icon: 'aviation' },
 		{ name: 'Engineering', icon: 'engineering' },
 		{ name: 'Business Studies', icon: 'business' },
-		{ name: 'Data Science', icon: 'datasci' },
 		{ name: 'Humanities', icon: 'humanities' },
-		{ name: 'Physics', icon: 'physics' },
-		{ name: 'Chemistry', icon: 'chemistry' },
-		{ name: 'Pharmacy', icon: 'pharmacy' }
+		{ name: 'Fine Arts', icon: 'fine-arts' },
+		{ name: 'Arts & Sciences', icon: 'chemistry' },
+		{ name: 'Miscellaneous', icon: 'pharmacy' }
 	];
 
 	export let major = '';
@@ -34,14 +34,14 @@
 </div>
 
 <img
-	src="/images/home-ill-destination.png"
+	src="/images/home-ill-major.svg"
 	alt="fly-illustration"
-	class="animate__animated animate__zoomInRight absolute bottom-[8vh] right-0 object-cover w-[200px] xl:w-[450px] 2xl:w-[550px] z-0"
+	class="animate__animated animate__zoomInRight absolute bottom-[8vh] right-0 object-cover w-[200px] xl:w-[450px] 2xl:w-[850px] z-0"
 	style="--animate-duration: 1000ms"
 />
 
 <fieldset class="flex flex-wrap gap-2 lg:gap-4 text-sm text-accent2 font-normal mt-8 lg:mt-16">
-	{#each options as option, index}
+	{#each majors as option, index}
 		<label
 			class="animate__animated animate__fadeInUp relative appearance-none cursor-pointer"
 			style={`--animate-duration: ${1000 + 200 * index}ms`}
@@ -64,7 +64,7 @@
 
 <style lang="postcss">
 	[type='radio'] + span {
-		@apply inline-flex justify-center items-center min-w-[7.5rem] h-[8rem] lg:min-w-[10.25rem] lg:h-[8.75rem] border rounded-lg transition ease-in-out delay-150;
+		@apply inline-flex justify-center items-center min-w-[9.5rem] h-[8rem] lg:min-w-[10.25rem] lg:h-[8.75rem] border rounded-lg transition ease-in-out delay-150;
 		border-color: rgba(62, 52, 200, 0.1);
 		box-shadow: 1px 1px 35px 0 rgba(198, 211, 255, 0.28);
 	}

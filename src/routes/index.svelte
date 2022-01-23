@@ -6,8 +6,9 @@
 	import Step2 from '$lib/home/Step2.svelte';
 	import Step3 from '$lib/home/Step3.svelte';
 	import Step4 from '$lib/home/Step4.svelte';
+	import Step5 from '$lib/home/Step5.svelte';
 
-	import { destination, degree, user, major } from '$lib/svg/form-icons.js';
+	import { destination, degree, user, major, credentials } from '$lib/svg/form-icons.js';
 
 	let FormComponentRef;
 
@@ -15,30 +16,33 @@
 		stepsDescription: [
 			{
 				title: 'Destination',
+				component: Step1,
 				icon: destination
 			},
 			{
 				title: 'Degree',
+				component: Step2,
 				icon: degree
 			},
 			{
 				title: 'Personal Info',
+				component: Step3,
 				icon: user
 			},
 			{
 				title: 'Area of Study',
+				component: Step4,
 				icon: major
+			},
+			{
+				title: 'Credentials',
+				component: Step5,
+				icon: credentials
 			}
 		]
 	};
 
 	$: separator_width = `width: ${100 / (multiStepOptions.stepsDescription.length - 1)}%`;
-
-	function handleStepClick(index) {
-		if ($currentStep < index) {
-			FormComponentRef.previousStep();
-		}
-	}
 </script>
 
 <main class="bg-lightBodyBackground">
@@ -66,19 +70,12 @@
 			</div>
 		</header>
 		<section class="body flex flex-col md:justify-center">
-			<Form {multiStepOptions} bind:this={FormComponentRef}>
-				<Step>
-					<Step1 {FormComponentRef} />
-				</Step>
-				<Step>
-					<Step2 {FormComponentRef} />
-				</Step>
-				<Step>
-					<Step3 {FormComponentRef} />
-				</Step>
-				<Step>
-					<Step4 {FormComponentRef} />
-				</Step>
+			<Form bind:this={FormComponentRef}>
+				{#each multiStepOptions.stepsDescription as step}
+					<Step>
+						<svelte:component this={step.component} {FormComponentRef} />
+					</Step>
+				{/each}
 			</Form>
 		</section>
 	</div>
@@ -87,10 +84,9 @@
 	>
 		{#each multiStepOptions.stepsDescription as step, index}
 			<span
-				on:click={() => handleStepClick(index)}
 				class:step-active={$currentStep === index}
 				class:step-done={$currentStep > index}
-				class="relative w-12 h-12 text-gray-500 rounded-xl transition ease-in-out duration-300 cursor-pointer"
+				class="relative w-16 h-14 text-gray-500 rounded-xl transition ease-in-out duration-300 cursor-pointer"
 			>
 				{@html step.icon}
 			</span>
