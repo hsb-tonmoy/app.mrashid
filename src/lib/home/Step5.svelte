@@ -2,22 +2,42 @@
 	import Button from './Button.svelte';
 	export let FormComponentRef;
 
-	let length = 4;
+	let length = 2;
 
-	let curriculum = [''];
-	let level = [''];
-	let gpa = [''];
-	let year = [''];
+	let selections = [
+		{
+			curriculum: '',
+			level: '',
+			gpa: '',
+			year: ''
+		},
+		{
+			curriculum: '',
+			level: '',
+			gpa: '',
+			year: ''
+		}
+	];
 
 	let curriculums = ['NCTB', 'English Version', 'English Medium'];
 	let levels = ['SSC', 'HSC', 'O Level', 'A Level', "Bachelor's", "Master's"];
 
 	function handleAdd() {
 		length += 1;
+		selections = [
+			...selections,
+			{
+				curriculum: '',
+				level: '',
+				gpa: '',
+				year: ''
+			}
+		];
 	}
 
 	function handleRemove() {
 		length -= 1;
+		selections = selections.filter((element, index) => index < selections.length - 1);
 	}
 </script>
 
@@ -48,7 +68,7 @@
 		<div class="flex flex-wrap gap-y-4 lg:gap-x-16">
 			<select
 				name="curriculum"
-				bind:value={curriculum[i]}
+				bind:value={selections[i].curriculum}
 				class="form-select border-0 border-b-2 border-thinAccent focus:ring-0 focus:border-b-3 focus:border-accent1 bg-transparent w-52 lg:w-60 text-accent1 text-base lg:text-xl lg:px-0 lg:pb-4"
 			>
 				<option value="" selected>Choose a curriculum</option>
@@ -58,7 +78,7 @@
 			</select>
 			<select
 				name="level"
-				bind:value={level[i]}
+				bind:value={selections[i].level}
 				class="form-select border-0 border-b-2 border-thinAccent focus:ring-0 focus:border-b-3 focus:border-accent1 bg-transparent w-52 lg:w-60 text-accent1 text-base lg:text-xl lg:px-0 lg:pb-4"
 			>
 				<option value="" disabled selected hidden>Choose a level</option>
@@ -70,24 +90,32 @@
 				type="text"
 				name="GPA"
 				placeholder="GPA"
-				bind:value={gpa[i]}
+				bind:value={selections[i].gpa}
 				class="form-input border-0 border-b-2 border-thinAccent focus:ring-0 focus:border-b-3 focus:border-accent1 bg-transparent text-accent1 text-base lg:text-xl placeholder:text-accent1 placeholder:text-base placeholder:lg:text-xl px-4 w-52 lg:w-60"
 			/>
 			<input
 				type="text"
 				name="Year"
 				placeholder="Year"
-				bind:value={year[i]}
+				bind:value={selections[i].year}
 				class="form-input border-0 border-b-2 border-thinAccent focus:ring-0 focus:border-b-3 focus:border-accent1 bg-transparent text-accent1 text-base lg:text-xl placeholder:text-accent1 placeholder:text-base placeholder:lg:text-xl px-4 w-52 lg:w-60"
 			/>
 		</div>
 	{/each}
+	<div class="flex gap-x-2 relative lg:absolute lg:bottom-0 lg:-right-28">
+		<button
+			type="button"
+			class="bg-thinAccent hover:bg-accent1 text-white px-3 py-2"
+			on:click={handleAdd}>+</button
+		>
+		{#if length > 2}
+			<button
+				type="button"
+				class="bg-thinAccent hover:bg-accent1 text-white px-3 py-2"
+				on:click={handleRemove}>-</button
+			>
+		{/if}
+	</div>
 </fieldset>
 
 <div class="pb-8"><Button {FormComponentRef} disabledButton={false} /></div>
-
-<style lang="postcss">
-	small {
-		@apply text-red-700;
-	}
-</style>

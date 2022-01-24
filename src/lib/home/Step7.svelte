@@ -41,9 +41,3 @@
 
 <!-- <Button {FormComponentRef} disabledButton={!$personalForm.valid} /> -->
 <Button {FormComponentRef} disabledButton={false} />
-
-<style lang="postcss">
-	small {
-		@apply text-red-700;
-	}
-</style>
