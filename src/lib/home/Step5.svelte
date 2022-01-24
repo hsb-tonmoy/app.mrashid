@@ -2,22 +2,23 @@
 	import Button from './Button.svelte';
 	export let FormComponentRef;
 
-	let selections = [''];
+	let length = 4;
 
-	let fields = [
-		{
-			curriculum: {
-				type: 'select',
-				options: ['NCTB', 'English Version', 'English Medium']
-			},
-			level: {
-				type: 'select',
-				options: ['SSC', 'HSC', 'O Level', 'A Level', "Bachelor's", "Master's"]
-			}
-		}
-	];
+	let curriculum = [''];
+	let level = [''];
+	let gpa = [''];
+	let year = [''];
 
-	$: console.log(selections);
+	let curriculums = ['NCTB', 'English Version', 'English Medium'];
+	let levels = ['SSC', 'HSC', 'O Level', 'A Level', "Bachelor's", "Master's"];
+
+	function handleAdd() {
+		length += 1;
+	}
+
+	function handleRemove() {
+		length -= 1;
+	}
 </script>
 
 <h2
@@ -42,18 +43,48 @@
 	style="--animate-duration: 1000ms"
 />
 
-<fieldset class="flex gap-x-8 mt-16">
-	{#each fields as field}
-		<select name="curriculum" bind:value={selections} class="form-select">
-			{#each field.curriculum.options as option}
-				<option value={option}>{option}</option>
-			{/each}
-		</select>
-		<select name="level" id="" />
+<fieldset class="relative flex flex-col gap-y-16 mt-16">
+	{#each { length: length } as _, i}
+		<div class="flex flex-wrap gap-y-4 lg:gap-x-16">
+			<select
+				name="curriculum"
+				bind:value={curriculum[i]}
+				class="form-select border-0 border-b-2 border-thinAccent focus:ring-0 focus:border-b-3 focus:border-accent1 bg-transparent w-52 lg:w-60 text-accent1 text-base lg:text-xl lg:px-0 lg:pb-4"
+			>
+				<option value="" selected>Choose a curriculum</option>
+				{#each curriculums as option}
+					<option value={option}>{option}</option>
+				{/each}
+			</select>
+			<select
+				name="level"
+				bind:value={level[i]}
+				class="form-select border-0 border-b-2 border-thinAccent focus:ring-0 focus:border-b-3 focus:border-accent1 bg-transparent w-52 lg:w-60 text-accent1 text-base lg:text-xl lg:px-0 lg:pb-4"
+			>
+				<option value="" disabled selected hidden>Choose a level</option>
+				{#each levels as option}
+					<option value={option}>{option}</option>
+				{/each}
+			</select>
+			<input
+				type="text"
+				name="GPA"
+				placeholder="GPA"
+				bind:value={gpa[i]}
+				class="form-input border-0 border-b-2 border-thinAccent focus:ring-0 focus:border-b-3 focus:border-accent1 bg-transparent text-accent1 text-base lg:text-xl placeholder:text-accent1 placeholder:text-base placeholder:lg:text-xl px-4 w-52 lg:w-60"
+			/>
+			<input
+				type="text"
+				name="Year"
+				placeholder="Year"
+				bind:value={year[i]}
+				class="form-input border-0 border-b-2 border-thinAccent focus:ring-0 focus:border-b-3 focus:border-accent1 bg-transparent text-accent1 text-base lg:text-xl placeholder:text-accent1 placeholder:text-base placeholder:lg:text-xl px-4 w-52 lg:w-60"
+			/>
+		</div>
 	{/each}
 </fieldset>
 
-<Button {FormComponentRef} disabledButton={false} />
+<div class="pb-8"><Button {FormComponentRef} disabledButton={false} /></div>
 
 <style lang="postcss">
 	small {
