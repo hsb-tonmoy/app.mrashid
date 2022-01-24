@@ -37,9 +37,9 @@
 	</p>
 </div>
 <img
-	src="/images/home-ill-personal.svg"
+	src="/images/home-ill-credentials.svg"
 	alt="fly-illustration"
-	class="animate__animated animate__zoomInRight absolute bottom-[8vh] right-0 object-cover w-[200px] lg:w-[350px] xl:w-[550px] z-0"
+	class="animate__animated animate__zoomInRight fixed bottom-0 lg:bottom-[8vh] right-0 object-cover w-[300px] lg:w-[550px] xl:w-[750px] z-0"
 	style="--animate-duration: 1000ms"
 />
 

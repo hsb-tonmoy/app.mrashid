@@ -7,8 +7,18 @@
 	import Step3 from '$lib/home/Step3.svelte';
 	import Step4 from '$lib/home/Step4.svelte';
 	import Step5 from '$lib/home/Step5.svelte';
+	import Step6 from '$lib/home/Step6.svelte';
+	import Step7 from '$lib/home/Step7.svelte';
 
-	import { destination, degree, user, major, credentials } from '$lib/svg/form-icons.js';
+	import {
+		destination,
+		degree,
+		user,
+		major,
+		credentials,
+		ielts,
+		message
+	} from '$lib/svg/form-icons.js';
 
 	let FormComponentRef;
 
@@ -38,6 +48,16 @@
 				title: 'Credentials',
 				component: Step5,
 				icon: credentials
+			},
+			{
+				title: 'IELTS',
+				component: Step6,
+				icon: ielts
+			},
+			{
+				title: 'Message',
+				component: Step7,
+				icon: message
 			}
 		]
 	};
@@ -86,7 +106,7 @@
 			<span
 				class:step-active={$currentStep === index}
 				class:step-done={$currentStep > index}
-				class="relative w-16 h-14 text-gray-500 rounded-xl transition ease-in-out duration-300 cursor-pointer"
+				class="relative flex w-16 h-14 text-gray-500 rounded-xl transition ease-in-out duration-300 cursor-pointer"
 			>
 				{@html step.icon}
 			</span>
