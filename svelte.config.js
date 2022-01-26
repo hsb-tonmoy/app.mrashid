@@ -8,7 +8,7 @@ const config = {
 		target: '#svelte',
 		vite: {
 			optimizeDeps: {
-				exclude: ['svelte-forms']
+				include: ['svelte-forms']
 			}
 		}
 	},
