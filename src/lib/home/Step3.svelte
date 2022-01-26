@@ -107,7 +107,6 @@
 				class="absolute left-0 -top-3.5 text-thinAccent text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-thinAccent peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-lightText peer-focus:text-base"
 				>Facebook ID</label
 			>
-			\
 		</span>
 	</div>
 </fieldset>

@@ -1,7 +1,8 @@
 <script>
 	export let firstStep = false,
 		FormComponentRef,
-		disabledButton = true;
+		disabledButton = true,
+		submit = false;
 
 	function handlePrevious() {
 		FormComponentRef.previousStep();
@@ -28,10 +29,19 @@
 			</svg></button
 		>
 	{/if}
-	<button
-		on:click|preventDefault={handleNext}
-		class="relative px-12 lg:px-24 py-4 lg:py-6 ml-2 lg:ml-0 bg-accent1 hover:bg-accent2 disabled:bg-thinAccent text-white font-light text-sm uppercase rounded animate__animated animate__slideInRight"
-		disabled={disabledButton}
-		type="button">Next Step</button
-	>
+	{#if !submit}
+		<button
+			on:click|preventDefault={handleNext}
+			class="relative px-12 lg:px-24 py-4 lg:py-6 ml-2 lg:ml-0 bg-accent1 hover:bg-accent2 disabled:bg-thinAccent text-white font-light text-sm uppercase rounded animate__animated animate__slideInRight"
+			disabled={disabledButton}
+			type="button">Next Step</button
+		>
+	{:else}
+		<button
+			on:click|preventDefault={handleNext}
+			class="relative px-12 lg:px-24 py-4 lg:py-6 ml-2 lg:ml-0 bg-accent1 hover:bg-accent2 disabled:bg-thinAccent text-white font-light text-sm uppercase rounded animate__animated animate__slideInRight"
+			disabled={disabledButton}
+			type="button">Submit</button
+		>
+	{/if}
 </div>

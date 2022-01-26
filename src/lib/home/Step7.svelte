@@ -40,4 +40,4 @@
 </fieldset>
 
 <!-- <Button {FormComponentRef} disabledButton={!$personalForm.valid} /> -->
-<Button {FormComponentRef} disabledButton={false} />
+<Button {FormComponentRef} submit={true} disabledButton={false} />
