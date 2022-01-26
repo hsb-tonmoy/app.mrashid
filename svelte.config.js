@@ -5,12 +5,7 @@ import adapter from '@sveltejs/adapter-netlify';
 const config = {
 	kit: {
 		adapter: adapter({ split: false }),
-		target: '#svelte',
-		vite: {
-			optimizeDeps: {
-				include: ['svelte-forms']
-			}
-		}
+		target: '#svelte'
 	},
 
 	preprocess: [preprocess({ postcss: true })]
