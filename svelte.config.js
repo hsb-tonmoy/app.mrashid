@@ -5,9 +5,12 @@ import adapter from '@sveltejs/adapter-netlify';
 const config = {
 	kit: {
 		adapter: adapter({ split: false }),
-
-		// hydrate the <div id="svelte"> element in src/app.html
-		target: '#svelte'
+		target: '#svelte',
+		vite: {
+			optimizeDeps: {
+				exclude: ['svelte-forms']
+			}
+		}
 	},
 
 	preprocess: [preprocess({ postcss: true })]
