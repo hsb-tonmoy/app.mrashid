@@ -1,5 +1,6 @@
 <script>
 	import Button from './Button.svelte';
+	import { degree } from '$lib/home/stores.js';
 	const options = [
 		{ name: 'Undergraduate' },
 		{ name: "Master's" },
@@ -7,7 +8,6 @@
 		{ name: 'Other' }
 	];
 	export let FormComponentRef;
-	export let degree = '';
 </script>
 
 <h2
@@ -41,7 +41,7 @@
 			<input
 				class="appearance-none opacity-0"
 				type="radio"
-				bind:group={degree}
+				bind:group={$degree}
 				name="destination"
 				value={option.name}
 			/>
@@ -49,7 +49,7 @@
 		</label>
 	{/each}
 </fieldset>
-<Button {FormComponentRef} disabledButton={degree.length === 0} />
+<Button {FormComponentRef} disabledButton={!$degree} />
 
 <style lang="postcss">
 	[type='radio'] + span {

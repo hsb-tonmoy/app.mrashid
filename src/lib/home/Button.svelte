@@ -4,12 +4,58 @@
 		disabledButton = true,
 		submit = false;
 
+	import {
+		destination,
+		degree,
+		firstname,
+		lastname,
+		email,
+		phone,
+		social_media,
+		major,
+		education,
+		ielts,
+		message
+	} from './stores.js';
+
+	const API_URL = import.meta.env.VITE_API_URL;
+
 	function handlePrevious() {
 		FormComponentRef.previousStep();
 	}
 
 	function handleNext() {
 		FormComponentRef.nextStep();
+	}
+
+	let data = {
+		destination: $destination,
+		degree: $degree,
+		firstname: $firstname,
+		lastname: $lastname,
+		email: $email,
+		phone: $phone,
+		social_media: $social_media,
+		major: $major,
+		education: $education,
+		ielts: $ielts,
+		message: $message
+	};
+
+	async function handleSubmit() {
+		try {
+			const res = await fetch(API_URL, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(data)
+			});
+			const response = await res.json();
+			console.log(response);
+		} catch (err) {
+			console.log(err);
+		}
 	}
 </script>
 
@@ -38,7 +84,7 @@
 		>
 	{:else}
 		<button
-			on:click|preventDefault={handleNext}
+			on:click|preventDefault={handleSubmit}
 			class="relative px-12 lg:px-24 py-4 lg:py-6 ml-2 lg:ml-0 bg-accent1 hover:bg-accent2 disabled:bg-thinAccent text-white font-light text-sm uppercase rounded animate__animated animate__slideInRight"
 			disabled={disabledButton}
 			type="button">Submit</button

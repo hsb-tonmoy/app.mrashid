@@ -2,6 +2,12 @@
 	export let FormComponentRef;
 	import Button from './Button.svelte';
 
+	import { destination } from '$lib/home/stores.js';
+
+	let destination_data = [''];
+
+	$: $destination = destination_data.join(', ');
+
 	const options = [
 		{ name: 'United States', icon: 'usa' },
 		{ name: 'Canada', icon: 'canada' },
@@ -9,8 +15,6 @@
 		{ name: 'Australia', icon: 'aus' },
 		{ name: 'Other', icon: 'other' }
 	];
-
-	export let destination = [];
 </script>
 
 <h2
@@ -48,7 +52,7 @@
 			<input
 				class="appearance-none opacity-0"
 				type="checkbox"
-				bind:group={destination}
+				bind:group={destination_data}
 				name="destination"
 				value={option.name}
 			/>
@@ -59,7 +63,7 @@
 		</label>
 	{/each}
 </fieldset>
-<Button firstStep="true" {FormComponentRef} disabledButton={destination.length === 0} />
+<Button firstStep="true" {FormComponentRef} disabledButton={destination_data.length === 0} />
 
 <style lang="postcss">
 	[type='checkbox'] + span {

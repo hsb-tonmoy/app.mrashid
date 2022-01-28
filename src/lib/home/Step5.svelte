@@ -2,9 +2,14 @@
 	import Button from './Button.svelte';
 	export let FormComponentRef;
 
+	import { education } from '$lib/home/stores.js';
+
 	let length = 2;
 
-	let selections = [
+	let curriculums = ['NCTB', 'English Version', 'English Medium'];
+	let levels = ['SSC', 'HSC', 'O Level', 'A Level', "Bachelor's", "Master's"];
+
+	let education_data = [
 		{
 			curriculum: '',
 			level: '',
@@ -19,13 +24,12 @@
 		}
 	];
 
-	let curriculums = ['NCTB', 'English Version', 'English Medium'];
-	let levels = ['SSC', 'HSC', 'O Level', 'A Level', "Bachelor's", "Master's"];
+	$: $education = education_data;
 
 	function handleAdd() {
 		length += 1;
-		selections = [
-			...selections,
+		education_data = [
+			...education_data,
 			{
 				curriculum: '',
 				level: '',
@@ -37,7 +41,7 @@
 
 	function handleRemove() {
 		length -= 1;
-		selections = selections.filter((element, index) => index < selections.length - 1);
+		education_data = education_data.filter((element, index) => index < education_data.length - 1);
 	}
 </script>
 
@@ -68,7 +72,7 @@
 		<div class="flex flex-wrap gap-y-4 lg:gap-x-16">
 			<select
 				name="curriculum"
-				bind:value={selections[i].curriculum}
+				bind:value={education_data[i].curriculum}
 				class="form-select border-0 border-b-2 border-thinAccent focus:ring-0 focus:border-b-3 focus:border-accent1 bg-transparent w-52 lg:w-60 text-accent1 text-base lg:text-xl lg:px-0 lg:pb-4"
 			>
 				<option value="" selected>Choose a curriculum</option>
@@ -78,7 +82,7 @@
 			</select>
 			<select
 				name="level"
-				bind:value={selections[i].level}
+				bind:value={education_data[i].level}
 				class="form-select border-0 border-b-2 border-thinAccent focus:ring-0 focus:border-b-3 focus:border-accent1 bg-transparent w-52 lg:w-60 text-accent1 text-base lg:text-xl lg:px-0 lg:pb-4"
 			>
 				<option value="" disabled selected hidden>Choose a level</option>
@@ -90,14 +94,14 @@
 				type="text"
 				name="GPA"
 				placeholder="GPA"
-				bind:value={selections[i].gpa}
+				bind:value={education_data[i].gpa}
 				class="form-input border-0 border-b-2 border-thinAccent focus:ring-0 focus:border-b-3 focus:border-accent1 bg-transparent text-accent1 text-base lg:text-xl placeholder:text-accent1 placeholder:text-base placeholder:lg:text-xl px-4 w-52 lg:w-60"
 			/>
 			<input
 				type="text"
 				name="Year"
 				placeholder="Year"
-				bind:value={selections[i].year}
+				bind:value={education_data[i].year}
 				class="form-input border-0 border-b-2 border-thinAccent focus:ring-0 focus:border-b-3 focus:border-accent1 bg-transparent text-accent1 text-base lg:text-xl placeholder:text-accent1 placeholder:text-base placeholder:lg:text-xl px-4 w-52 lg:w-60"
 			/>
 		</div>

@@ -2,6 +2,8 @@
 	export let FormComponentRef;
 	import Button from './Button.svelte';
 
+	import { major } from '$lib/home/stores.js';
+
 	const majors = [
 		{ name: 'Computer Science', icon: 'compsci' },
 		{ name: 'Aviation', icon: 'aviation' },
@@ -12,8 +14,6 @@
 		{ name: 'Arts & Sciences', icon: 'chemistry' },
 		{ name: 'Miscellaneous', icon: 'pharmacy' }
 	];
-
-	export let major = '';
 </script>
 
 <h2
@@ -49,7 +49,7 @@
 			<input
 				class="appearance-none "
 				type="radio"
-				bind:group={major}
+				bind:group={$major}
 				name="major"
 				value={option.name}
 			/>
@@ -60,7 +60,7 @@
 		</label>
 	{/each}
 </fieldset>
-<Button {FormComponentRef} disabledButton={major.length === 0} />
+<Button {FormComponentRef} disabledButton={!$major} />
 
 <style lang="postcss">
 	[type='radio'] + span {

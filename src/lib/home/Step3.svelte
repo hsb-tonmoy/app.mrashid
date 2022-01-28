@@ -2,7 +2,7 @@
 	import Button from './Button.svelte';
 	export let FormComponentRef;
 
-	let firstname, lastname, email_address, phone, facebook;
+	import { firstname, lastname, email, phone, social_media } from '$lib/home/stores.js';
 </script>
 
 <h2
@@ -36,7 +36,7 @@
 				type="text"
 				class="peer h-10 w-full bg-transparent border-b-2 border-thinAccent text-base lg:text-xl font-semibold text-accent2 placeholder-transparent focus:outline-none focus:border-accent1"
 				placeholder="First name"
-				bind:value={firstname}
+				bind:value={$firstname}
 			/>
 			<label
 				for="firstname"
@@ -51,7 +51,7 @@
 				type="text"
 				class="peer h-10 w-full bg-transparent border-b-2 border-thinAccent text-base lg:text-xl font-semibold text-accent2 placeholder-transparent focus:outline-none focus:border-accent1"
 				placeholder="Last name"
-				bind:value={lastname}
+				bind:value={$lastname}
 			/>
 			<label
 				for="lastname"
@@ -68,7 +68,7 @@
 				type="text"
 				class="peer h-10 w-full bg-transparent border-b-2 border-thinAccent text-base lg:text-xl font-semibold text-accent2 placeholder-transparent focus:outline-none focus:border-accent1"
 				placeholder="Phone no."
-				bind:value={phone}
+				bind:value={$phone}
 			/>
 			<label
 				for="phone"
@@ -83,7 +83,7 @@
 				type="text"
 				class="peer h-10 w-full bg-transparent border-b-2 border-thinAccent text-base lg:text-xl font-semibold text-accent2 placeholder-transparent focus:outline-none focus:border-accent1"
 				placeholder="Email address"
-				bind:value={email_address}
+				bind:value={$email}
 			/>
 			<label
 				for="email"
@@ -100,7 +100,7 @@
 				type="text"
 				class="peer h-10 w-full bg-transparent border-b-2 border-thinAccent text-base lg:text-xl font-semibold text-accent2 placeholder-transparent focus:outline-none focus:border-accent1"
 				placeholder="Facebook ID"
-				bind:value={facebook}
+				bind:value={$social_media}
 			/>
 			<label
 				for="email"
@@ -111,7 +111,6 @@
 	</div>
 </fieldset>
 
-<!-- <Button {FormComponentRef} disabledButton={!$personalForm.valid} /> -->
 <Button {FormComponentRef} disabledButton={false} />
 
 <style lang="postcss">

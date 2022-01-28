@@ -2,7 +2,7 @@
 	import Button from './Button.svelte';
 	export let FormComponentRef;
 
-	let message = '';
+	import { message } from '$lib/home/stores.js';
 </script>
 
 <h2
@@ -34,7 +34,7 @@
 			name="message"
 			class="form-textarea h-52 py-4 w-full bg-transparent border-b-2 border-thinAccent text-base lg:text-xl font-medium text-accent2 placeholder-transparent focus:outline-none focus:border-accent1"
 			placeholder="Tell us what you think"
-			bind:value={message}
+			bind:value={$message}
 		/>
 	</span>
 </fieldset>

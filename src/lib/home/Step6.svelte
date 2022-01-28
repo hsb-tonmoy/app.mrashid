@@ -3,20 +3,24 @@
 	import Button from './Button.svelte';
 	export let FormComponentRef;
 
-	$: ielts = '';
+	import { ielts } from '$lib/home/stores.js';
+
+	$: ielts_data = '';
 	$: ieltsScore = '';
 
 	let disabled = true;
 
-	$: if (ielts) {
-		if (ielts === 'taken') {
+	$: if (ielts_data) {
+		if (ielts_data === 'taken') {
 			if (ieltsScore) {
 				disabled = false;
+				$ielts = ieltsScore;
 			} else {
 				disabled = true;
 			}
 		} else {
 			disabled = false;
+			$ielts = ielts_data;
 		}
 	}
 </script>
@@ -50,7 +54,7 @@
 			name="not-taken"
 			value="not-taken"
 			id="not-taken"
-			bind:group={ielts}
+			bind:group={ielts_data}
 			class="form-radio w-4 h-4 lg:w-6 lg:h-6 checked:text-accent2 focus:ring-accent2 outline-none"
 		/>
 		IELTS - Not yet taken
@@ -61,11 +65,11 @@
 			name="taken"
 			value="taken"
 			id="taken"
-			bind:group={ielts}
+			bind:group={ielts_data}
 			class="form-radio w-4 h-4 lg:w-6 lg:h-6 checked:text-accent2 focus:ring-accent2 outline-none"
 		/>
 		IELTS - Taken
-		{#if ielts === 'taken'}
+		{#if ielts_data === 'taken'}
 			:
 			<div class="relative">
 				<input
@@ -86,7 +90,7 @@
 			name="wont-take"
 			value="wont-take"
 			id="wont-take"
-			bind:group={ielts}
+			bind:group={ielts_data}
 			class="form-radio w-4 h-4 lg:w-6 lg:h-6 checked:text-accent2 focus:ring-accent2 outline-none"
 		/>
 		Wish to get enrolled without IELTS
