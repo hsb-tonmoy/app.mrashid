@@ -4,7 +4,7 @@
 
 	import { destination } from '$lib/home/stores.js';
 
-	let destination_data = [''];
+	let destination_data = [];
 
 	$: $destination = destination_data.join(', ');
 

@@ -1,8 +1,44 @@
 <script>
+	import { firstname, lastname, email, phone, social_media } from './stores';
+
 	import Button from './Button.svelte';
+
 	export let FormComponentRef;
 
-	import { firstname, lastname, email, phone, social_media } from '$lib/home/stores.js';
+	import { createForm } from 'svelte-forms-lib';
+	import * as yup from 'yup';
+
+	const phoneRegex =
+		/^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
+
+	const { form, errors, state, isValid, touched, handleChange, handleSubmit } = createForm({
+		initialValues: {
+			firstname: '',
+			lastname: '',
+			email: '',
+			phone: '',
+			facebook: ''
+		},
+		validationSchema: yup.object().shape({
+			firstname: yup.string().required('First name is required').trim(),
+			lastname: yup.string().required('Last name is required').trim(),
+			email: yup.string().email().required('Email address is required').trim(),
+			phone: yup
+				.string()
+				.matches(phoneRegex, 'Not a valid phone number')
+				.required('Phone number is required')
+				.trim(),
+			facebook: yup.string().required('Facebook ID is required').trim()
+		}),
+		onSubmit: (values) => {
+			$firstname = values.firstname;
+			$lastname = values.lastname;
+			$email = values.email;
+			$phone = values.phone;
+			$social_media = values.facebook;
+			console.log('Maybe it worked.');
+		}
+	});
 </script>
 
 <h2
@@ -36,13 +72,17 @@
 				type="text"
 				class="peer h-10 w-full bg-transparent border-b-2 border-thinAccent text-base lg:text-xl font-semibold text-accent2 placeholder-transparent focus:outline-none focus:border-accent1"
 				placeholder="First name"
-				bind:value={$firstname}
+				bind:value={$form.firstname}
+				on:change={handleChange}
 			/>
 			<label
 				for="firstname"
 				class="absolute left-0 -top-3.5 text-thinAccent text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-thinAccent peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-lightText peer-focus:text-base"
 				>First name</label
 			>
+			{#if $errors.firstname && $touched.firstname}
+				<small>{$errors.firstname}</small>
+			{/if}
 		</span>
 		<span class="relative w-2/4">
 			<input
@@ -51,13 +91,17 @@
 				type="text"
 				class="peer h-10 w-full bg-transparent border-b-2 border-thinAccent text-base lg:text-xl font-semibold text-accent2 placeholder-transparent focus:outline-none focus:border-accent1"
 				placeholder="Last name"
-				bind:value={$lastname}
+				bind:value={$form.lastname}
+				on:change={handleChange}
 			/>
 			<label
 				for="lastname"
 				class="absolute left-0 -top-3.5 text-thinAccent text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-thinAccent peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-lightText peer-focus:text-base"
 				>Last name</label
 			>
+			{#if $errors.lastname && $touched.lastname}
+				<small>{$errors.lastname}</small>
+			{/if}
 		</span>
 	</div>
 	<div class="flex flex-wrap lg:flex-nowrap gap-x-8 mt-16">
@@ -68,13 +112,17 @@
 				type="text"
 				class="peer h-10 w-full bg-transparent border-b-2 border-thinAccent text-base lg:text-xl font-semibold text-accent2 placeholder-transparent focus:outline-none focus:border-accent1"
 				placeholder="Phone no."
-				bind:value={$phone}
+				bind:value={$form.phone}
+				on:change={handleChange}
 			/>
 			<label
 				for="phone"
 				class="absolute left-0 -top-3.5 text-thinAccent text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-thinAccent peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-lightText peer-focus:text-base"
 				>Phone no.</label
 			>
+			{#if $errors.phone && $touched.phone}
+				<small>{$errors.phone}</small>
+			{/if}
 		</span>
 		<span class="relative w-full lg:w-2/4 mt-16 lg:mt-0">
 			<input
@@ -83,13 +131,17 @@
 				type="text"
 				class="peer h-10 w-full bg-transparent border-b-2 border-thinAccent text-base lg:text-xl font-semibold text-accent2 placeholder-transparent focus:outline-none focus:border-accent1"
 				placeholder="Email address"
-				bind:value={$email}
+				bind:value={$form.email}
+				on:change={handleChange}
 			/>
 			<label
 				for="email"
 				class="absolute left-0 -top-3.5 text-thinAccent text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-thinAccent peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-lightText peer-focus:text-base"
 				>Email address</label
 			>
+			{#if $errors.email && $touched.email}
+				<small>{$errors.email}</small>
+			{/if}
 		</span>
 	</div>
 	<div class="flex gap-x-8 mt-16">
@@ -100,18 +152,33 @@
 				type="text"
 				class="peer h-10 w-full bg-transparent border-b-2 border-thinAccent text-base lg:text-xl font-semibold text-accent2 placeholder-transparent focus:outline-none focus:border-accent1"
 				placeholder="Facebook ID"
-				bind:value={$social_media}
+				bind:value={$form.facebook}
+				on:change={handleChange}
 			/>
 			<label
-				for="email"
+				for="facebook"
 				class="absolute left-0 -top-3.5 text-thinAccent text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-thinAccent peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-lightText peer-focus:text-base"
 				>Facebook ID</label
 			>
+			{#if $errors.facebook && $touched.facebook}
+				<small>{$errors.facebook}</small>
+			{/if}
 		</span>
 	</div>
 </fieldset>
 
-<Button {FormComponentRef} disabledButton={false} />
+<Button
+	{FormComponentRef}
+	on:submit={handleSubmit}
+	disabledButton={!$isValid ||
+		!(
+			$state.modified.firstname &&
+			$state.modified.lastname &&
+			$state.modified.email &&
+			$state.modified.phone &&
+			$state.modified.facebook
+		)}
+/>
 
 <style lang="postcss">
 	small {

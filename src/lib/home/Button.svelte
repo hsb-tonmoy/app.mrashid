@@ -1,4 +1,7 @@
 <script>
+	import { createEventDispatcher } from 'svelte';
+
+	let dispatch = createEventDispatcher();
 	import Toastify from 'toastify-js';
 	import 'toastify-js/src/toastify.css';
 
@@ -28,6 +31,7 @@
 	}
 
 	function handleNext() {
+		dispatch('submit');
 		FormComponentRef.nextStep();
 	}
 
