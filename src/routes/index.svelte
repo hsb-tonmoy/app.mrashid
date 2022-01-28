@@ -9,6 +9,7 @@
 	import Step5 from '$lib/home/Step5.svelte';
 	import Step6 from '$lib/home/Step6.svelte';
 	import Step7 from '$lib/home/Step7.svelte';
+	import Step8 from '$lib/home/Step8.svelte';
 
 	import {
 		destination,
@@ -17,7 +18,8 @@
 		major,
 		credentials,
 		ielts,
-		message
+		message,
+		success
 	} from '$lib/svg/form-icons.js';
 
 	let FormComponentRef;
@@ -58,6 +60,11 @@
 				title: 'Message',
 				component: Step7,
 				icon: message
+			},
+			{
+				title: 'Success',
+				component: Step8,
+				icon: success
 			}
 		]
 	};
@@ -73,20 +80,26 @@
 			<div id="logo">
 				<a href="/" class="text-accent2 font-medium text-lg lg:text-xl">app.mrashid.net</a>
 			</div>
-			<div id="promotion" class="flex items-center gap-x-2">
-				<img
-					src="/images/play-button.png"
-					alt="play button"
-					class="w-8 h-8 animate__animated animate__headShake animate__slow animate__infinite"
-				/>
-				<span class="text-sm lg:text-base text-accent2 opacity-70"
-					>Hear from Dr. Rashid himself</span
+			<div id="promotion">
+				<a
+					class="flex items-center gap-x-2"
+					href="https://www.facebook.com/mrashidpage"
+					target="_blank"
 				>
-				<img
-					class="cta-arrow absolute top-[7%] lg:top-[3%] w-20 h-20 lg:w-32 lg:h-32"
-					src="/images/pointing-arrow.svg"
-					alt="pointing arrow"
-				/>
+					<img
+						src="/images/play-button.png"
+						alt="play button"
+						class="w-8 h-8 animate__animated animate__headShake animate__slow animate__infinite"
+					/>
+					<span class="text-sm lg:text-base text-accent2 opacity-70"
+						>Hear from Dr. Rashid himself</span
+					>
+					<img
+						class="cta-arrow absolute top-[7%] lg:top-[3%] w-20 h-20 lg:w-32 lg:h-32"
+						src="/images/pointing-arrow.svg"
+						alt="pointing arrow"
+					/>
+				</a>
 			</div>
 		</header>
 		<section class="body flex flex-col md:justify-center">

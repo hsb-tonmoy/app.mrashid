@@ -1,4 +1,7 @@
 <script>
+	import Toastify from 'toastify-js';
+	import 'toastify-js/src/toastify.css';
+
 	export let firstStep = false,
 		FormComponentRef,
 		disabledButton = true,
@@ -28,7 +31,30 @@
 		FormComponentRef.nextStep();
 	}
 
-	let data = {
+	function notificationToast(status) {
+		Toastify({
+			text:
+				status === 'success'
+					? 'Your answer has been successfully submitted. It is pending approval by the moderators.'
+					: 'Something went wrong, please try again later',
+			close: false,
+			duration: 5000,
+			gravity: 'top',
+			position: 'center',
+			offset: {
+				x: 0,
+				y: 60
+			},
+			style: {
+				background:
+					status === 'success'
+						? 'linear-gradient(to right, #40916c, #52b788)'
+						: 'linear-gradient(to right, #d90429, #ef233c)'
+			}
+		}).showToast();
+	}
+
+	$: data = {
 		destination: $destination,
 		degree: $degree,
 		firstname: $firstname,
@@ -44,15 +70,19 @@
 
 	async function handleSubmit() {
 		try {
-			const res = await fetch(API_URL, {
+			const res = await fetch(API_URL + 'student_data/', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
 				},
 				body: JSON.stringify(data)
 			});
-			const response = await res.json();
-			console.log(response);
+			if (res.status === 201) {
+				handleNext();
+			} else {
+				notificationToast('error');
+				console.log(await res.json());
+			}
 		} catch (err) {
 			console.log(err);
 		}
