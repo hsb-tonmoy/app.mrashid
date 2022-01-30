@@ -8,20 +8,77 @@
 		user,
 		settings,
 		folder,
-		correct
+		correct,
+		warning
 	} from '$lib/svg/dashboard';
 
 	let selected = true;
 
 	const timeline_options = [
-		{ title: 'Account Creation', icon: folder, active: true },
-		{ title: 'File Opening', icon: folder, active: false },
-		{ title: 'Document Submission', icon: folder, active: false },
-		{ title: 'College Application', icon: folder, active: false },
-		{ title: 'Reception of I-20', icon: folder, active: false },
-		{ title: 'SEVIS Payment', icon: folder, active: false },
-		{ title: 'DS-160 Submission', icon: folder, active: false },
-		{ title: 'Visa Fee Payment', icon: folder, active: false }
+		{
+			title: 'Account Creation',
+			icon: folder,
+			active: true,
+			done: true,
+			pending: true,
+			error: false
+		},
+		{
+			title: 'File Opening',
+			icon: folder,
+			active: false,
+			done: false,
+			pending: true,
+			error: false
+		},
+		{
+			title: 'Document Submission',
+			icon: folder,
+			active: false,
+			done: false,
+			pending: true,
+			error: true
+		},
+		{
+			title: 'College Application',
+			icon: folder,
+			active: false,
+			done: false,
+			pending: true,
+			error: false
+		},
+		{
+			title: 'Reception of I-20',
+			icon: folder,
+			active: false,
+			done: false,
+			pending: true,
+			error: false
+		},
+		{
+			title: 'SEVIS Payment',
+			icon: folder,
+			active: false,
+			done: false,
+			pending: true,
+			error: false
+		},
+		{
+			title: 'DS-160 Submission',
+			icon: folder,
+			active: false,
+			done: false,
+			pending: true,
+			error: false
+		},
+		{
+			title: 'Visa Fee Payment',
+			icon: folder,
+			active: false,
+			done: false,
+			pending: true,
+			error: false
+		}
 	];
 </script>
 
@@ -43,7 +100,7 @@
 		</div>
 	</aside>
 	<aside class="flex items-center w-[15vw] py-20 px-8 border-r border-r-gray-100 right-shadow">
-		<div class="column w-[300px] relative  border-r-2 timeline-border">
+		<div class="column w-[300px] relative border-r-2 timeline-border">
 			<!-- Timeline Start -->
 			<div class="timeline_wrapper relative">
 				{#each timeline_options as item}
@@ -51,7 +108,7 @@
 						class="timeline_item flex justify-end items-center relative pr-[48px] pb-[32px] pl-[30px]"
 					>
 						<div class="title text-right">
-							<h2 class="font-medium">{item.title}</h2>
+							<h2 class="font-base text-sm">{item.title}</h2>
 						</div>
 						<div
 							class={`${
@@ -63,7 +120,13 @@
 						<div
 							class="symbol absolute left-auto top-auto right-[-11px] bottom-auto w-5 h-5 border-4 bg-green-600 border-green-600 rounded-full z-auto"
 						>
-							<span class="w-4 h-4 text-white">{@html correct}</span>
+							<span class="w-4 h-4 text-white">
+								{#if item.done}
+									{@html correct}
+								{:else if item.error}
+									{@html warning}
+								{/if}
+							</span>
 						</div>
 					</div>
 				{/each}
