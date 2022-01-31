@@ -37,7 +37,7 @@
 <img
 	src="/images/home-ill-destination.png"
 	alt="fly-illustration"
-	class="animate__animated animate__zoomInRight absolute bottom-[2vh] lg:bottom-[8vh] right-0 object-cover w-[200px] xl:w-[300px] 2xl:w-[400px] z-0"
+	class="animate__animated animate__zoomInRight absolute bottom-[1vh] lg:bottom-[8vh] right-0 object-cover w-[200px] xl:w-[300px] 2xl:w-[400px] z-0"
 	style="--animate-duration: 1000ms"
 />
 
