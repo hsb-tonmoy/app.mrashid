@@ -63,7 +63,7 @@
 <img
 	src="/images/home-ill-credentials.svg"
 	alt="fly-illustration"
-	class="animate__animated animate__zoomInRight fixed bottom-0 lg:bottom-[8vh] right-0 object-cover w-[300px] lg:w-[550px] xl:w-[750px] z-0"
+	class="animate__animated animate__zoomInRight absolute bottom-[1vh] lg:bottom-[8vh] right-0 object-cover w-[300px] lg:w-[350px] xl:w-[450px] z-0"
 	style="--animate-duration: 1000ms"
 />
 
@@ -106,11 +106,11 @@
 			/>
 		</div>
 	{/each}
-	<div class="flex gap-x-2 relative lg:absolute lg:bottom-0 lg:-right-28">
+	<div class="flex gap-x-2">
 		<button
 			type="button"
 			class="bg-thinAccent hover:bg-accent1 text-white px-3 py-2"
-			on:click={handleAdd}>+</button
+			on:click={handleAdd}>Add more degrees</button
 		>
 		{#if length > 2}
 			<button
