@@ -63,7 +63,7 @@
 <img
 	src="/images/home-ill-credentials.svg"
 	alt="fly-illustration"
-	class="animate__animated animate__zoomInRight absolute bottom-[1vh] lg:bottom-[8vh] right-0 object-cover w-[300px] lg:w-[350px] xl:w-[450px] z-0"
+	class="animate__animated animate__zoomInRight hidden md:block absolute bottom-[8vh] right-0 object-cover w-[300px] lg:w-[350px] xl:w-[450px] z-0"
 	style="--animate-duration: 1000ms"
 />
 
