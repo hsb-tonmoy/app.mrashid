@@ -20,7 +20,7 @@
 			icon: folder,
 			active: true,
 			done: true,
-			pending: true,
+			pending: false,
 			error: false
 		},
 		{
@@ -100,6 +100,7 @@
 		</div>
 	</aside>
 	<aside class="flex items-center w-[15vw] py-20 px-8 border-r border-r-gray-100 right-shadow">
+		<h3 class="absolute top-20 font-bold text-lightText text-3xl">Timeline</h3>
 		<div class="column w-[300px] relative border-r-2 timeline-border">
 			<!-- Timeline Start -->
 			<div class="timeline_wrapper relative">
@@ -118,13 +119,13 @@
 							<span class="w-7 h-7">{@html item.icon}</span>
 						</div>
 						<div
-							class="symbol absolute left-auto top-auto right-[-11px] bottom-auto w-5 h-5 border-4 bg-green-600 border-green-600 rounded-full z-auto"
+							class={`symbol absolute left-auto top-auto right-[-11px] bottom-auto w-5 h-5 border-4 ${
+								item.pending ? 'bg-white' : 'bg-green-600'
+							} border-green-600 rounded-full z-auto`}
 						>
 							<span class="w-4 h-4 text-white">
 								{#if item.done}
 									{@html correct}
-								{:else if item.error}
-									{@html warning}
 								{/if}
 							</span>
 						</div>
@@ -137,8 +138,34 @@
 			</div>
 		</div>
 	</aside>
-	<div id="main" class="flex w-[56vw] bg-[#FCFBFE] py-20"><slot /></div>
-	<aside class="flex w-[25vw py-20]">notes</aside>
+	<div id="main" class="w-[56vw] bg-[#FCFBFE] py-20"><slot /></div>
+	<aside class="flex flex-col w-[25vw] py-20 px-12 border-l border-l-gray-100 left-shadow">
+		<h3 class="font-bold text-3xl text-lightText">Expert Notes</h3>
+		<div class="notes flex flex-col gap-y-6 mt-8">
+			<div class="note flex items-center p-3 shadow-md shadow-gray-100 rounded-md gap-x-2">
+				<span class="bg-green-600 w-5 h-5 p-1 text-white rounded-md">{@html correct}</span><span
+					class="text-gray-400 text-sm line-through decoration-red-700 decoration-2"
+					>You need to re-upload your SSC transcript</span
+				>
+			</div>
+			<div class="note flex items-center p-3 shadow-md shadow-gray-100 rounded-md gap-x-2">
+				<span class="bg-green-600 w-5 h-5 p-1 text-white rounded-md">{@html correct}</span><span
+					class="text-gray-400 text-sm line-through decoration-red-700 decoration-2"
+					>The CommonApp Essay needs a revision</span
+				>
+			</div>
+			<div class="note flex items-center p-3 shadow-md shadow-gray-100 rounded-md gap-x-2">
+				<span class="bg-gray-200 w-5 h-5 p-1 text-white rounded-md" /><span
+					class="text-lightText text-sm">ISFAA is not complete yet</span
+				>
+			</div>
+			<div class="note flex items-center p-3 shadow-md shadow-gray-100 rounded-md gap-x-2">
+				<span class="bg-gray-200 w-5 h-5 p-1 text-white rounded-md" /><span
+					class="text-lightText text-sm">You need to submit the CSS profile to Bates College</span
+				>
+			</div>
+		</div>
+	</aside>
 </main>
 
 <style lang="postcss">
@@ -161,6 +188,11 @@
 		clip-path: inset(0px -15px 0px 0px);
 	}
 
+	.left-shadow {
+		box-shadow: 0 0 15px rgba(229, 231, 235, 0.2);
+		clip-path: inset(0px 0px 0px -15px);
+	}
+
 	.timeline-line {
 		background-color: rgba(73, 74, 125, 0.32);
 		border-color: rgba(73, 74, 125, 0.32);
@@ -177,5 +209,9 @@
 	.timeline-icon:hover,
 	.timeline-icon-active {
 		@apply text-white bg-[#2db27c];
+	}
+
+	.timeline_item:last-child {
+		padding-bottom: 0 !important;
 	}
 </style>
