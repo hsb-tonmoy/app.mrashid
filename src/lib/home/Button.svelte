@@ -20,7 +20,8 @@
 		social_media,
 		major,
 		education,
-		ielts,
+		english_proficiency,
+		english_proficiency_score,
 		message
 	} from './stores.js';
 
@@ -61,14 +62,15 @@
 	$: data = {
 		destination: $destination,
 		degree: $degree,
-		firstname: $firstname,
-		lastname: $lastname,
+		first_name: $firstname,
+		last_name: $lastname,
 		email: $email,
 		phone: $phone,
 		social_media: $social_media,
 		major: $major,
 		education: $education,
-		ielts: $ielts,
+		english_proficiency: $english_proficiency,
+		english_proficiency_score: $english_proficiency_score,
 		message: $message
 	};
 

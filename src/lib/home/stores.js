@@ -9,5 +9,6 @@ export const phone = writable('');
 export const social_media = writable('');
 export const major = writable('');
 export const education = writable([]);
-export const ielts = writable('');
+export const english_proficiency = writable('');
+export const english_proficiency_score = writable('');
 export const message = writable('');

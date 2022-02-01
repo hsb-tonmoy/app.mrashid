@@ -3,26 +3,36 @@
 	import Button from './Button.svelte';
 	export let FormComponentRef;
 
-	import { ielts } from '$lib/home/stores.js';
-
-	$: ielts_data = '';
-	$: ieltsScore = '';
+	import { english_proficiency, english_proficiency_score } from '$lib/home/stores.js';
 
 	let disabled = true;
 
-	$: if (ielts_data) {
-		if (ielts_data === 'taken') {
-			if (ieltsScore) {
-				disabled = false;
-				$ielts = ieltsScore;
-			} else {
-				disabled = true;
-			}
-		} else {
+	$: $english_proficiency = 'ielts';
+	$: ieltsScore = '';
+
+	$: if (
+		$english_proficiency === 'ielts' ||
+		$english_proficiency === 'toefl' ||
+		$english_proficiency === 'duolingo'
+	) {
+		if (ieltsScore) {
 			disabled = false;
-			$ielts = ielts_data;
+			$english_proficiency_score = ieltsScore;
+		} else {
+			disabled = true;
 		}
+	} else {
+		disabled = false;
 	}
+
+	const options = [
+		{ value: 'ielts', label: 'IELTS' },
+		{ value: 'toefl', label: 'TOEFL' },
+		{ value: 'duolingo', label: 'Duolingo' },
+		{ value: 'no-test', label: 'Wish to get enrolled without any test' },
+		{ value: 'moi', label: 'Wish to get enrolled with Medium Of Instruction' },
+		{ value: 'plan-to', label: 'Wish to take IELTS' }
+	];
 </script>
 
 <h2
@@ -48,53 +58,26 @@
 />
 
 <fieldset class="relative flex flex-col gap-y-16 mt-16">
-	<label class="flex items-center gap-x-2 text-accent1 text-base lg:text-2xl font-medium"
-		><input
-			type="radio"
-			name="not-taken"
-			value="not-taken"
-			id="not-taken"
-			bind:group={ielts_data}
-			class="form-radio w-4 h-4 lg:w-6 lg:h-6 checked:text-accent2 focus:ring-accent2 outline-none"
-		/>
-		IELTS - Not yet taken
-	</label>
-	<label class="flex items-center gap-x-2 text-accent1 text-base lg:text-2xl font-medium"
-		><input
-			type="radio"
-			name="taken"
-			value="taken"
-			id="taken"
-			bind:group={ielts_data}
-			class="form-radio w-4 h-4 lg:w-6 lg:h-6 checked:text-accent2 focus:ring-accent2 outline-none"
-		/>
-		IELTS - Taken
-		{#if ielts_data === 'taken'}
-			:
-			<div class="relative">
-				<input
-					transition:fade={{ duration: 500 }}
-					type="text"
-					name="ielts-score"
-					id="ielts-score"
-					class="form-input w-40 text-accent1 bg-transparent text-base lg:text-2xl font-medium border-0 border-b-2 border-accent1 focus:border-accent1 focus:ring-0"
-					placeholder="Score"
-					bind:value={ieltsScore}
-				/>
-			</div>
+	<div class="flex flex-col md:flex-row flex-wrap gap-y-4 lg:gap-x-16">
+		<select
+			name="curriculum"
+			bind:value={$english_proficiency}
+			class="form-select border-0 border-b-2 border-thinAccent focus:ring-0 focus:border-b-3 focus:border-accent1 bg-transparent w-60 lg:min-w-min lg:w-auto text-accent1 text-base lg:text-xl lg:px-0 lg:pb-4"
+		>
+			{#each options as option}
+				<option value={option.value}>{option.label}</option>
+			{/each}
+		</select>
+		{#if $english_proficiency === 'ielts' || $english_proficiency === 'toefl' || $english_proficiency === 'duolingo'}
+			<input
+				type="text"
+				name="ieltsScore"
+				bind:value={ieltsScore}
+				class="form-input border-0 border-b-2 border-thinAccent focus:ring-0 focus:border-b-3 focus:border-accent1 bg-transparent w-60 lg:min-w-min lg:w-auto text-accent1 text-base lg:text-xl lg:px-0 lg:pb-4"
+				placeholder="Score"
+			/>
 		{/if}
-	</label>
-	<label class="flex items-center gap-x-2 text-accent1 text-base lg:text-2xl font-medium"
-		><input
-			type="radio"
-			name="wont-take"
-			value="wont-take"
-			id="wont-take"
-			bind:group={ielts_data}
-			class="form-radio w-4 h-4 lg:w-6 lg:h-6 checked:text-accent2 focus:ring-accent2 outline-none"
-		/>
-		Wish to get enrolled without IELTS
-	</label>
+	</div>
 </fieldset>
 
 <Button {FormComponentRef} disabledButton={disabled} />
