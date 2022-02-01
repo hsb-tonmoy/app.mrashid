@@ -13,6 +13,9 @@ const config = {
 				accent3: 'rgba(57, 59, 227, 1)',
 				thinAccent: 'rgba(198, 197, 254, 1)'
 			},
+			width: {
+				120: '30rem'
+			},
 			inset: {
 				12.5: '12.5%'
 			},

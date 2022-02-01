@@ -4,9 +4,10 @@
 	export let FormComponentRef;
 
 	import { english_proficiency, english_proficiency_score } from '$lib/home/stores.js';
-	import { onMount } from 'svelte';
 
 	let disabled = true;
+
+	let select_width = 'w-32';
 
 	$: $english_proficiency = 'ielts';
 	$: ieltsScore = '';
@@ -35,21 +36,11 @@
 		{ value: 'plan-to', label: 'Wish to take IELTS' }
 	];
 
-	onMount(() => {
-		document.getElementById('english_proficiency').addEventListener(
-			'change',
-			function () {
-				let resize = document.getElementById('english_proficiency');
-				let hidden_opt = document.getElementById('width_tmp_option');
-				hidden_opt.innerHTML = resize.options[resize.selectedIndex].textContent;
-				let hidden_sel = document.getElementById('width_tmp_select');
-				hidden_sel.style.display = 'initial';
-				resize.style.width = hidden_sel.clientWidth + 100 + 'px';
-				hidden_sel.style.display = 'none';
-			},
-			false
-		);
-	});
+	$: if ($english_proficiency === 'no-test' || $english_proficiency === 'moi') {
+		select_width = 'w-96';
+	} else if ($english_proficiency === 'plan-to') {
+		select_width = 'w-80';
+	}
 </script>
 
 <h2
@@ -77,10 +68,15 @@
 <fieldset class="relative flex flex-col gap-y-16 mt-16">
 	<div class="flex flex-col md:flex-row flex-wrap gap-y-4 lg:gap-x-16">
 		<select
-			id="english_proficiency"
 			name="curriculum"
 			bind:value={$english_proficiency}
-			class="form-select flex items-center border-0 border-b-2 border-thinAccent focus:ring-0 focus:border-b-3 focus:border-accent1 bg-transparent w-60 text-accent1 text-base lg:text-xl lg:px-0 lg:pb-4"
+			class={`form-select flex items-center border-0 border-b-2 border-thinAccent focus:ring-0 focus:border-b-3 focus:border-accent1 bg-transparent text-accent1 text-base lg:text-xl lg:px-0 lg:pb-4 ${
+				$english_proficiency === 'ielts' ||
+				$english_proficiency === 'toefl' ||
+				$english_proficiency === 'duolingo'
+					? 'w-32'
+					: 'w-96 md:w-120'
+			} ${$english_proficiency === 'plan-to' ? 'w-64' : ''}`}
 		>
 			{#each options as option}
 				<option value={option.value}>{option.label}</option>
@@ -96,16 +92,7 @@
 				placeholder="Score"
 			/>
 		{/if}
-		<select id="width_tmp_select">
-			<option id="width_tmp_option" />
-		</select>
 	</div>
 </fieldset>
 
 <Button {FormComponentRef} disabledButton={disabled} />
-
-<style>
-	#width_tmp_select {
-		display: none;
-	}
-</style>
