@@ -18,8 +18,10 @@
 		$english_proficiency === 'duolingo'
 	) {
 		if (ieltsScore) {
-			disabled = false;
-			$english_proficiency_score = ieltsScore;
+			if (!isNaN(ieltsScore)) {
+				disabled = false;
+				$english_proficiency_score = ieltsScore;
+			}
 		} else {
 			disabled = true;
 		}
