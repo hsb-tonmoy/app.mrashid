@@ -36,7 +36,6 @@
 			$email = values.email;
 			$phone = values.phone;
 			$social_media = values.facebook;
-			console.log('Maybe it worked.');
 		}
 	});
 </script>

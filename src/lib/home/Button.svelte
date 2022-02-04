@@ -76,6 +76,7 @@
 
 	async function handleSubmit() {
 		console.log(data);
+		handleNext();
 	}
 	// async function handleSubmit() {
 	// 	try {

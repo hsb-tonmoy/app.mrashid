@@ -72,81 +72,43 @@
 	$: separator_width = `width: ${100 / (multiStepOptions.stepsDescription.length - 1)}%`;
 </script>
 
-<main class="bg-lightBodyBackground">
-	<div class="flex flex-col w-full max-w-screen-2xl mx-auto px-6 lg:px-8 2xl:px-0">
-		<header
-			class="flex flex-col lg:flex-row justify-between items-center py-4 lg:py-8 mb-32 md:mb-0"
+<div class="flex flex-col w-full max-w-screen-2xl mx-auto px-6 lg:px-8 2xl:px-0">
+	<section class="body flex flex-col md:justify-center">
+		<Form bind:this={FormComponentRef}>
+			{#each multiStepOptions.stepsDescription as step}
+				<Step>
+					<svelte:component this={step.component} {FormComponentRef} />
+				</Step>
+			{/each}
+		</Form>
+	</section>
+</div>
+<section
+	class="footer hidden lg:flex items-center gap-x-8 bottom-0 left-0 bg-white w-full px-6 lg:px-12 2xl:px-16 border-b-8 border-thinAccent"
+>
+	{#each multiStepOptions.stepsDescription as step, index}
+		<span
+			class:step-active={$currentStep === index}
+			class:step-done={$currentStep > index}
+			class="relative flex w-16 h-14 text-gray-500 rounded-xl transition ease-in-out duration-300 cursor-pointer"
 		>
-			<div id="logo">
-				<a href="/" class="text-accent2 font-medium text-lg lg:text-xl">app.mrashid.net</a>
-			</div>
-			<div id="promotion">
-				<a
-					class="flex items-center gap-x-2"
-					href="https://www.facebook.com/mrashidpage"
-					target="_blank"
-				>
-					<img
-						src="/images/play-button.png"
-						alt="play button"
-						class="w-8 h-8 animate__animated animate__headShake animate__slow animate__infinite"
-					/>
-					<span class="text-sm lg:text-base text-accent2 opacity-70"
-						>Hear from Dr. Rashid himself</span
-					>
-					<img
-						class="cta-arrow absolute top-[7%] lg:top-[3%] w-20 h-20 lg:w-32 lg:h-32"
-						src="/images/pointing-arrow.svg"
-						alt="pointing arrow"
-					/>
-				</a>
-			</div>
-		</header>
-		<section class="body flex flex-col md:justify-center">
-			<Form bind:this={FormComponentRef}>
-				{#each multiStepOptions.stepsDescription as step}
-					<Step>
-						<svelte:component this={step.component} {FormComponentRef} />
-					</Step>
-				{/each}
-			</Form>
-		</section>
-	</div>
-	<footer
-		class="hidden md:flex items-center gap-x-8 bottom-0 left-0 bg-white w-full px-6 lg:px-12 2xl:px-16 border-b-8 border-thinAccent"
-	>
-		{#each multiStepOptions.stepsDescription as step, index}
-			<span
-				class:step-active={$currentStep === index}
-				class:step-done={$currentStep > index}
-				class="relative flex w-16 h-14 text-gray-500 rounded-xl transition ease-in-out duration-300 cursor-pointer"
-			>
-				{@html step.icon}
-			</span>
-			<hr
-				class:step-done={$currentStep > index}
-				class="border-dotted border-1 border-accent1 opacity-80 transition ease-in-out duration-500"
-				style={separator_width}
-			/>
-		{/each}
-	</footer>
-</main>
+			{@html step.icon}
+		</span>
+		<hr
+			class:step-done={$currentStep > index}
+			class="border-dotted border-1 border-accent1 opacity-80 transition ease-in-out duration-500"
+			style={separator_width}
+		/>
+	{/each}
+</section>
 
 <style lang="postcss">
-	:root {
-		--header-height: 8vh;
-		--footer-height: 7vh;
+	@media screen(lg) {
+		.body {
+			height: calc(100vh - var(--header-height) - var(--footer-height));
+		}
 	}
-
-	header {
-		height: var(--header-height);
-	}
-
-	.body {
-		height: calc(100vh - var(--header-height) - var(--footer-height));
-	}
-
-	footer {
+	.footer {
 		height: var(--footer-height);
 		box-shadow: 1px -5px 100px 0px rgba(99, 71, 194, 0.2);
 	}
