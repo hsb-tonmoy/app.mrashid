@@ -28,7 +28,7 @@
 				.matches(phoneRegex, 'Not a valid phone number')
 				.required('Phone number is required')
 				.trim(),
-			facebook: yup.string().required('Facebook ID is required').trim()
+			facebook: yup.string().trim()
 		}),
 		onSubmit: (values) => {
 			$firstname = values.firstname;
@@ -174,8 +174,7 @@
 			$state.modified.firstname &&
 			$state.modified.lastname &&
 			$state.modified.email &&
-			$state.modified.phone &&
-			$state.modified.facebook
+			$state.modified.phone
 		)}
 />
 

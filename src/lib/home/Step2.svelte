@@ -5,6 +5,7 @@
 		{ name: 'Undergraduate' },
 		{ name: "Master's" },
 		{ name: 'PhD' },
+		{ name: 'MPH or PharmD' },
 		{ name: 'Other' }
 	];
 	export let FormComponentRef;

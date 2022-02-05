@@ -6,12 +6,12 @@
 
 	const majors = [
 		{ name: 'Computer Science', icon: 'compsci' },
-		{ name: 'Aviation', icon: 'aviation' },
 		{ name: 'Engineering', icon: 'engineering' },
+		{ name: 'Sciences', icon: 'chemistry' },
 		{ name: 'Business Studies', icon: 'business' },
 		{ name: 'Humanities', icon: 'humanities' },
-		{ name: 'Fine Arts', icon: 'fine-arts' },
-		{ name: 'Arts & Sciences', icon: 'chemistry' },
+		{ name: 'Social Sciences', icon: 'social' },
+		{ name: 'Health Sciences', icon: 'health' },
 		{ name: 'Miscellaneous', icon: 'pharmacy' }
 	];
 </script>
