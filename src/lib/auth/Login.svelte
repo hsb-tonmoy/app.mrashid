@@ -2,7 +2,7 @@
 	import { createForm } from 'svelte-forms-lib';
 	import * as yup from 'yup';
 
-	const { form, errors, state, isValid, touched, handleChange, handleSubmit } = createForm({
+	const { form, state, isValid, handleChange, handleSubmit } = createForm({
 		initialValues: {
 			email: '',
 			password: ''
@@ -55,7 +55,7 @@
 			</span>
 			<button
 				on:click|preventDefault={handleSubmit}
-				class="px-6 lg:px-12 py-2 lg:py-4 ml-2 lg:ml-0 bg-accent1 hover:bg-accent2 disabled:bg-thinAccent text-white font-light text-sm uppercase animate__animated animate__slideInRight"
+				class="px-6 lg:px-12 py-2 lg:py-4 ml-2 lg:ml-0 bg-accent1 hover:bg-accent2 disabled:bg-thinAccent text-white font-light text-sm uppercase"
 				disabled={!$isValid || !($state.modified.email && $state.modified.password)}>Login</button
 			>
 		</div>
