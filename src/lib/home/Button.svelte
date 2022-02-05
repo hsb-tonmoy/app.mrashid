@@ -39,8 +39,8 @@
 	function notificationToast(status) {
 		Toastify({
 			text:
-				status === 'success'
-					? 'Your answer has been successfully submitted. It is pending approval by the moderators.'
+				status === 'duplicate'
+					? 'You have already submitted once. Please wait for our team to reach out to you.'
 					: 'Something went wrong, please try again later',
 			close: false,
 			duration: 5000,
@@ -51,10 +51,7 @@
 				y: 60
 			},
 			style: {
-				background:
-					status === 'success'
-						? 'linear-gradient(to right, #40916c, #52b788)'
-						: 'linear-gradient(to right, #d90429, #ef233c)'
+				background: 'linear-gradient(to right, #d90429, #ef233c)'
 			}
 		}).showToast();
 	}
@@ -86,11 +83,18 @@
 				},
 				body: JSON.stringify(data)
 			});
+			const response = await res.json();
+
 			if (res.status === 201) {
 				handleNext();
+			} else if (
+				res.status === 400 &&
+				response.email[0] === 'Student Data with this Email already exists.'
+			) {
+				notificationToast('duplicate');
 			} else {
 				notificationToast('error');
-				console.log(await res.json());
+				console.log(response);
 			}
 		} catch (err) {
 			console.log(err);
