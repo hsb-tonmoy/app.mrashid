@@ -74,28 +74,28 @@
 		message: $message
 	};
 
-	async function handleSubmit() {
-		console.log(data);
-	}
 	// async function handleSubmit() {
-	// 	try {
-	// 		const res = await fetch(API_URL + 'student_data/', {
-	// 			method: 'POST',
-	// 			headers: {
-	// 				'Content-Type': 'application/json'
-	// 			},
-	// 			body: JSON.stringify(data)
-	// 		});
-	// 		if (res.status === 201) {
-	// 			handleNext();
-	// 		} else {
-	// 			notificationToast('error');
-	// 			console.log(await res.json());
-	// 		}
-	// 	} catch (err) {
-	// 		console.log(err);
-	// 	}
+	// 	console.log(data);
 	// }
+	async function handleSubmit() {
+		try {
+			const res = await fetch(API_URL + 'student_data/', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(data)
+			});
+			if (res.status === 201) {
+				handleNext();
+			} else {
+				notificationToast('error');
+				console.log(await res.json());
+			}
+		} catch (err) {
+			console.log(err);
+		}
+	}
 </script>
 
 <div class="buttons flex gap-x-2 lg:justify-end mt-12">
