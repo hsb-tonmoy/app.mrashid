@@ -9,10 +9,11 @@
 
 	let select_width = 'w-32';
 
-	$: $english_proficiency = 'ielts';
+	$: $english_proficiency = '';
 	$: ieltsScore = '';
 
 	$: if (
+		$english_proficiency === '' ||
 		$english_proficiency === 'ielts' ||
 		$english_proficiency === 'toefl' ||
 		$english_proficiency === 'duolingo'
@@ -80,6 +81,7 @@
 					: 'w-96 md:w-120'
 			} ${$english_proficiency === 'plan-to' ? 'w-64' : ''}`}
 		>
+			<option value="" selected disabled>Choose an option</option>
 			{#each options as option}
 				<option value={option.value}>{option.label}</option>
 			{/each}
