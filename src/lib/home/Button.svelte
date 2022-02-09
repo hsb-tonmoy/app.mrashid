@@ -64,7 +64,7 @@
 		last_name: $lastname,
 		email: $email,
 		phone: $phone,
-		social_media: $social_media,
+		social_media: $social_media || 'NA',
 		major: $major,
 		education: $education,
 		english_proficiency: $english_proficiency,
