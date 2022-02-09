@@ -1,4 +1,5 @@
 <script>
+	import { dev } from '$app/env';
 	import { createEventDispatcher } from 'svelte';
 
 	let dispatch = createEventDispatcher();
@@ -72,36 +73,36 @@
 	};
 
 	async function handleSubmit() {
-		console.log(data);
-		handleNext();
+		if (!dev) {
+			try {
+				const res = await fetch(API_URL + 'student_data/', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(data)
+				});
+				const response = await res.json();
+
+				if (res.status === 201) {
+					handleNext();
+				} else if (
+					res.status === 400 &&
+					response.email[0] === 'Student Data with this Email already exists.'
+				) {
+					notificationToast('duplicate');
+				} else {
+					notificationToast('error');
+					console.log(response);
+				}
+			} catch (err) {
+				console.log(err);
+			}
+		} else {
+			handleNext();
+			console.log(data);
+		}
 	}
-
-	// async function handleSubmit() {
-	// 	try {
-	// 		const res = await fetch(API_URL + 'student_data/', {
-	// 			method: 'POST',
-	// 			headers: {
-	// 				'Content-Type': 'application/json'
-	// 			},
-	// 			body: JSON.stringify(data)
-	// 		});
-	// 		const response = await res.json();
-
-	// 		if (res.status === 201) {
-	// 			handleNext();
-	// 		} else if (
-	// 			res.status === 400 &&
-	// 			response.email[0] === 'Student Data with this Email already exists.'
-	// 		) {
-	// 			notificationToast('duplicate');
-	// 		} else {
-	// 			notificationToast('error');
-	// 			console.log(response);
-	// 		}
-	// 	} catch (err) {
-	// 		console.log(err);
-	// 	}
-	// }
 </script>
 
 <div class="buttons flex gap-x-2 lg:justify-end mt-12">

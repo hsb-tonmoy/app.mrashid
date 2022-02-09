@@ -1,4 +1,5 @@
 <script>
+	import { dev } from '$app/env';
 	import { firstname, lastname, email, phone, social_media } from './stores';
 
 	import Button from './Button.svelte';
@@ -169,7 +170,8 @@
 <Button
 	{FormComponentRef}
 	on:submit={handleSubmit}
-	disabledButton={!$isValid ||
+	disabledButton={dev ||
+		!$isValid ||
 		!(
 			$state.modified.firstname &&
 			$state.modified.lastname &&
