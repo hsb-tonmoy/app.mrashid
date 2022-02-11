@@ -1,5 +1,7 @@
 <script>
 	import { session } from '$app/stores';
+
+	import * as api from '$lib/api';
 </script>
 
 <div class="flex flex-col px-12">
@@ -25,6 +27,12 @@
 				You are logged in with {$session.user.email}
 			</p>
 		{/if}
+		<button
+			class="px-4 py-2 mt-4 shadow-md border border-1"
+			on:click={() => {
+				api.get('student_data');
+			}}>Send an authenticated request</button
+		>
 	</div>
 </div>
 

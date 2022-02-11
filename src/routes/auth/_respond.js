@@ -21,7 +21,7 @@ export function respond(body) {
 				`refresh=${refresh_token}; Path=/; Expires=${new Date(
 					refresh_decoded.exp * 1000
 				)}; HttpOnly`,
-				`user=${value}; Path=/; HttpOnly`
+				`user=${value}; Path=/; Expires=${new Date(refresh_decoded.exp * 1000)}; HttpOnly`
 			]
 		},
 		body
