@@ -1,7 +1,5 @@
 <script>
 	import { session } from '$app/stores';
-
-	import * as api from '$lib/api';
 </script>
 
 <div class="flex flex-col px-12">
@@ -29,8 +27,11 @@
 		{/if}
 		<button
 			class="px-4 py-2 mt-4 shadow-md border border-1"
-			on:click={() => {
-				api.get('student_data');
+			on:click={async () => {
+				const res = await fetch('/auth/req');
+				const data = await res.json();
+
+				console.log(data);
 			}}>Send an authenticated request</button
 		>
 	</div>
