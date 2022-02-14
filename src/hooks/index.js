@@ -16,13 +16,14 @@ export async function handle({ event, resolve }) {
 	event.locals.user = user ? JSON.parse(user) : null;
 	event.locals.access = cookies.access ? cookies.access : null;
 
-	if (event.request || (user && !cookies.access)) {
-		const { access } = await api.post('auth/token/refresh', { refresh: cookies.refresh });
+	if (user && !cookies.access) {
+		if (!event.request.url.includes('logout')) {
+			const { access } = await api.post('auth/token/refresh', { refresh: cookies.refresh });
 
-		access_token = access;
-		event.locals.access = access;
+			access_token = access;
+			event.locals.access = access;
+		}
 	}
-
 	const response = await resolve(event);
 
 	if (access_token) {

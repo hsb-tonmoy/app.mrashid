@@ -20,7 +20,8 @@ const config = {
 				12.5: '12.5%'
 			},
 			fontFamily: {
-				circular: ['Circular Std Book']
+				circular: ['Circular Std Book'],
+				montserrat: ['Montserrat', 'sans-serif']
 			}
 		}
 	},
