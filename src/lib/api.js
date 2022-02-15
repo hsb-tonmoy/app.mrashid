@@ -16,7 +16,7 @@ async function send({ method, path, data, token }) {
 	}
 
 	return fetch(`${API_URL}/${path}/`, opts)
-		.then((r) => r.text())
+		.then((r) => r.json())
 		.then((json) => {
 			try {
 				return JSON.parse(json);
