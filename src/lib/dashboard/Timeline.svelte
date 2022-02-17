@@ -4,8 +4,8 @@
 	import { goto } from '$app/navigation';
 </script>
 
-<div class="profile flex flex-col justify-center items-center gap-y-6 2xl:gap-y-8 mb-16 2xl:mb-24">
-	<div class="control w-full flex justify-between items-center">
+<div class="profile flex flex-col justify-center items-center 2xl:gap-y-8 mb-12 2xl:mb-16">
+	<!-- <div class="control w-full flex justify-between items-center">
 		<div
 			on:click={() => {
 				goto('/logout');
@@ -19,18 +19,18 @@
 		<span class="block text-[#C4C6CC] hover:text-black w-6 h-6 rotate-180 cursor-pointer"
 			>{@html horiz_menu}</span
 		>
-	</div>
-	<img
-		class="w-28 h-28 object-cover rounded-full border border-white"
-		src="https://source.unsplash.com/d1UPkiFd04A"
-		alt="profile_pic"
-	/>
-	<div class="profile-menu">
-		<span class="name text-lg 2xl:text-xl font-medium">Hasibuzzaman Tonmoy</span>
+	</div> -->
+	<div class="flex items-center gap-x-2">
+		<img
+			class="w-16 h-16 object-cover rounded-full border border-white"
+			src="https://source.unsplash.com/d1UPkiFd04A"
+			alt="profile_pic"
+		/>
+		<span class="name text-sm 2xl:text-base font-medium">Hasibuzzaman Tonmoy</span>
 	</div>
 </div>
 
-<section class="timeline-grid">
+<section class="timeline-grid overflow-y-auto">
 	{#each timeline_options as timeline_item}
 		<div
 			class="timeline-title font-normal text-black text-sm pb-4 2xl:pb-6 text-right mt-[0.50rem]"

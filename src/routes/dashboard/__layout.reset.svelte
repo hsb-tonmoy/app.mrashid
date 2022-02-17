@@ -22,7 +22,7 @@
 </script>
 
 <main class="flex w-full bg-white h-screen font-montserrat">
-	<aside class="flex flex-col justify-between items-center w-auto px-6 py-12 right-shadow">
+	<aside class="flex flex-col justify-between items-center w-auto px-6 py-16 right-shadow">
 		<div id="logo">
 			<img class="w-10 h-10" src="/logo.png" alt="app.mrashid.net" />
 		</div>
@@ -37,11 +37,11 @@
 			<span class="menu-icon">{@html arrow_left}</span>
 		</div>
 	</aside>
-	<aside class="hidden lg:flex flex-col items-center h-full w-auto py-20 px-8 bg-[#F5F7FB]">
+	<aside class="hidden lg:flex flex-col items-center h-full w-auto py-12 px-10 bg-[#F5F7FB]">
 		<Timeline />
 	</aside>
-	<div id="main" class="w-[49vw] 2xl:w-[56vw] bg-white px-10 py-20"><Summary /> <slot /></div>
-	<aside class="flex flex-col w-[25vw] py-20 px-12 border-l border-l-gray-100 left-shadow">
+	<div id="main" class="w-[49vw] 2xl:w-[56vw] bg-white px-10 py-16"><Summary /> <slot /></div>
+	<aside class="flex flex-col w-[25vw] py-16 px-12 border-l border-l-gray-100 left-shadow">
 		<Notes />
 	</aside>
 </main>

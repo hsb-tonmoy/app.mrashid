@@ -27,7 +27,7 @@ export const timeline_options = [
 		error: false
 	},
 	{
-		title: 'College Application',
+		title: 'Application Submission',
 		icon: 'account',
 		route: '/dashboard/',
 		active: false,
@@ -64,6 +64,42 @@ export const timeline_options = [
 	},
 	{
 		title: 'Visa Fee Payment',
+		icon: 'account',
+		route: '/dashboard/',
+		active: false,
+		done: false,
+
+		error: false
+	},
+	{
+		title: 'Visa Interview Prep',
+		icon: 'account',
+		route: '/dashboard/',
+		active: false,
+		done: false,
+
+		error: false
+	},
+	{
+		title: 'Visa Collection',
+		icon: 'account',
+		route: '/dashboard/',
+		active: false,
+		done: false,
+
+		error: false
+	},
+	{
+		title: 'Pre-departure Session',
+		icon: 'account',
+		route: '/dashboard/',
+		active: false,
+		done: false,
+
+		error: false
+	},
+	{
+		title: 'Welcoming in the USA',
 		icon: 'account',
 		route: '/dashboard/',
 		active: false,
