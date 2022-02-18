@@ -1,11 +1,14 @@
 <script context="module">
-	export async function load({ session }) {
+	export async function load({ fetch, session }) {
 		if (!session.user) {
 			return {
 				status: 302,
 				redirect: '/login'
 			};
 		}
+
+		const res = await fetch('/dashboard.json');
+		const data = await res.json();
 
 		return {};
 	}
@@ -18,8 +21,11 @@
 	import Notes from '$lib/dashboard/Notes.svelte';
 	import Summary from '$lib/dashboard/Summary.svelte';
 	import { goto } from '$app/navigation';
+	import { session } from '$app/stores';
 
 	let selected = true;
+
+	console.log($session);
 </script>
 
 <main class="flex w-full bg-white h-screen font-montserrat">

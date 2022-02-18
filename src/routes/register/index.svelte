@@ -82,14 +82,21 @@
 	}
 </script>
 
-<main class="flex h-screen font-montserrat">
-	<aside class="bg bg-cover bg-center bg-no-repeat w-3/5" />
-	<aside class="flex flex-col justify-center w-2/5">
-		<h2 class="2xl:text-3xl text-lightText font-semibold leading-loose">
+<main class="flex flex-wrap h-screen font-montserrat">
+	<aside class="bg bg-cover bg-center bg-no-repeat w-full py-32 lg:py-0 xl:w-3/5" />
+	<aside
+		class="flex flex-col items-center 2xl:items-start justify-center w-full p-6 lg:p-0 xl:p-6 2xl:p-0 xl:w-2/5"
+	>
+		<h2
+			class="text-2xl lg:text-3xl xl:text-xl 2xl:text-3xl text-lightText font-semibold leading-loose"
+		>
 			Hello, <br /> Let's grab the key to your dashboard!
 		</h2>
 
-		<div id="login" class="flex flex-col w-2/5 mt-20">
+		<div
+			id="login"
+			class="flex flex-col w-full md:w-2/4 xl:w-3/4 	 mt-12 md:mt-20 xl:mt-12 2xl:mt-20"
+		>
 			<div id="socials" class="flex gap-x-6">
 				<a
 					href="#"
@@ -98,7 +105,7 @@
 				>
 				<a
 					href="#"
-					class="flex items-center h-12 bg-white text-sm px-4 text-center rounded shadow-lg hover:shadow transition-all ease-in-out duration-200"
+					class="flex items-center h-12 bg-white text-sm px-4 text-center border border-gray-200 rounded shadow-lg hover:shadow transition-all ease-in-out duration-200"
 					><span class="block w-6 h-6">{@html google}</span></a
 				>
 			</div>
@@ -173,7 +180,7 @@
 								on:change={handleChange}
 							/>
 							<span class="text-xs text-orange-600"
-								>Make sure to use the same email address used to submit the form!</span
+								>Make sure to use the same email address you used in the form!</span
 							>
 						</label>
 						<div class="flex gap-x-4">
@@ -233,7 +240,7 @@
 								$state.modified.passwordConfirmation
 							)}>Register</button
 					>
-					<span class="self-center text-sm mt-4 text-gray-600 "
+					<span class="self-center text-xs md:text-sm mt-4 text-gray-600"
 						>Already have an account? Go ahead and <a
 							href="/login"
 							class="font-medium text-lightText hover:underline">Sign-in</a
