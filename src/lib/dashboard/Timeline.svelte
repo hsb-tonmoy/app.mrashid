@@ -1,7 +1,7 @@
 <script>
+	import { session } from '$app/stores';
+
 	import { timeline_options } from './timeline';
-	import { logout, horiz_menu } from '$lib/svg/dashboard';
-	import { goto } from '$app/navigation';
 </script>
 
 <div class="profile flex flex-col justify-center items-center 2xl:gap-y-8 mb-12 2xl:mb-16">
@@ -20,13 +20,15 @@
 			>{@html horiz_menu}</span
 		>
 	</div> -->
-	<div class="flex items-center gap-x-2">
+	<div class="flex items-center gap-x-4">
 		<img
 			class="w-16 h-16 object-cover rounded-full border border-white"
 			src="https://source.unsplash.com/d1UPkiFd04A"
 			alt="profile_pic"
 		/>
-		<span class="name text-sm 2xl:text-base font-medium">Hasibuzzaman Tonmoy</span>
+		<span class="name text-sm 2xl:text-base font-medium"
+			>{$session.user.first_name} {$session.user.last_name}</span
+		>
 	</div>
 </div>
 

@@ -12,11 +12,12 @@
 </script>
 
 <script>
-	import { grid, bell, message, help, chart, arrow_left } from '$lib/svg/dashboard';
+	import { grid, bell, message, help, chart, arrow_left, logout } from '$lib/svg/dashboard';
 
 	import Timeline from '$lib/dashboard/Timeline.svelte';
 	import Notes from '$lib/dashboard/Notes.svelte';
 	import Summary from '$lib/dashboard/Summary.svelte';
+	import { goto } from '$app/navigation';
 
 	let selected = true;
 </script>
@@ -34,7 +35,12 @@
 			<span class="menu-icon">{@html help}</span>
 		</div>
 		<div id="profile" class="flex flex-col justify-end h-[20%] gap-y-4">
-			<span class="menu-icon">{@html arrow_left}</span>
+			<span
+				class="menu-icon rotate-180 cursor-pointer"
+				on:click={() => {
+					goto('/logout');
+				}}>{@html logout}</span
+			>
 		</div>
 	</aside>
 	<aside class="hidden lg:flex flex-col items-center h-full w-auto py-12 px-10 bg-[#F5F7FB]">
