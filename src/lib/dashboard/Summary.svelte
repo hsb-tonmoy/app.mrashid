@@ -1,18 +1,38 @@
+<script>
+	import { english_proficiency } from '$lib/home/stores';
+
+	export let summary;
+</script>
+
 <div class="flex flex-col">
 	<h2 class="font-semibold text-3xl text-lightText">Student Dashboard</h2>
 	<div class="description w-9/12 mt-4 text-lightTextBody text-lg leading-loose">
-		You are <span class="highlight-text">Hasibuzzaman </span><span class="highlight-text">
-			Tonmoy</span
+		You are <span class="highlight-text">{summary.first_name} </span><span class="highlight-text">
+			{summary.last_name}</span
 		>
-		and you wish to go to <span class="highlight-text">USA</span>. You are pursuing a
-		<span class="highlight-text">Bachelor's</span>
+		and you wish to go to <span class="highlight-text">{summary.destination}</span>. You are
+		pursuing a
+		<span class="highlight-text">{summary.degree}</span>
 		degree in
-		<span class="highlight-text">Computer Information Systems</span>. You have achieved GPA
-		<span class="highlight-text">5.00</span>
-		in <span class="highlight-text">SSC</span> and <span class="highlight-text">5.00</span> in
-		<span class="highlight-text">HSC</span> from the <span class="highlight-text">NCTB</span>
-		curriculum. You have <span class="highlight-text">taken IELTS</span> and acquired a score of
-		<span class="highlight-text">8.5</span>
+		<span class="highlight-text">{summary.major}</span>. You {summary.english_proficiency_score
+			? 'have taken '
+			: ''}
+		<span class="highlight-text"
+			>{summary.english_proficiency === 'ielts' ? 'IELTS' : ''}{summary.english_proficiency ===
+			'toefl'
+				? 'TOEFL'
+				: ''}{summary.english_proficiency === 'duolingo'
+				? 'Duolingo'
+				: ''}{summary.english_proficiency === 'no-test'
+				? 'wish to get enrolled without any test'
+				: ''}{summary.english_proficiency === 'moi'
+				? 'wish to get enrolled with Medium Of Instruction'
+				: ''}{summary.english_proficiency === 'plan-to' ? 'wish to take IELTS' : ''}
+		</span>
+		{summary.english_proficiency_score ? 'and acquired a score of' : ''}
+		<span class="highlight-text"
+			>{summary.english_proficiency_score ? summary.english_proficiency_score : ''}</span
+		>
 	</div>
 </div>
 

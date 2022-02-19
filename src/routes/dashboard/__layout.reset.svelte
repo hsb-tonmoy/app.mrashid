@@ -1,9 +1,19 @@
 <script context="module">
-	export async function load({ session }) {
+	export async function load({ fetch, session, stuff }) {
 		if (!session.user) {
 			return {
 				status: 302,
 				redirect: '/login'
+			};
+		}
+
+		const res = await fetch('/dashboard.json');
+		const data = await res.json();
+
+		if (res.ok && res.body) {
+			return {
+				props: { summary: data },
+				stuff: { summary: data }
 			};
 		}
 
@@ -20,6 +30,8 @@
 	import { goto } from '$app/navigation';
 
 	let selected = true;
+
+	export let summary;
 </script>
 
 <main class="flex w-full bg-white h-screen font-montserrat">
@@ -46,7 +58,25 @@
 	<aside class="hidden lg:flex flex-col items-center h-full w-auto py-12 px-10 bg-[#F5F7FB]">
 		<Timeline />
 	</aside>
-	<div id="main" class="w-[49vw] 2xl:w-[56vw] bg-white px-10 py-16"><Summary /> <slot /></div>
+	<div id="main" class="w-[49vw] 2xl:w-[56vw] bg-white px-10 py-16">
+		{#if summary}
+			<Summary {summary} />
+			<slot />
+		{:else}
+			<div class="flex flex-col w-full h-full justify-center items-center text-center">
+				<h2 class="text-xl xl:text-3xl font-semibold text-lightText mb-3">
+					You haven't submitted the form yet! Please do so to access your dashboard
+				</h2>
+				<p class="text-sm lg:text-base text-gray-700">
+					On the contrary, if you've already submitted the form but still seeing this message,
+					please send an email to <a
+						href="mailto:help@mrashid.net"
+						class="text-blue-600 hover:underline">help@mrashid.net</a
+					> and include your full name and email address used in the form.
+				</p>
+			</div>
+		{/if}
+	</div>
 	<aside class="flex flex-col w-[25vw] py-16 px-12 border-l border-l-gray-100 left-shadow">
 		<Notes />
 	</aside>

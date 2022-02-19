@@ -1,16 +1,17 @@
 <script context="module">
-	export async function load({ fetch }) {
-		const res = await fetch('/dashboard.json');
-		const data = await res.json();
-
+	export function load({ stuff }) {
 		return {
-			props: res
+			props: { summary: stuff.summary }
 		};
 	}
 </script>
 
 <script>
 	import { session } from '$app/stores';
+
+	export let summary;
+
+	console.log(summary);
 </script>
 
 <div class="page-body flex flex-col ml-6 mt-20">
