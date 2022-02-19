@@ -28,6 +28,7 @@
 	import Notes from '$lib/dashboard/Notes.svelte';
 	import Summary from '$lib/dashboard/Summary.svelte';
 	import { goto } from '$app/navigation';
+	import { session } from '$app/stores';
 
 	let selected = true;
 
