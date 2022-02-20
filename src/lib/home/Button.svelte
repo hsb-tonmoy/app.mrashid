@@ -3,8 +3,8 @@
 	import { createEventDispatcher } from 'svelte';
 
 	let dispatch = createEventDispatcher();
-	import Toastify from 'toastify-js';
-	import 'toastify-js/src/toastify.css';
+
+	import { notificationToast } from '$lib/NotificationToast';
 
 	export let firstStep = false,
 		FormComponentRef,
@@ -35,26 +35,6 @@
 	function handleNext() {
 		dispatch('submit');
 		FormComponentRef.nextStep();
-	}
-
-	function notificationToast(status) {
-		Toastify({
-			text:
-				status === 'duplicate'
-					? 'You have already submitted once. Please wait for our team to reach out to you.'
-					: 'Something went wrong, please try again later',
-			close: false,
-			duration: 5000,
-			gravity: 'top',
-			position: 'center',
-			offset: {
-				x: 0,
-				y: 60
-			},
-			style: {
-				background: 'linear-gradient(to right, #d90429, #ef233c)'
-			}
-		}).showToast();
 	}
 
 	$: data = {
@@ -90,9 +70,11 @@
 					res.status === 400 &&
 					response.email[0] === 'Student Data with this Email already exists.'
 				) {
-					notificationToast('duplicate');
+					notificationToast(
+						'You have already submitted once. Please wait for our team to reach out to you.'
+					);
 				} else {
-					notificationToast('error');
+					notificationToast('Something went wrong. Please try again.');
 					console.log(response);
 				}
 			} catch (err) {

@@ -8,8 +8,7 @@
 	import { createForm } from 'svelte-forms-lib';
 	import * as yup from 'yup';
 
-	import Toastify from 'toastify-js';
-	import 'toastify-js/src/toastify.css';
+	import { notificationToast } from '$lib/NotificationToast';
 
 	const { form, state, isValid, handleChange, handleSubmit } = createForm({
 		initialValues: {
@@ -37,26 +36,6 @@
 		}
 	});
 
-	function notificationToast(status) {
-		Toastify({
-			text:
-				status === 'duplicate'
-					? 'You are already registered with this email address.'
-					: 'Something went wrong, please try again later',
-			close: false,
-			duration: 5000,
-			gravity: 'top',
-			position: 'center',
-			offset: {
-				x: 0,
-				y: 60
-			},
-			style: {
-				background: 'linear-gradient(to right, #d90429, #ef233c)'
-			}
-		}).showToast();
-	}
-
 	async function handleRegister(first_name, last_name, email, password, passwordConfirmation) {
 		const response = await post(`auth/register`, {
 			first_name,
@@ -67,16 +46,16 @@
 		});
 
 		if (response.user) {
-			goto('/confirmation');
+			goto('/register/confirmation');
 		}
 
 		if (
 			response.email &&
 			response.email[0] === 'A user is already registered with this e-mail address.'
 		) {
-			notificationToast('duplicate');
+			notificationToast('You are already registered with this email address.');
 		} else {
-			notificationToast('error');
+			notificationToast('Something went wrong, please try again later');
 			console.log(response);
 		}
 	}
@@ -95,7 +74,7 @@
 
 		<div
 			id="login"
-			class="flex flex-col w-full md:w-2/4 xl:w-3/4 	 mt-12 md:mt-20 xl:mt-12 2xl:mt-20"
+			class="flex flex-col w-full md:w-2/4 xl:w-3/5 mt-12 md:mt-20 xl:mt-12 2xl:mt-20"
 		>
 			<div id="socials" class="flex gap-x-6">
 				<a

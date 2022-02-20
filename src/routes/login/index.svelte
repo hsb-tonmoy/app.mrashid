@@ -4,6 +4,8 @@
 	import { goto } from '$app/navigation';
 	import { post } from '$lib/utils.js';
 
+	import { notificationToast } from '$lib/NotificationToast';
+
 	import { createForm } from 'svelte-forms-lib';
 	import * as yup from 'yup';
 
@@ -28,7 +30,12 @@
 	async function handleLogin(email, password) {
 		const response = await post(`auth/login`, { email, password });
 
-		let errors = response.errors;
+		if (
+			response.non_field_errors &&
+			response.non_field_errors[0] == 'Unable to log in with provided credentials.'
+		) {
+			notificationToast('Your email or password is incorrect. Please try again', true, 10000);
+		}
 
 		if (response.user) {
 			$session.user = response.user;

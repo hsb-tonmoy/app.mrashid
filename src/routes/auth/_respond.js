@@ -1,8 +1,8 @@
 import jwt_decode from 'jwt-decode';
 
 export function respond(body) {
-	if (body.errors) {
-		return { status: 401, body };
+	if (!body.access_token) {
+		return { status: 400, body };
 	}
 
 	const access_token = JSON.stringify(body.access_token);
