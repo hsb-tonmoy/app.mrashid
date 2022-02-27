@@ -10,10 +10,7 @@
 
 	const options = [
 		{ name: 'United States', icon: 'usa' },
-		{ name: 'Canada', icon: 'canada' },
-		{ name: 'United Kingdom', icon: 'uk' },
-		{ name: 'Australia', icon: 'aus' },
-		{ name: 'Other', icon: 'other' }
+		{ name: 'F-1 Transfer within US', icon: 'usa' }
 	];
 </script>
 

@@ -2,7 +2,7 @@
 	import '../app.css';
 </script>
 
-<svelte:head><title>app.mrashid.net - Dr. Rashid's Scholarship Worldwide</title></svelte:head>
+<svelte:head><title>app.mrashid.net - Dr. Rashid's US Scholarship Mentoring</title></svelte:head>
 
 <main class="bg-lightBodyBackground h-screen">
 	<div class="flex flex-col w-full max-w-screen-2xl mx-auto px-6 lg:px-8 2xl:px-0">
