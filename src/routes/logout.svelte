@@ -4,7 +4,7 @@
 
 		return {
 			status: 302,
-			redirect: '/'
+			redirect: '/login'
 		};
 	}
 </script>
