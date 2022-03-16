@@ -1,7 +1,7 @@
 import * as api from '$lib/api.js';
 
 export async function get({ locals }) {
-	const res = await api.get('student_data', locals.user && locals.access);
+	const res = await api.get('student_data/', locals.user && locals.access);
 
 	if (res.status === 401) {
 		return {

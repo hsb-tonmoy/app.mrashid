@@ -2,7 +2,7 @@ import * as api from '$lib/api.js';
 
 export async function post({ request }) {
 	const json = await request.json();
-	const body = await api.post('auth/registration', {
+	const body = await api.post('auth/registration/', {
 		email: json.email,
 		first_name: json.first_name,
 		last_name: json.last_name,

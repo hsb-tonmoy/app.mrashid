@@ -12,8 +12,8 @@
 
 		if (res.ok && res.body) {
 			return {
-				props: { summary: data },
-				stuff: { summary: data }
+				props: { summary: data.summary, notes: data.notes },
+				stuff: { summary: data.summary }
 			};
 		}
 
@@ -33,6 +33,7 @@
 	let selected = true;
 
 	export let summary;
+	export let notes;
 </script>
 
 <main class="flex w-full bg-white h-screen font-montserrat">
@@ -79,7 +80,7 @@
 		{/if}
 	</div>
 	<aside class="flex flex-col w-[25vw] py-16 px-12 border-l border-l-gray-100 left-shadow">
-		<Notes />
+		<Notes {notes} />
 	</aside>
 </main>
 

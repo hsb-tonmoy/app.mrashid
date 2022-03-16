@@ -28,7 +28,9 @@
 	"dependencies": {
 		"@tailwindcss/forms": "^0.4.0",
 		"cookie": "^0.4.2",
+		"javascript-time-ago": "^2.3.13",
 		"jwt-decode": "^3.1.2",
+		"svelte-file-dropzone": "^1.0.0-dev.1",
 		"svelte-forms-lib": "^2.0.1",
 		"toastify-js": "^1.11.2",
 		"yup": "^0.32.11"
