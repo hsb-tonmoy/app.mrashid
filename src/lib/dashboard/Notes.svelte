@@ -1,23 +1,16 @@
 <script>
-	import { getStores, navigating, page, session, updated } from '$app/stores';
+	import { page } from '$app/stores';
 
 	import TimeAgo from 'javascript-time-ago';
 	import en from 'javascript-time-ago/locale/en.json';
 	TimeAgo.addLocale(en);
 	const timeAgo = new TimeAgo('en-US');
 
-	$: console.log($page.url.pathname);
-
-	export let notes;
+	export let notes = [];
 
 	let notes_to_display = [];
 
-	$: notes_to_display = notes.filter((n) => {
-		console.log(n.category.slug);
-		$page.url.pathname.includes(n.category.slug);
-	});
-
-	$: console.log(notes_to_display);
+	$: notes_to_display = notes.filter((e) => $page.url.pathname.includes(e.category.slug));
 
 	function priorityColor(priority) {
 		switch (priority) {
@@ -37,10 +30,10 @@
 
 <h3 class="font-semibold text-3xl text-lightText">Consultant Notes</h3>
 <div class="relative pt-12 flex flex-col min-w-0 break-words w-full mb-6 rounded-lg">
-	<div class="px-8">
-		{#if notes.length > 0}
+	<div class="px-4">
+		{#if notes_to_display.length > 0}
 			<ol class="relative border-l border-gray-200 dark:border-gray-700 ">
-				{#each notes as note}
+				{#each notes_to_display as note}
 					<li class="mb-10 ml-6">
 						<div
 							class={`flex absolute -left-3 justify-center items-center w-6 h-6 ${priorityColor(
