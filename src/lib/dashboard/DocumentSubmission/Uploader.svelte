@@ -1,5 +1,6 @@
 <script>
 	import Dropzone from 'svelte-file-dropzone';
+	import PDFPreview from './PDFPreview.svelte';
 	let files = {
 		accepted: []
 	};
@@ -34,9 +35,9 @@
 		Select a file
 	</button>
 </Dropzone>
-{#each files.accepted as item, index}
+{#each files.accepted as item}
 	<div>
 		<span>{item.name}</span>
-		<button on:click={(e) => handleRemoveFile(e, index)}>Remove</button>
+		<PDFPreview url={URL.createObjectURL(item)} />
 	</div>
 {/each}

@@ -20,7 +20,7 @@ export const timeline_options = [
 	{
 		title: 'Document Submission',
 		icon: 'account',
-		route: '/dashboard/',
+		route: '/dashboard/document_submission',
 		active: false,
 		done: false,
 
