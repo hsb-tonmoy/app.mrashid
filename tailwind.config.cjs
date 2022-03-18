@@ -21,7 +21,8 @@ const config = {
 			},
 			fontFamily: {
 				circular: ['Circular Std Book'],
-				montserrat: ['Montserrat', 'sans-serif']
+				montserrat: ['Montserrat', 'sans-serif'],
+				sans: ['DM Sans', 'sans-serif']
 			}
 		}
 	},
