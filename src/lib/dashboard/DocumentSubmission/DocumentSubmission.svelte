@@ -13,13 +13,13 @@
 	{#each document_category as category}
 		<h3 class="font-medium text-lg text-lightText mb-4">{category.name}</h3>
 		<table class="shadow-md rounded-sm ml-1 mb-12">
-			<tr class="text-xs text-gray-600 border-b-2 border-gray-500 text-left">
+			<tr class="text-xs text-gray-600 border-b-2 border-gray-200 text-left">
 				<th class="w-3/5 p-2">Name</th>
 				<th class="w-[15%]">Approved</th>
 				<th class="w-[25%]">Dated Added</th>
 			</tr>
 			{#each document as doc}
-				{#if doc.category.slug == category.slug}
+				{#if doc.category && doc.category.slug == category.slug}
 					<tr class="text-sm">
 						<td class="p-2">{doc.title}</td>
 						<td>

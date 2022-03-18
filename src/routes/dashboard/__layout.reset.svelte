@@ -24,11 +24,12 @@
 <script>
 	import { grid, bell, message, help, chart, arrow_left, logout } from '$lib/svg/dashboard';
 
+	import { SvelteToast } from '@zerodevx/svelte-toast';
+
 	import Timeline from '$lib/dashboard/Timeline.svelte';
 	import Notes from '$lib/dashboard/Notes.svelte';
 	import Summary from '$lib/dashboard/Summary.svelte';
 	import { goto } from '$app/navigation';
-	import { session } from '$app/stores';
 
 	let selected = true;
 
@@ -83,6 +84,7 @@
 		<Notes {notes} />
 	</aside>
 </main>
+<SvelteToast />
 
 <style lang="postcss">
 	.menu-icon {

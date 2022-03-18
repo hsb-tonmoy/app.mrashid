@@ -1,18 +1,13 @@
 <script>
 	import Dropzone from 'svelte-file-dropzone';
-	import PDFPreview from './PDFPreview.svelte';
-	let files = {
+
+	export let files = {
 		accepted: []
 	};
 
 	function handleFilesSelect(e) {
 		const { acceptedFiles, fileRejections } = e.detail;
 		files.accepted = [...acceptedFiles];
-	}
-
-	function handleRemoveFile(e, index) {
-		files.accepted.splice(index, 1);
-		files.accepted = [...files.accepted];
 	}
 </script>
 
@@ -26,7 +21,7 @@
 	<p class="mb-3 font-semibold text-gray-900 flex flex-wrap justify-center">
 		<span>Drag and drop your</span>&nbsp;<span>files here or</span>
 	</p>
-	<input id="hidden-input" type="file" multiple class="hidden" />
+	<input id="hidden-input" type="file" class="hidden" />
 	<button
 		id="button"
 		type="button"
@@ -38,6 +33,5 @@
 {#each files.accepted as item}
 	<div>
 		<span>{item.name}</span>
-		<PDFPreview url={URL.createObjectURL(item)} />
 	</div>
 {/each}
