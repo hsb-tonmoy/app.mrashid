@@ -1,11 +1,8 @@
 <script>
-	import { english_proficiency } from '$lib/home/stores';
-
 	export let summary;
 </script>
 
 <div class="flex flex-col">
-	<h2 class="font-semibold text-3xl text-lightText">Student Dashboard</h2>
 	<div class="description w-9/12 mt-4 text-lightTextBody text-lg leading-loose">
 		You are <span class="highlight-text">{summary.first_name} </span><span class="highlight-text">
 			{summary.last_name}</span

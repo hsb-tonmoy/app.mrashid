@@ -2,6 +2,7 @@
 	import { check, pending } from '$lib/svg/document_submission';
 	import { convertDate } from '$lib/convertDate';
 	import UploadModal from './FileUpload/UploadModal.svelte';
+	import FilePreview from './FileUpload/FilePreview.svelte';
 
 	export let document_category;
 	export let document;
@@ -21,7 +22,7 @@
 			{#each document as doc}
 				{#if doc.category && doc.category.slug == category.slug}
 					<tr class="text-sm">
-						<td class="p-2">{doc.title}</td>
+						<td class="p-2"><FilePreview pdf_title={doc.title} pdf_url={doc.document} /></td>
 						<td>
 							{#if doc.is_approved && !doc.is_rejected}
 								{@html check} Approved

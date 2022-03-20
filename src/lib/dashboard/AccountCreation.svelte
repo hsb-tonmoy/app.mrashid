@@ -25,6 +25,7 @@
 	});
 </script>
 
+<h4 class="text-2xl text-lightText font-medium">Personal Information</h4>
 <form class="flex w-full gap-x-8 text-sm mt-8" on:submit|preventDefault={handleSubmit}>
 	<fieldset class="flex flex-col w-2/4 gap-y-6">
 		<label class="block">

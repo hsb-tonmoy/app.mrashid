@@ -11,7 +11,9 @@ const config = {
 				accent1: 'rgba(91, 58, 204, 1)',
 				accent2: 'rgba(120, 57, 243, 1)',
 				accent3: 'rgba(57, 59, 227, 1)',
-				thinAccent: 'rgba(198, 197, 254, 1)'
+				thinAccent: 'rgba(198, 197, 254, 1)',
+				heavyPurple: '#4B01E0',
+				lightPurple: '#8E2DE2'
 			},
 			width: {
 				120: '30rem'

@@ -1,36 +1,30 @@
 <script>
-	import { onMount } from 'svelte';
-	let PdfViewer;
-
-	onMount(async () => {
-		const module = await import('svelte-pdf');
-		PdfViewer = module.index;
-	});
-
-	let show = true;
-
-	export let url;
+	export let pdf_show = true;
+	export let pdf_url, pdf_title;
 </script>
 
-<button
-	on:click={() => {
-		show = !show;
-	}}
-	type="button"
->
-	Preview
-</button>
+<div class="">
+	<span
+		class="text-blue-500 hover:underline cursor-pointer"
+		on:click={() => {
+			pdf_show = !pdf_show;
+		}}>{pdf_title}</span
+	>
+</div>
 
 <div
-	class:hidden={show}
+	class:hidden={pdf_show}
 	class="flex overflow-y-auto overflow-x-hidden fixed right-0 left-0 top-4 z-50 justify-center items-center h-modal md:h-full md:inset-0 bg-black/50"
+	on:click|self={() => {
+		pdf_show = !pdf_show;
+	}}
 >
-	<div class="relative w-full max-w-2xl h-full md:h-auto">
+	<div class="relative bg-white w-full max-w-5xl h-auto">
 		<div class="relative bg-blueGray-100 px-4 rounded-lg shadow dark:bg-gray-700">
 			<div class="flex justify-end py-2">
 				<button
 					on:click={() => {
-						show = !show;
+						pdf_show = !pdf_show;
 					}}
 					type="button"
 					class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
@@ -49,7 +43,16 @@
 				</button>
 			</div>
 
-			<svelte:component this={PdfViewer} {url} />
+			<!-- <iframe src={`${pdf_url}#view=fitH`} title={pdf_title} height="100%" width="100%" /> -->
+
+			<object
+				type="application/pdf"
+				data={pdf_url}
+				aria-label="PDF preview window"
+				class="style__pdf-preview___1jSP9"
+				width="100%"
+				height="900px"><embed src={pdf_url} type="application/pdf" /></object
+			>
 		</div>
 	</div>
 </div>

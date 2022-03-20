@@ -2,7 +2,7 @@ export const timeline_options = [
 	{
 		title: 'Account Creation',
 		icon: 'account',
-		route: '/dashboard/',
+		route: '/dashboard/account_creation',
 		active: true,
 		done: true,
 

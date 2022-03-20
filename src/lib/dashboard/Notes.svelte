@@ -28,7 +28,7 @@
 	}
 </script>
 
-<h3 class="font-semibold text-3xl text-lightText">Consultant Notes</h3>
+<h3 class="text-2xl text-[#404D61] font-bold">Consultant Notes</h3>
 <div class="relative pt-12 flex flex-col min-w-0 break-words w-full mb-6 rounded-lg">
 	<div class="px-4">
 		{#if notes_to_display.length > 0}
