@@ -63,9 +63,9 @@
 <h4 class="text-2xl text-lightText font-medium">Account Creation Form</h4>
 
 <form use:form class="w-full mt-8">
-	<div class="flex flex-wrap md:flex-nowrap gap-x-4">
+	<div class="flex flex-wrap lg:flex-nowrap gap-x-4">
 		<!-- First Half -->
-		<div class="flex flex-col gap-y-4 w-full md:w-2/4">
+		<div class="flex flex-col gap-y-4 w-full lg:w-2/4">
 			<div class="relative">
 				<input disabled type="email" id="email" name="email" class="peer acc-input-text" />
 				<label for="email" class="acc-label">Email address</label>
@@ -229,10 +229,10 @@
 		<!-- Divider -->
 		<div class="form-divider " />
 		<!-- Second Half -->
-		<div class="flex flex-col gap-y-4 w-full mt-12 md:mt-0 md:w-2/4">
-			<span class="field-heading md:hidden">Study Abroad Information</span>
+		<div class="flex flex-col gap-y-4 w-full mt-12 lg:mt-0 lg:w-2/4">
+			<span class="field-heading lg:hidden">Study Abroad Information</span>
 			<div class="flex gap-x-2">
-				<div class="relative">
+				<div class="w-1/3 relative">
 					<select
 						id="destination"
 						name="destination"
@@ -245,7 +245,7 @@
 					</select>
 					<label for="destination" class="acc-label">Destination</label>
 				</div>
-				<div class="relative">
+				<div class="w-1/3 relative">
 					<select id="degree" name="degree" placeholder="Degree" class="peer acc-input-select">
 						{#each DEGREE as degree}
 							<option value={degree.label}>{degree.label}</option>
@@ -253,7 +253,7 @@
 					</select>
 					<label for="degree" class="acc-label">Degree</label>
 				</div>
-				<div class="relative">
+				<div class="w-1/3 relative">
 					<select id="major" name="major" placeholder="Major" class="peer acc-input-select">
 						{#each MAJORS as major}
 							<option value={major.label}>{major.label}</option>

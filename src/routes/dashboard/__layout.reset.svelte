@@ -22,6 +22,7 @@
 </script>
 
 <script>
+	import { fade, fly } from 'svelte/transition';
 	import { SvelteToast } from '@zerodevx/svelte-toast';
 	import Header from '$lib/dashboard/Layout/Header.svelte';
 	import Timeline from '$lib/dashboard/Layout/Timeline/Timeline.svelte';
@@ -31,36 +32,62 @@
 	export let summary;
 	export let notes;
 	export let progress;
+
+	let notes_show = false;
+
+	let timeline_show = false;
+
+	$: content_width = notes_show ? 'w-full lg:w-[55%] lg:mr-[25%]' : 'w-full lg:w-[80%] lg:mr-0';
 </script>
 
 <main class="flex w-full bg-white h-screen font-sans">
-	<aside class="left-sidebar">
+	<aside
+		in:fly={{ x: -200, duration: 500 }}
+		out:fly={{ x: -200, duration: 500 }}
+		class="left-sidebar hidden lg:flex"
+	>
 		<Timeline student_progress={progress} />
 	</aside>
-	<div class="center-content">
+	{#if timeline_show}
+		<aside
+			in:fly={{ x: -200, duration: 500 }}
+			out:fly={{ x: -200, duration: 500 }}
+			class="left-sidebar flex lg:hidden"
+		>
+			<Timeline student_progress={progress} />
+		</aside>
+	{/if}
+	<div id="content-body" class={`center-content ${content_width}`}>
 		{#if summary}
-			<Header />
-			<div class="px-12 py-8 mt-24 z-40">
+			<Header bind:notes_show bind:timeline_show />
+			<div class="px-4 lg:px-12 py-8 mt-24 z-40">
 				<slot />
 			</div>
 		{:else}
 			<NoStudentDataError />
 		{/if}
 	</div>
-	<aside class="right-sidebar">
-		<Notes {notes} />
-	</aside>
+	{#if notes_show}
+		<aside
+			in:fly={{ x: 200, duration: 500 }}
+			out:fly={{ x: 200, duration: 500 }}
+			class="right-sidebar"
+		>
+			<Notes {notes} />
+		</aside>
+	{/if}
 </main>
 <SvelteToast />
 
 <style lang="postcss">
 	.left-sidebar {
-		@apply hidden lg:flex lg:fixed lg:overflow-y-auto flex-col items-center h-full w-[15%] py-9 px-4 2xl:px-10 bg-[#F1F6F9] border-r border-gray-200;
+		@apply flex-col fixed left-0 z-50 overflow-y-auto items-center h-full mt-24 lg:mt-0 w-2/5 lg:w-[20%] py-9 px-4 2xl:px-10 bg-[#F1F6F9] border-r border-gray-200;
 	}
+
 	.center-content {
-		@apply relative w-full lg:w-[60%] lg:ml-[15%] lg:mr-[25%] bg-white;
+		@apply relative lg:ml-[20%] bg-white transition-all ease-in-out duration-500;
 	}
 	.right-sidebar {
-		@apply hidden lg:flex lg:fixed lg:overflow-y-auto lg:right-0 flex-col h-full w-[25%] p-8 border-l border-gray-200;
+		@apply flex fixed overflow-y-auto right-0 mt-24 lg:mt-0 flex-col h-full w-3/5 lg:w-[25%] p-8 bg-white border-l border-gray-200 z-50;
 	}
 </style>
