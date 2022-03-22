@@ -3,7 +3,7 @@
 
 	import TimelineItem from './TimelineItem.svelte';
 
-	import { home, cog } from '$lib/svg/dashboard';
+	import { cog } from '$lib/svg/dashboard';
 	import {
 		account_creation,
 		file_opening,
@@ -35,7 +35,7 @@
 			route: '/dashboard/file_opening/'
 		},
 		{
-			title: 'Docu Submission',
+			title: 'Document Submission',
 			icon: document_submission,
 			status: student_progress.docu_submission,
 			route: '/dashboard/document_submission/'
@@ -116,7 +116,7 @@
 	</div>
 </div>
 
-<section class="timeline-grid justify-between items-center gap-y-10 px-4">
+<section class="timeline-grid justify-between items-center gap-y-8 2xl:gap-y-10 px-2 2xl:px-4">
 	{#each timeline_options as timeline_item}
 		<TimelineItem
 			title={timeline_item.title}
@@ -143,6 +143,5 @@
 		grid-template-rows: auto;
 
 		width: 100%;
-		margin: 0 auto;
 	}
 </style>

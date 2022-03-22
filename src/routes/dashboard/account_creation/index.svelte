@@ -7,9 +7,13 @@
 </script>
 
 <script>
-	import AccountCreation from '$lib/dashboard/AccountCreation.svelte';
+	import AccountCreation from '$lib/dashboard/AccountCreation/AccountCreation.svelte';
 
 	export let summary;
 </script>
+
+<svelte:head>
+	<title>app.mrashid.net - Account Creation</title>
+</svelte:head>
 
 <AccountCreation {summary} />

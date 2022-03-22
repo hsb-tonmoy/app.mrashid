@@ -3,10 +3,12 @@
 	import { goto } from '$app/navigation';
 	import { arrow_left } from '$lib/svg/dashboard';
 
-	export let title = 'Student Dashboard';
+	let title = 'Dashboard';
 </script>
 
-<header class="flex items-center justify-between p-6 border-b border-gray-200">
+<header
+	class="flex fixed items-center justify-between px-6 h-24 w-full lg:w-[60%] bg-white border-b border-gray-200 z-50"
+>
 	<div class="flex items-center gap-x-4">
 		{#if $page.url.pathname !== '/dashboard'}
 			<div

@@ -40,7 +40,7 @@
 	<div class="center-content">
 		{#if summary}
 			<Header />
-			<div class="px-12 py-8">
+			<div class="px-12 py-8 mt-24 z-40">
 				<slot />
 			</div>
 		{:else}
@@ -55,21 +55,12 @@
 
 <style lang="postcss">
 	.left-sidebar {
-		@apply hidden lg:flex flex-col items-center h-full w-[15%] py-9 px-10 bg-[#F1F6F9] border-r border-gray-200;
+		@apply hidden lg:flex lg:fixed lg:overflow-y-auto flex-col items-center h-full w-[15%] py-9 px-4 2xl:px-10 bg-[#F1F6F9] border-r border-gray-200;
 	}
 	.center-content {
-		@apply min-w-[60%] bg-white;
+		@apply relative w-full lg:w-[60%] lg:ml-[15%] lg:mr-[25%] bg-white;
 	}
 	.right-sidebar {
-		@apply flex flex-col w-auto p-8 border-l border-l-gray-100 left-shadow;
-	}
-	.right-shadow {
-		box-shadow: 0 0 15px rgba(229, 231, 235, 0.4);
-		clip-path: inset(0px -15px 0px 0px);
-	}
-
-	.left-shadow {
-		box-shadow: 0 0 15px rgba(229, 231, 235, 0.2);
-		clip-path: inset(0px 0px 0px -15px);
+		@apply hidden lg:flex lg:fixed lg:overflow-y-auto lg:right-0 flex-col h-full w-[25%] p-8 border-l border-gray-200;
 	}
 </style>

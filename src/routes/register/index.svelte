@@ -61,6 +61,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>app.mrashid.net - Register</title>
+</svelte:head>
+
 <main class="flex flex-wrap h-screen font-montserrat">
 	<aside class="bg bg-cover bg-center bg-no-repeat w-full py-32 lg:py-0 xl:w-3/5" />
 	<aside

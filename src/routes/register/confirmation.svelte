@@ -13,6 +13,9 @@
 		style="--animate-duration: 1000ms"
 	/>
 </div>
+<svelte:head>
+	<title>app.mrashid.net - Confirmation</title>
+</svelte:head>
 
 <style>
 	.body {
