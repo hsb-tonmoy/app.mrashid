@@ -14,16 +14,24 @@
 	}
 </script>
 
-<div class="timeline-title relative font-light text-base md:text-sm 2xl:text-base ">
-	<a class="inline-flex gap-x-3 text-[#757D8A] items-center drop-shadow-sm " href={route}>
-		<span class="w-5 h-5 text-[#757D8A] hover:text-accent1">{@html icon}</span> {title}</a
-	>
-</div>
-<div
-	class={`timeline-status relative w-5 h-5 md:w-3 md:h-3 2xl:w-5 2xl:h-5 p-1 border ${status_color_classes} rounded-full `}
+<a
+	href={route}
+	class="flex group justify-between items-center bg-transparent hover:bg-white py-2 px-3 rounded-md transition-all duration-800 ease-in-out"
 >
-	<span class="status" />
-</div>
+	<div
+		class="timeline-title relative font-light text-base md:text-sm 2xl:text-base text-gray-500 group-hover:text-black transition-all duration-300 ease-in-out"
+	>
+		<div class="inline-flex gap-x-3 items-center drop-shadow-sm ">
+			<span class="w-5 h-5">{@html icon}</span>
+			{title}
+		</div>
+	</div>
+	<div
+		class={`timeline-status relative w-5 h-5 md:w-3 md:h-3 2xl:w-5 2xl:h-5 border ${status_color_classes} rounded-full `}
+	>
+		<span class="status" />
+	</div>
+</a>
 
 <style>
 	:root {
@@ -47,7 +55,7 @@
 		bottom: calc(var(--grid-gap) * -4);
 	}
 
-	.timeline-status:nth-last-child(1)::after {
-		display: none;
+	.timeline-status::after:nth-last-child(1) {
+		bottom: calc(var(--grid-gap) * 0);
 	}
 </style>

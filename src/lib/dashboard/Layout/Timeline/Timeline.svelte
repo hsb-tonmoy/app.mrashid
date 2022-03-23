@@ -116,9 +116,7 @@
 	</div>
 </div>
 
-<section
-	class="timeline-grid relative justify-between items-center gap-y-8 2xl:gap-y-10 px-2 2xl:px-4"
->
+<section class="flex flex-col relative gap-y-5 2xl:gap-y-8 px-2 2xl:px-4 w-full">
 	{#each timeline_options as timeline_item}
 		<TimelineItem
 			title={timeline_item.title}
@@ -137,13 +135,5 @@
 		--status-size: 1.25rem;
 		--grid-gap: 1.5rem;
 		--group-header-spacing: 1rem;
-	}
-
-	.timeline-grid {
-		display: grid;
-		grid-template-columns: fit-content(100%) var(--avatar-size);
-		grid-template-rows: auto;
-
-		width: 100%;
 	}
 </style>
