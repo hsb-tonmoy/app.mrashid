@@ -6,11 +6,15 @@
 	TimeAgo.addLocale(en);
 	const timeAgo = new TimeAgo('en-US');
 
+	import { notes_count } from './stores';
+
 	export let notes = [];
 
 	let notes_to_display = [];
 
 	$: notes_to_display = notes.filter((e) => $page.url.pathname.includes(e.category.slug));
+
+	$: $notes_count = notes_to_display.length;
 
 	function priorityColor(priority) {
 		switch (priority) {

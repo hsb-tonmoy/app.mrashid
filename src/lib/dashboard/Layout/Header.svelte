@@ -3,6 +3,8 @@
 	import { goto } from '$app/navigation';
 	import { arrow_left, question, notes, timeline } from '$lib/svg/dashboard';
 
+	import { notes_count } from '../stores';
+
 	let title = 'Dashboard';
 
 	export let notes_show;
@@ -44,12 +46,24 @@
 		</div>
 		<div
 			on:click={() => (notes_show = !notes_show)}
-			class={`flex group hover:bg-[#FF5959] justify-center items-center w-14 h-12 border border-gray-200 hover:border-[#FF5959] rounded-xl cursor-pointer shadow-sm icons transition-all ease-in-out duration-200 ${
+			class={`flex relative group hover:bg-[#FF5959] justify-center items-center w-14 h-12 border border-gray-200 hover:border-[#FF5959] rounded-xl cursor-pointer shadow-sm icons transition-all ease-in-out duration-200 ${
 				notes_show ? 'bg-[#FF5959] border-[#FF5959]' : 'border-gray-200 hover:border-[#FF5959]'
 			}`}
 		>
 			<span class={`group-hover:text-white w-6 h-6 ${notes_show ? 'text-white' : 'text-[#FF5959]'}`}
 				>{@html notes}</span
+			>
+
+			<span
+				class={`absolute -top-2 -right-2 inline-flex rounded-full h-7 w-7 ${
+					notes_show ? 'bg-white border border-red-500 text-red-500' : 'bg-red-500 text-white'
+				} justify-center items-center`}
+				><span
+					class="absolute inline-flex rounded-full h-6 w-6 bg-red-500 justify-center items-center animate-ping"
+				/><span
+					class="inline-flex rounded-full h-6 w-6 text-xs font-medium justify-center items-center"
+					>{$notes_count}</span
+				></span
 			>
 		</div>
 	</div>

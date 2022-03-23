@@ -14,13 +14,13 @@
 	}
 </script>
 
-<div class="timeline-title font-light text-sm 2xl:text-base">
-	<a class="inline-flex gap-x-3 text-[#757D8A] items-center drop-shadow-sm" href={route}>
+<div class="timeline-title relative font-light text-base md:text-sm 2xl:text-base ">
+	<a class="inline-flex gap-x-3 text-[#757D8A] items-center drop-shadow-sm " href={route}>
 		<span class="w-5 h-5 text-[#757D8A] hover:text-accent1">{@html icon}</span> {title}</a
 	>
 </div>
 <div
-	class={`timeline-status relative w-3 h-3 2xl:w-5 2xl:h-5 p-1 border ${status_color_classes} rounded-full`}
+	class={`timeline-status relative w-5 h-5 md:w-3 md:h-3 2xl:w-5 2xl:h-5 p-1 border ${status_color_classes} rounded-full `}
 >
 	<span class="status" />
 </div>

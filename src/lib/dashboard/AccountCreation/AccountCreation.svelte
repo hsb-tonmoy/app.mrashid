@@ -352,7 +352,7 @@
 
 <style lang="postcss">
 	.acc-input-text {
-		@apply form-input pt-8 border border-gray-200 focus:outline-none rounded-md focus:border-gray-500 focus:shadow-sm w-full p-3 h-16 placeholder-transparent disabled:bg-gray-200;
+		@apply form-input pt-8 border border-gray-200 rounded-md focus:outline-none focus:border-accent1 focus:ring focus:ring-accent1 focus:ring-opacity-20 focus:shadow-sm w-full p-3 h-16 placeholder-transparent disabled:bg-gray-200;
 	}
 
 	.acc-input-textarea {

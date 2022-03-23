@@ -22,7 +22,7 @@
 </script>
 
 <script>
-	import { fade, fly } from 'svelte/transition';
+	import { fly } from 'svelte/transition';
 	import { SvelteToast } from '@zerodevx/svelte-toast';
 	import Header from '$lib/dashboard/Layout/Header.svelte';
 	import Timeline from '$lib/dashboard/Layout/Timeline/Timeline.svelte';
@@ -41,13 +41,15 @@
 </script>
 
 <main class="flex w-full bg-white h-screen font-sans">
-	<aside
-		in:fly={{ x: -200, duration: 500 }}
-		out:fly={{ x: -200, duration: 500 }}
-		class="left-sidebar hidden lg:flex"
-	>
-		<Timeline student_progress={progress} />
-	</aside>
+	<div class="sidebar-background">
+		<aside
+			in:fly={{ x: -200, duration: 500 }}
+			out:fly={{ x: -200, duration: 500 }}
+			class="left-sidebar hidden lg:flex"
+		>
+			<Timeline student_progress={progress} />
+		</aside>
+	</div>
 	{#if timeline_show}
 		<aside
 			in:fly={{ x: -200, duration: 500 }}
@@ -80,8 +82,15 @@
 <SvelteToast />
 
 <style lang="postcss">
+	.sidebar-background {
+		background-image: linear-gradient(-20deg, #f1f6f9 0%, #f1f6f9 49%, #f7f3f6 100%);
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-size: cover;
+		@apply flex fixed left-0 z-50 h-full w-3/5 lg:w-[20%];
+	}
 	.left-sidebar {
-		@apply flex-col fixed left-0 z-50 overflow-y-auto items-center h-full mt-24 lg:mt-0 w-2/5 lg:w-[20%] py-9 px-4 2xl:px-10 bg-[#F1F6F9] border-r border-gray-200;
+		@apply flex-col fixed left-0 z-50 overflow-y-auto items-center h-full mt-24 lg:mt-0 w-3/5 lg:w-[20%] py-9 px-4 2xl:px-10 border-r border-gray-200 bg-white bg-opacity-20;
 	}
 
 	.center-content {

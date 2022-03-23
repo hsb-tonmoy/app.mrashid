@@ -116,7 +116,9 @@
 	</div>
 </div>
 
-<section class="timeline-grid justify-between items-center gap-y-8 2xl:gap-y-10 px-2 2xl:px-4">
+<section
+	class="timeline-grid relative justify-between items-center gap-y-8 2xl:gap-y-10 px-2 2xl:px-4"
+>
 	{#each timeline_options as timeline_item}
 		<TimelineItem
 			title={timeline_item.title}
