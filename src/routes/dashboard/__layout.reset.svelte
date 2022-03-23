@@ -86,13 +86,13 @@
 		background-repeat: no-repeat;
 		background-attachment: fixed;
 		background-size: cover;
-		@apply flex-col fixed left-0 z-50 overflow-y-auto items-center h-full mt-24 lg:mt-0 w-3/5 lg:w-[20%] py-9 px-4 2xl:px-10 border-r border-gray-200;
+		@apply flex-col fixed left-0 z-50 overflow-y-auto items-center h-full mt-24 lg:mt-0 w-11/12 md:w-3/5 lg:w-[20%] py-9 px-4 2xl:px-10 border-r border-gray-200;
 	}
 
 	.center-content {
 		@apply relative lg:ml-[20%] bg-white transition-all ease-in-out duration-500;
 	}
 	.right-sidebar {
-		@apply flex fixed overflow-y-auto right-0 mt-24 lg:mt-0 flex-col h-full w-3/5 lg:w-[25%] p-8 bg-white border-l border-gray-200 z-50;
+		@apply flex fixed overflow-y-auto right-0 mt-24 lg:mt-0 flex-col h-full w-11/12 md:w-3/5 lg:w-[25%] p-8 bg-white border-l border-gray-200 z-50;
 	}
 </style>
