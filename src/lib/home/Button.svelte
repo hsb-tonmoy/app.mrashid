@@ -1,7 +1,7 @@
 <script>
 	import { dev } from '$app/env';
 	import { createEventDispatcher } from 'svelte';
-
+	import { post } from '$lib/utils';
 	let dispatch = createEventDispatcher();
 
 	import { notificationToast } from '$lib/NotificationToast';
@@ -25,8 +25,6 @@
 		english_proficiency_score,
 		message
 	} from './stores.js';
-
-	const API_URL = import.meta.env.VITE_API_URL;
 
 	function handlePrevious() {
 		FormComponentRef.previousStep();
@@ -53,37 +51,34 @@
 	};
 
 	async function handleSubmit() {
-		if (!dev) {
-			try {
-				const res = await fetch(API_URL + 'student_data/', {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					body: JSON.stringify(data)
-				});
-				const response = await res.json();
+		try {
+			const res = await post('student-data', {
+				destination: data.destination,
+				degree: data.degree,
+				first_name: data.first_name,
+				last_name: data.last_name,
+				email: data.email,
+				phone: data.phone,
+				social_media: data.social_media,
+				major: data.major,
+				education: data.education,
+				english_proficiency: data.english_proficiency,
+				english_proficiency_score: data.english_proficiency_score,
+				message: data.message
+			});
 
-				if (res.status === 201) {
-					handleNext();
-				} else if (
-					res.status === 400 &&
-					response.email[0] === 'Student Data with this Email already exists.'
-				) {
-					notificationToast(
-						'You have already submitted once. Please wait for our team to reach out to you.'
-					);
-				} else {
-					notificationToast('Something went wrong. Please try again.');
-					console.log(response);
-				}
-			} catch (err) {
-				console.log(err);
+			if (res.email && res.email[0] === 'Student Data with this Email already exists.') {
+				notificationToast(
+					'You have already submitted once. Please wait for our team to reach out to you.'
+				);
+				return;
 			}
-		} else {
-			handleNext();
-			console.log(data);
+		} catch (err) {
+			notificationToast('Something went wrong. Please try again.');
+			console.log(response);
+			return;
 		}
+		handleNext();
 	}
 </script>
 
