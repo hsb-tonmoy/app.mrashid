@@ -41,41 +41,41 @@
 </script>
 
 <main class="flex w-full bg-white h-screen font-sans">
-	<aside
-		in:fly={{ x: -200, duration: 500 }}
-		out:fly={{ x: -200, duration: 500 }}
-		class="left-sidebar hidden lg:flex"
-	>
-		<Timeline student_progress={progress} />
-	</aside>
-
-	{#if timeline_show}
+	{#if summary}
 		<aside
 			in:fly={{ x: -200, duration: 500 }}
 			out:fly={{ x: -200, duration: 500 }}
-			class="left-sidebar flex lg:hidden"
+			class="left-sidebar hidden lg:flex"
 		>
 			<Timeline student_progress={progress} />
 		</aside>
-	{/if}
-	<div id="content-body" class={`center-content ${content_width}`}>
-		{#if summary}
+
+		{#if timeline_show}
+			<aside
+				in:fly={{ x: -200, duration: 500 }}
+				out:fly={{ x: -200, duration: 500 }}
+				class="left-sidebar flex lg:hidden"
+			>
+				<Timeline student_progress={progress} />
+			</aside>
+		{/if}
+		<div id="content-body" class={`center-content ${content_width}`}>
 			<Header bind:notes_show bind:timeline_show />
 			<div class="px-4 lg:px-12 py-8 mt-24 z-40">
 				<slot />
 			</div>
-		{:else}
-			<NoStudentDataError />
+		</div>
+		{#if notes_show}
+			<aside
+				in:fly={{ x: 200, duration: 500 }}
+				out:fly={{ x: 200, duration: 500 }}
+				class="right-sidebar"
+			>
+				<Notes {notes} />
+			</aside>
 		{/if}
-	</div>
-	{#if notes_show}
-		<aside
-			in:fly={{ x: 200, duration: 500 }}
-			out:fly={{ x: 200, duration: 500 }}
-			class="right-sidebar"
-		>
-			<Notes {notes} />
-		</aside>
+	{:else}
+		<NoStudentDataError />
 	{/if}
 </main>
 <SvelteToast />

@@ -9,6 +9,8 @@
 	import { createForm } from 'svelte-forms-lib';
 	import * as yup from 'yup';
 
+	import { login_error } from '$lib/layout/stores';
+
 	const { form, state, isValid, handleChange, handleSubmit } = createForm({
 		initialValues: {
 			email: '',
@@ -45,7 +47,7 @@
 
 	const openGoogleLoginPage = () => {
 		const googleAuthUrl = 'https://accounts.google.com/o/oauth2/v2/auth';
-		const redirectUri = 'api/v1/auth/login/google/';
+		const redirectUri = 'login/google';
 
 		const scope = [
 			'https://www.googleapis.com/auth/userinfo.email',
@@ -55,7 +57,7 @@
 		const params = {
 			response_type: 'code',
 			client_id: '1009025651280-bd5pbaqg7f4dk7dr7cb6fhcf1tka85gf',
-			redirect_uri: `http://localhost:8000/${redirectUri}`,
+			redirect_uri: `http://localhost:3000/${redirectUri}`,
 			prompt: 'select_account',
 			access_type: 'offline',
 			scope
@@ -99,6 +101,10 @@
 					><span class="block w-6 h-6">{@html google}</span></a
 				>
 			</div>
+			<div class="errors mt-12">
+				<span class="text-red-600 text-sm text-center font-medium">{$login_error}</span>
+			</div>
+
 			<div
 				class="relative w-full flex justify-center items-center border-b-2 border-gray-200 my-12"
 			>
