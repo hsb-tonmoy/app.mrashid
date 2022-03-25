@@ -3,18 +3,25 @@
 	import { goto } from '$app/navigation';
 	import { arrow_left, question, notes, timeline } from '$lib/svg/dashboard';
 
-	import { notes_count } from '../stores';
-
-	let title = 'Dashboard';
+	import { submit_identifier, current_page_title, notes_count } from '../stores';
 
 	export let notes_show;
 	export let timeline_show;
 
 	$: header_width = notes_show ? 'w-full lg:w-[55%]' : 'w-full lg:w-[80%]';
+
+	function handleSubmit() {
+		let form = document.getElementById($submit_identifier);
+		if (form.requestSubmit) {
+			form.requestSubmit();
+		} else {
+			form.submit();
+		}
+	}
 </script>
 
 <header
-	class={`flex fixed items-center justify-between px-6 h-24 bg-white border-b border-gray-200 z-50 transition-all ease-in-out duration-500 ${header_width}`}
+	class={`flex fixed items-center justify-between px-2 md:px-6 h-24 bg-white border-b border-gray-200 z-50 transition-all ease-in-out duration-500 ${header_width}`}
 >
 	<div class="flex items-center gap-x-2 md:gap-x-4">
 		{#if $page.url.pathname !== '/dashboard'}
@@ -25,9 +32,11 @@
 				<span class="text-[#757D8A] font-bold w-5 h-5">{@html arrow_left}</span>
 			</div>
 		{/if}
-		<h1 class="text-lg md:text-2xl text-[#404D61] font-bold">{title}</h1>
+		<h1 class="hidden md:block text-lg md:text-2xl text-[#404D61] font-bold">
+			{$current_page_title}
+		</h1>
 	</div>
-	<div class="flex gap-x-2">
+	<div class="flex gap-x-4">
 		<div
 			on:click={() => (timeline_show = !timeline_show)}
 			class={`flex lg:hidden group hover:bg-accent1 justify-center items-center w-12 h-10 md:w-14 md:h-12 border ${
@@ -68,5 +77,11 @@
 				></span
 			>
 		</div>
+		<button
+			type="button"
+			on:click={handleSubmit}
+			class="px-8 py-2 md:rounded-lg md:shadow shadow-accent1 hover:shadow-none bg-gradient-to-b from-accent2 to-accent1 font-medium text-sm text-white"
+			>Submit</button
+		>
 	</div>
 </header>

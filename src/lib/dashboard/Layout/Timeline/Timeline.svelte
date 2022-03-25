@@ -26,73 +26,73 @@
 			title: 'Account Creation',
 			icon: account_creation,
 			status: student_progress.account_creation,
-			route: '/dashboard/account_creation/'
+			route: 'account_creation/'
 		},
 		{
 			title: 'File Opening',
 			icon: file_opening,
 			status: student_progress.file_opening,
-			route: '/dashboard/file_opening/'
+			route: 'file_opening/'
 		},
 		{
 			title: 'Document Submission',
 			icon: document_submission,
 			status: student_progress.docu_submission,
-			route: '/dashboard/document_submission/'
+			route: 'document_submission/'
 		},
 		{
 			title: 'Application Submission',
 			icon: application_submission,
 			status: student_progress.application_submission,
-			route: '/dashboard/application_submission/'
+			route: 'application_submission/'
 		},
 		{
 			title: 'Reception of I-20',
 			icon: reception_of_i20,
 			status: student_progress.i20_reception,
-			route: '/dashboard/i20_reception/'
+			route: 'i20_reception/'
 		},
 		{
 			title: 'SEVIS Payment',
 			icon: sevis_payment,
 			status: student_progress.sevis_payment,
-			route: '/dashboard/sevis_payment/'
+			route: 'sevis_payment/'
 		},
 		{
 			title: 'DS-160 Submission',
 			icon: ds160,
 			status: student_progress.ds160_submission,
-			route: '/dashboard/ds160_submission/'
+			route: 'ds160_submission/'
 		},
 		{
 			title: 'Visa Fee Payment',
 			icon: visa_fee,
 			status: student_progress.visa_fee,
-			route: '/dashboard/visa_fee/'
+			route: 'visa_fee/'
 		},
 		{
 			title: 'Visa Interview Prep',
 			icon: visa_interview,
 			status: student_progress.visa_interview,
-			route: '/dashboard/visa_interview/'
+			route: 'visa_interview/'
 		},
 		{
 			title: 'Visa Collection',
 			icon: visa_collection,
 			status: student_progress.visa_collection,
-			route: '/dashboard/visa_collection/'
+			route: 'visa_collection/'
 		},
 		{
 			title: 'Pre-departure Session',
 			icon: pre_departure,
 			status: student_progress.pre_dept_session,
-			route: '/dashboard/pre_departure/'
+			route: 'pre_departure/'
 		},
 		{
 			title: 'Welcoming in the USA',
 			icon: welcoming_in_the_usa,
 			status: student_progress.welcoming_in_us,
-			route: '/dashboard/welcome_usa/'
+			route: 'welcome_usa/'
 		}
 	];
 </script>

@@ -1,5 +1,7 @@
 <script>
 	export let summary;
+	import { toast } from '@zerodevx/svelte-toast';
+	import { submit_identifier } from '$lib/dashboard/stores';
 	import { callingCountries } from 'country-data-list';
 	import { createForm } from 'felte';
 	import { validator } from '@felte/validator-yup';
@@ -15,6 +17,9 @@
 		phoneRegex
 	} from './constants';
 
+	let form_id = 'account_creation_form';
+	$submit_identifier = form_id;
+
 	const schema = yup.object({
 		email: yup.string().email().required(),
 		phone: yup
@@ -28,21 +33,63 @@
 		initialValues: {
 			email: summary.email,
 			first_name: summary.first_name,
+			middle_initials: summary.middle_initials,
 			last_name: summary.last_name,
 			phone: summary.phone,
 			social_media: summary.social_media,
+			address_line_1: summary.address_line_1,
+			address_line_2: summary.address_line_2,
+			city: summary.city,
+			state: summary.state,
+			zip: summary.zip,
+			country: summary.country,
+			date_of_birth: summary.date_of_birth,
+			gender: summary.gender,
+			marital_status: summary.marital_status,
 			destination: summary.destination,
 			degree: summary.degree,
 			major: summary.major,
 			english_proficiency: summary.english_proficiency,
+			english_proficiency_score: summary.english_proficiency_score,
 			education: summary.education,
 			message: summary.message
 		},
 		extend: validator({ schema }),
 		onSubmit(values, context) {
-			// ...
+			handleAccountCreationSubmit(JSON.stringify(values));
 		}
 	});
+
+	async function handleAccountCreationSubmit(body) {
+		const response = await fetch(`/dashboard/account_creation/update/`, {
+			method: 'PATCH',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body
+		});
+
+		if (response.ok) {
+			toast.push(`Successfully updated`, {
+				duration: 3000,
+
+				theme: {
+					'--toastBackground': '#48BB78',
+					'--toastBarBackground': '#2F855A'
+				}
+			});
+		} else {
+			console.log(response);
+			toast.push('Something went wrong! Please re-check the data', {
+				duration: 5000,
+
+				theme: {
+					'--toastBackground': '#F56565',
+					'--toastBarBackground': '#C53030'
+				}
+			});
+		}
+	}
 
 	function addEducationData() {
 		$data.education = $data.education.concat([
@@ -62,7 +109,7 @@
 
 <h4 class="text-2xl text-lightText font-medium">Account Creation Form</h4>
 
-<form use:form class="w-full mt-8">
+<form id={form_id} use:form class="w-full mt-8">
 	<div class="flex flex-wrap lg:flex-nowrap gap-x-4">
 		<!-- First Half -->
 		<div class="flex flex-col gap-y-4 w-full lg:w-2/4">
@@ -275,6 +322,19 @@
 				</select>
 				<label for="english_proficiency" class="acc-label">English Proficiency</label>
 			</div>
+			{#if $data.english_proficiency === 'ielts' || $data.english_proficiency === 'toefl' || $data.english_proficiency === 'duolingo'}
+				<div class="relative">
+					<input
+						type="text"
+						id="english_proficiency_score"
+						name="english_proficiency_score"
+						placeholder="Score"
+						class="peer acc-input-text"
+					/>
+
+					<label for="english_proficiency_score" class="acc-label">Score</label>
+				</div>
+			{/if}
 			<span class="field-heading">Education Information</span>
 			{#each $data.education as _, i}
 				<div class="flex gap-x-2">

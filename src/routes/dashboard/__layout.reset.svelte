@@ -27,12 +27,13 @@
 
 <script>
 	import { fly } from 'svelte/transition';
-	import { session } from '$app/stores';
+	import { page } from '$app/stores';
 	import { SvelteToast } from '@zerodevx/svelte-toast';
 	import Header from '$lib/dashboard/Layout/Header.svelte';
 	import Timeline from '$lib/dashboard/Layout/Timeline/Timeline.svelte';
 	import NoStudentDataError from '$lib/dashboard/Layout/NoStudentDataError.svelte';
 	import Notes from '$lib/dashboard/Notes.svelte';
+	import { current_page } from '$lib/dashboard/stores';
 
 	export let summary;
 	export let notes;
@@ -43,6 +44,10 @@
 	let timeline_show = false;
 
 	$: content_width = notes_show ? 'w-full lg:w-[55%] lg:mr-[25%]' : 'w-full lg:w-[80%] lg:mr-0';
+
+	$: pathname = $page.url.pathname.split('/');
+	$: current_page_path = pathname[pathname.length - 1];
+	$: $current_page = current_page_path;
 </script>
 
 <svelte:head>

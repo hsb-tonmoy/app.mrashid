@@ -1,5 +1,8 @@
 <script>
 	import { session } from '$app/stores';
+	import { current_page_title } from '$lib/dashboard/stores';
+
+	$current_page_title = 'Document Submission';
 
 	import DocumentSubmission from '$lib/dashboard/DocumentSubmission/DocumentSubmission.svelte';
 

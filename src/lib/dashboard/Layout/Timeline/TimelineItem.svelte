@@ -1,6 +1,8 @@
 <script>
 	export let route, title, icon, status;
 
+	import { current_page } from '$lib/dashboard/stores';
+
 	let status_color_classes = 'border-[#C4C6CC] bg-[#F5F7FB]';
 
 	$: {
@@ -15,11 +17,15 @@
 </script>
 
 <a
-	href={route}
-	class="flex group justify-between items-center bg-transparent hover:bg-white py-2 px-3 rounded-md transition-all duration-800 ease-in-out"
+	href={'/dashboard/' + route}
+	class={`flex group justify-between items-center ${
+		route.includes($current_page) ? 'bg-white' : 'bg-transparent'
+	} hover:bg-white py-2 px-3 rounded-md transition-all duration-800 ease-in-out`}
 >
 	<div
-		class="timeline-title relative font-light text-base md:text-sm 2xl:text-base text-gray-500 group-hover:text-black transition-all duration-300 ease-in-out"
+		class={`timeline-title relative font-light text-base md:text-sm 2xl:text-base ${
+			route.includes($current_page) ? 'text-black' : 'text-gray-500'
+		} group-hover:text-black transition-all duration-300 ease-in-out`}
 	>
 		<div class="inline-flex gap-x-3 items-center drop-shadow-sm ">
 			<span class="w-5 h-5">{@html icon}</span>
