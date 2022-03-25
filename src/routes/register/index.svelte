@@ -1,5 +1,4 @@
 <script>
-	import { google, facebook } from '$lib/svg/home';
 	import { goto } from '$app/navigation';
 
 	import { post } from '$lib/utils.js';
@@ -9,6 +8,8 @@
 	import * as yup from 'yup';
 
 	import { notificationToast } from '$lib/NotificationToast';
+
+	import SocialLogin from '$lib/login/SocialLogin.svelte';
 
 	const { form, state, isValid, handleChange, handleSubmit } = createForm({
 		initialValues: {
@@ -45,8 +46,9 @@
 			passwordConfirmation
 		});
 
-		if (response.user) {
+		if (response.detail && response.detail === 'Verification e-mail sent.') {
 			goto('/register/confirmation');
+			return;
 		}
 
 		if (
@@ -80,18 +82,7 @@
 			id="login"
 			class="flex flex-col w-full md:w-2/4 xl:w-3/5 mt-12 md:mt-20 xl:mt-12 2xl:mt-20"
 		>
-			<div id="socials" class="flex gap-x-6">
-				<a
-					href="#"
-					class="flex gap-x-4 w-60 h-12 items-center text-white text-sm bg-[#4267B2] px-4 text-center rounded shadow-lg hover:shadow transition-all ease-in-out duration-200"
-					><span class="block text-white w-4 h-4">{@html facebook}</span>Sign-up with Facebook</a
-				>
-				<a
-					href="#"
-					class="flex items-center h-12 bg-white text-sm px-4 text-center border border-gray-200 rounded shadow-lg hover:shadow transition-all ease-in-out duration-200"
-					><span class="block w-6 h-6">{@html google}</span></a
-				>
-			</div>
+			<SocialLogin />
 			<div
 				class="relative w-full flex justify-center items-center border-b-2 border-gray-200 my-12"
 			>

@@ -1,5 +1,4 @@
 <script>
-	import { google, facebook } from '$lib/svg/home';
 	import { session } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import { post } from '$lib/utils.js';
@@ -9,7 +8,9 @@
 	import { createForm } from 'svelte-forms-lib';
 	import * as yup from 'yup';
 
-	import { login_error } from '$lib/layout/stores';
+	import { login_message } from '$lib/layout/stores';
+
+	import SocialLogin from '$lib/login/SocialLogin.svelte';
 
 	const { form, state, isValid, handleChange, handleSubmit } = createForm({
 		initialValues: {
@@ -44,29 +45,6 @@
 			goto('/dashboard');
 		}
 	}
-
-	const openGoogleLoginPage = () => {
-		const googleAuthUrl = 'https://accounts.google.com/o/oauth2/v2/auth';
-		const redirectUri = 'login/google';
-
-		const scope = [
-			'https://www.googleapis.com/auth/userinfo.email',
-			'https://www.googleapis.com/auth/userinfo.profile'
-		].join(' ');
-
-		const params = {
-			response_type: 'code',
-			client_id: '1009025651280-bd5pbaqg7f4dk7dr7cb6fhcf1tka85gf',
-			redirect_uri: `http://localhost:3000/${redirectUri}`,
-			prompt: 'select_account',
-			access_type: 'offline',
-			scope
-		};
-
-		const urlParams = new URLSearchParams(params).toString();
-
-		window.location = `${googleAuthUrl}?${urlParams}`;
-	};
 </script>
 
 <svelte:head>
@@ -88,23 +66,19 @@
 			id="login"
 			class="flex flex-col w-full md:w-2/4 xl:w-3/4 2xl:w-2/4 mt-12 md:mt-20 xl:mt-12 2xl:mt-20"
 		>
-			<div id="socials" class="flex gap-x-6">
-				<a
-					href="#"
-					class="flex gap-x-4 w-60 h-12 items-center text-white text-sm bg-[#4267B2] px-4 text-center rounded shadow-lg hover:shadow transition-all ease-in-out duration-200"
-					><span class="block text-white w-4 h-4">{@html facebook}</span>Sign-in with Facebook</a
-				>
-				<a
-					href="#"
-					on:click={openGoogleLoginPage}
-					class="flex items-center h-12 bg-white text-sm px-4 text-center border border-gray-200 rounded shadow-lg hover:shadow transition-all ease-in-out duration-200"
-					><span class="block w-6 h-6">{@html google}</span></a
-				>
-			</div>
-			<div class="errors mt-12">
-				<span class="text-red-600 text-sm text-center font-medium">{$login_error}</span>
-			</div>
-
+			<SocialLogin />
+			{#if $login_message.type === 'error'}
+				<div class="errors mt-12">
+					<span class="text-red-600 text-sm text-center font-medium">{$login_message.message}</span>
+				</div>
+			{/if}
+			{#if $login_message.type === 'success'}
+				<div class="errors mt-12">
+					<span class="text-green-600 text-sm text-center font-medium"
+						>{$login_message.message}</span
+					>
+				</div>
+			{/if}
 			<div
 				class="relative w-full flex justify-center items-center border-b-2 border-gray-200 my-12"
 			>

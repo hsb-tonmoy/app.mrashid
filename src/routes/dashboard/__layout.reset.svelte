@@ -7,6 +7,10 @@
 			};
 		}
 
+		if (!session.user.student_id) {
+			return {};
+		}
+
 		const res = await fetch('/dashboard.json');
 		const data = await res.json();
 
@@ -23,6 +27,7 @@
 
 <script>
 	import { fly } from 'svelte/transition';
+	import { session } from '$app/stores';
 	import { SvelteToast } from '@zerodevx/svelte-toast';
 	import Header from '$lib/dashboard/Layout/Header.svelte';
 	import Timeline from '$lib/dashboard/Layout/Timeline/Timeline.svelte';
@@ -39,6 +44,10 @@
 
 	$: content_width = notes_show ? 'w-full lg:w-[55%] lg:mr-[25%]' : 'w-full lg:w-[80%] lg:mr-0';
 </script>
+
+<svelte:head>
+	<title>app.mrashid.net - Dashboard</title>
+</svelte:head>
 
 <main class="flex w-full bg-white h-screen font-sans">
 	{#if summary}

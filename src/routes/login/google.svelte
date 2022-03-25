@@ -3,7 +3,7 @@
 	import { page, session } from '$app/stores';
 	import { goto } from '$app/navigation';
 
-	import { login_error } from '$lib/layout/stores';
+	import { login_message } from '$lib/layout/stores';
 
 	let query = decodeURIComponent($page.url.search);
 
@@ -24,7 +24,8 @@
 				data.non_field_errors &&
 				data.non_field_errors[0] == 'User is already registered with this e-mail address.'
 			) {
-				$login_error =
+				$login_message.type = 'error';
+				$login_message.message =
 					'An account already exists with this e-mail address. Please use the form below to login.';
 			}
 

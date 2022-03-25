@@ -1,6 +1,6 @@
 <div class="body flex flex-col justify-center items-center">
 	<h2
-		class="animate__animated animate__slideInLeft text-2xl lg:text-5xl text-lightText font-semibold drop-shadow"
+		class="animate__animated animate__slideInLeft text-2xl lg:text-5xl text-lightText text-center font-semibold drop-shadow"
 		style="--animate-duration: 800ms"
 	>
 		Please check your inbox for a verification email!
