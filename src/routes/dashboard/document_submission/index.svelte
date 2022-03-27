@@ -1,6 +1,7 @@
 <script>
-	import { session } from '$app/stores';
-	import { current_page_title } from '$lib/dashboard/stores';
+	import { submit_identifier, current_page_title } from '$lib/dashboard/stores';
+
+	$submit_identifier = null;
 
 	$current_page_title = 'Document Submission';
 

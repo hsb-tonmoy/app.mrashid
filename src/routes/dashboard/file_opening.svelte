@@ -1,8 +1,8 @@
 <script>
-	import { session } from '$app/stores';
-	import { current_page_title } from '$lib/dashboard/stores';
+	import { submit_identifier, current_page_title } from '$lib/dashboard/stores';
 
 	$current_page_title = 'File Opening';
+	$submit_identifier = null;
 </script>
 
 <svelte:head>

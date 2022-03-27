@@ -41,7 +41,7 @@
 			address_line_2: summary.address_line_2,
 			city: summary.city,
 			state: summary.state,
-			zip: summary.zip,
+			zip_code: summary.zip_code,
 			country: summary.country,
 			date_of_birth: summary.date_of_birth,
 			gender: summary.gender,
@@ -212,12 +212,12 @@
 				<div class="relative">
 					<input
 						type="text"
-						id="zipcode"
-						name="zipcode"
+						id="zip_code"
+						name="zip_code"
 						placeholder="Zip Code"
 						class="peer acc-input-text"
 					/>
-					<label for="zipcode" class="acc-label">Zip Code</label>
+					<label for="zip_code" class="acc-label">Zip Code</label>
 				</div>
 				<div class="relative">
 					<select id="country" name="country" placeholder="Country" class="peer acc-input-select">

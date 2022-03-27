@@ -77,11 +77,13 @@
 				></span
 			>
 		</div>
-		<button
-			type="button"
-			on:click={handleSubmit}
-			class="px-8 py-2 md:rounded-lg md:shadow shadow-accent1 hover:shadow-none bg-gradient-to-b from-accent2 to-accent1 font-medium text-sm text-white"
-			>Submit</button
-		>
+		{#if $submit_identifier}
+			<button
+				type="button"
+				on:click={handleSubmit}
+				class="px-8 py-2 md:rounded-lg md:shadow shadow-accent1 hover:shadow-none bg-gradient-to-b from-accent2 to-accent1 font-medium text-sm text-white"
+				>Submit</button
+			>
+		{/if}
 	</div>
 </header>

@@ -1,9 +1,6 @@
 <script>
-	import { session } from '$app/stores';
-
 	import TimelineItem from './TimelineItem.svelte';
 
-	import { cog } from '$lib/svg/dashboard';
 	import {
 		account_creation,
 		file_opening,
@@ -96,25 +93,6 @@
 		}
 	];
 </script>
-
-<div class="profile flex items-center mb-14">
-	<div class="profile-image">
-		<img
-			class="w-16 h-16 object-cover rounded-full border border-white"
-			src="https://source.unsplash.com/d1UPkiFd04A"
-			alt="profile_pic"
-		/>
-	</div>
-	<div class="flex flex-col justify-center ml-4 mr-10">
-		<span class="text-[#757D8A] text-base">Welcome back,</span>
-		<span class="text-[#5A6474] font-medium text-xl">{$session.user.first_name}</span>
-	</div>
-	<div
-		class="flex justify-center items-center group w-16 h-12 bg-white hover:bg-heavyPurple border border-[#E1E3E6] hover:border-lightPurple rounded-lg cursor-pointer shadow-sm ease-in-out transition-all duration-300"
-	>
-		<span class="text-[#757D8A] group-hover:text-white">{@html cog}</span>
-	</div>
-</div>
 
 <section class="flex flex-col relative gap-y-5 2xl:gap-y-8 px-2 2xl:px-4 w-full">
 	{#each timeline_options as timeline_item}
