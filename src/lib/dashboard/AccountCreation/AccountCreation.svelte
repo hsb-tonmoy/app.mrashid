@@ -7,6 +7,7 @@
 	import { validator } from '@felte/validator-yup';
 	import * as yup from 'yup';
 	import ErrorMessage from './ErrorMessage.svelte';
+	import { form_submitting } from '$lib/dashboard/stores';
 	import {
 		DESTINATION,
 		DEGREE,
@@ -61,6 +62,7 @@
 	});
 
 	async function handleAccountCreationSubmit(body) {
+		$form_submitting = true;
 		const response = await fetch(`/dashboard/account_creation/update/`, {
 			method: 'PATCH',
 			headers: {
@@ -89,6 +91,7 @@
 				}
 			});
 		}
+		$form_submitting = false;
 	}
 
 	function addEducationData() {

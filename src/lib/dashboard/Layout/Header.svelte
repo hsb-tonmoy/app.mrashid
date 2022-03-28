@@ -1,9 +1,9 @@
 <script>
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
-	import { arrow_left, question, notes, timeline } from '$lib/svg/dashboard';
+	import { arrow_left, question, notes, timeline, spinner } from '$lib/svg/dashboard';
 
-	import { submit_identifier, current_page_title, notes_count } from '../stores';
+	import { submit_identifier, current_page_title, notes_count, form_submitting } from '../stores';
 
 	export let notes_show;
 	export let timeline_show;
@@ -81,9 +81,10 @@
 			<button
 				type="button"
 				on:click={handleSubmit}
-				class="px-8 py-2 md:rounded-lg md:shadow shadow-accent1 hover:shadow-none bg-gradient-to-b from-accent2 to-accent1 font-medium text-sm text-white"
-				>Submit</button
-			>
+				disabled={$form_submitting}
+				class="gap-x-2 px-8 py-2 md:rounded-lg md:shadow shadow-accent1 hover:shadow-none bg-gradient-to-b from-accent2 to-accent1 disabled:from-accent2/60 disabled:to-accent1/60 font-medium text-sm text-white"
+				>Save {#if $form_submitting} {@html spinner} {/if}
+			</button>
 		{/if}
 	</div>
 </header>

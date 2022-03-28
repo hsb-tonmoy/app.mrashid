@@ -13,7 +13,7 @@
 
 	{#each document_category as category}
 		<h3 class="font-medium text-lg text-lightText mb-4">{category.name}</h3>
-		<table class="shadow-md rounded-sm ml-1 mb-12">
+		<table class="block md:table overflow-x-auto whitespace-nowrap shadow-md rounded-sm ml-1 mb-12">
 			<tr class="text-xs text-gray-600 border-b-2 border-gray-200 text-left">
 				<th class="w-3/5 p-2">Name</th>
 				<th class="w-[15%]">Approved</th>

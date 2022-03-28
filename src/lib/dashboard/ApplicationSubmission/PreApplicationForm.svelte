@@ -1,7 +1,7 @@
 <script>
 	export let summary;
 	export let pre_application_form;
-	import { fade, fly } from 'svelte/transition';
+	import { fly } from 'svelte/transition';
 	import { toast } from '@zerodevx/svelte-toast';
 	import { submit_identifier } from '$lib/dashboard/stores';
 	import { callingCountries } from 'country-data-list';
@@ -9,6 +9,8 @@
 	import { validator } from '@felte/validator-yup';
 	import * as yup from 'yup';
 	import ErrorMessage from './ErrorMessage.svelte';
+
+	import { form_submitting } from '$lib/dashboard/stores';
 
 	import { EP_CHOICES, phoneRegex } from '../AccountCreation/constants';
 
@@ -154,6 +156,7 @@
 	});
 
 	async function handlePreApplicationSubmit(body) {
+		$form_submitting = true;
 		const response = await fetch(`/dashboard/application_submission/update/`, {
 			method: 'PATCH',
 			headers: {
@@ -186,6 +189,7 @@
 				}
 			});
 		}
+		$form_submitting = false;
 	}
 </script>
 

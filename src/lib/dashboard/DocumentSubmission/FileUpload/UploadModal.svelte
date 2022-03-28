@@ -21,7 +21,8 @@
 			document: null
 		},
 		validationSchema: yup.object().shape({
-			title: yup.string().required('Title is required').trim()
+			title: yup.string().required('Title is required').trim(),
+			category: yup.string().required()
 		}),
 		onSubmit: (values) => {
 			handleUpload(values);
@@ -112,6 +113,7 @@
 								</label>
 								<input
 									id="title"
+									name="title"
 									type="text"
 									class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
 									bind:value={$form.title}
@@ -127,6 +129,7 @@
 								</label>
 								<select
 									id="category"
+									name="category"
 									class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
 									bind:value={$form.category}
 									on:change={handleChange}
@@ -144,7 +147,6 @@
 						</div>
 						<div class="flex gap-x-2 mt-8">
 							<button
-								disabled={!$isValid || !$state.modified.title}
 								type="submit"
 								class="bg-green-500 text-white active:bg-red-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
 							>

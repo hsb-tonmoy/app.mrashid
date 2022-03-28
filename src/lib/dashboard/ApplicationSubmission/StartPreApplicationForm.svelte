@@ -1,4 +1,5 @@
 <script>
+	import { fly } from 'svelte/transition';
 	import { session } from '$app/stores';
 	import { post } from '$lib/utils';
 
@@ -33,7 +34,7 @@
 		>Click Here to Start Your Pre-Application Form</button
 	>
 	{#if success}
-		<span class="text-xl md:text-2xl lg:text-3xl"
+		<span in:fly={{ y: -50, duration: 500 }} class="text-xl md:text-2xl lg:text-3xl"
 			>Please wait, the page will refresh in 5 seconds!</span
 		>
 	{/if}
