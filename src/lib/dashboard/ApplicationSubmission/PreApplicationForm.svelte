@@ -522,7 +522,7 @@
 				>
 			</div>
 			{#if $data.are_you_citizen_of_more_than_one_country == 'true'}
-				<div in:fly={{ y: -50, duration: 500 }} out:fade class="relative">
+				<div in:fly={{ y: -50, duration: 500 }} out:fly={{ y: 50, duration: 300 }} class="relative">
 					<input
 						type="text"
 						id="names_of_countries_of_citizenship"
@@ -551,7 +551,7 @@
 				>
 			</div>
 			{#if $data.are_you_living_in_other_country == 'true'}
-				<div in:fly={{ y: -50, duration: 500 }} out:fade class="relative">
+				<div in:fly={{ y: -50, duration: 500 }} out:fly={{ y: 50, duration: 300 }} class="relative">
 					<input
 						type="text"
 						id="names_of_countries_living_in"
@@ -680,13 +680,16 @@
 					<label for="highest_education_level" class="acc-label">Highest Education Level</label>
 				</div>
 				<div class="relative w-2/4">
-					<input
-						type="text"
+					<select
 						id="country_of_education"
 						name="country_of_education"
 						placeholder="Country of Education"
-						class="peer acc-input-text"
-					/>
+						class="peer acc-input-select"
+					>
+						{#each callingCountries.all as country}
+							<option value={country.name}>{country.name}</option>
+						{/each}
+					</select>
 					<label for="country_of_education" class="acc-label">Country of Education</label>
 				</div>
 			</div>
@@ -695,11 +698,11 @@
 				<input
 					type="text"
 					id="grade_10th_level_of_study"
-					placeholder="Level of Study"
+					placeholder="Name of the Examination"
 					class="peer acc-input-text"
 					bind:value={$data.grade_10th_or_equivalent.level_of_study}
 				/>
-				<label for="grade_10th_level_of_study" class="acc-label">Level of Study</label>
+				<label for="grade_10th_level_of_study" class="acc-label">Name of the Examination</label>
 			</div>
 			<div class="flex gap-x-2">
 				<div class="relative w-2/4">
@@ -725,13 +728,16 @@
 			</div>
 			<div class="flex gap-x-2">
 				<div class="relative w-1/3">
-					<input
-						type="text"
+					<select
 						id="grade_10th_country_of_study"
+						name="grade_10th_country_of_study"
 						placeholder="Country of Study"
-						class="peer acc-input-text"
-						bind:value={$data.grade_10th_or_equivalent.country_of_study}
-					/>
+						class="peer acc-input-select"
+					>
+						{#each callingCountries.all as country}
+							<option value={country.name}>{country.name}</option>
+						{/each}
+					</select>
 					<label for="grade_10th_country_of_study" class="acc-label">Country of Study</label>
 				</div>
 				<div class="relative w-1/3">
@@ -826,11 +832,11 @@
 				<input
 					type="text"
 					id="grade_12th_level_of_study"
-					placeholder="Level of Study"
+					placeholder="Name of the Examination"
 					class="peer acc-input-text"
 					bind:value={$data.grade_12th_or_equivalent.level_of_study}
 				/>
-				<label for="grade_12th_level_of_study" class="acc-label">Level of Study</label>
+				<label for="grade_12th_level_of_study" class="acc-label">Name of the Examination</label>
 			</div>
 			<div class="flex gap-x-2">
 				<div class="relative w-2/4">
@@ -856,13 +862,16 @@
 			</div>
 			<div class="flex gap-x-2">
 				<div class="relative w-1/3">
-					<input
-						type="text"
+					<select
 						id="grade_12th_country_of_study"
+						name="grade_12th_country_of_study"
 						placeholder="Country of Study"
-						class="peer acc-input-text"
-						bind:value={$data.grade_12th_or_equivalent.country_of_study}
-					/>
+						class="peer acc-input-select"
+					>
+						{#each callingCountries.all as country}
+							<option value={country.name}>{country.name}</option>
+						{/each}
+					</select>
 					<label for="grade_12th_country_of_study" class="acc-label">Country of Study</label>
 				</div>
 				<div class="relative w-1/3">
@@ -953,18 +962,20 @@
 				</div>
 			</div>
 			{#if !($data.highest_education_level === '' || $data.highest_education_level === 'high-school' || $data.highest_education_level === 'pre-high-school')}
-				<span in:fly={{ y: -50, duration: 500 }} out:fade class="field-heading"
-					>Undergraduate (Bachelor's) or Equivalent</span
+				<span
+					in:fly={{ y: -50, duration: 500 }}
+					out:fly={{ y: 50, duration: 300 }}
+					class="field-heading">Undergraduate (Bachelor's) or Equivalent</span
 				>
-				<div in:fly={{ y: -50, duration: 500 }} out:fade class="relative">
+				<div in:fly={{ y: -50, duration: 500 }} out:fly={{ y: 50, duration: 300 }} class="relative">
 					<input
 						type="text"
 						id="undergrad_level_of_study"
-						placeholder="Level of Study"
+						placeholder="Name of the Examination"
 						class="peer acc-input-text"
 						bind:value={$data.undergraduate_degree_or_equivalent.level_of_study}
 					/>
-					<label for="undergrad_level_of_study" class="acc-label">Level of Study</label>
+					<label for="undergrad_level_of_study" class="acc-label">Name of the Examination</label>
 				</div>
 				<div class="flex gap-x-2">
 					<div class="relative w-2/4">
@@ -990,13 +1001,16 @@
 				</div>
 				<div class="flex gap-x-2">
 					<div class="relative w-1/3">
-						<input
-							type="text"
+						<select
 							id="undergrad_country_of_study"
+							name="undergrad_country_of_study"
 							placeholder="Country of Study"
-							class="peer acc-input-text"
-							bind:value={$data.undergraduate_degree_or_equivalent.country_of_study}
-						/>
+							class="peer acc-input-select"
+						>
+							{#each callingCountries.all as country}
+								<option value={country.name}>{country.name}</option>
+							{/each}
+						</select>
 						<label for="undergrad_country_of_study" class="acc-label">Country of Study</label>
 					</div>
 					<div class="relative w-1/3">
@@ -1087,18 +1101,24 @@
 					</div>
 				</div>
 				{#if $data.highest_education_level === 'masters' || $data.highest_education_level === 'phd' || $data.highest_education_level === 'doctorate'}
-					<span in:fly={{ y: -50, duration: 500 }} out:fade class="field-heading"
-						>Graduate (Master's) or Equivalent</span
+					<span
+						in:fly={{ y: -50, duration: 500 }}
+						out:fly={{ y: 50, duration: 300 }}
+						class="field-heading">Graduate (Master's) or Equivalent</span
 					>
-					<div in:fly={{ y: -50, duration: 500 }} out:fade class="relative">
+					<div
+						in:fly={{ y: -50, duration: 500 }}
+						out:fly={{ y: 50, duration: 300 }}
+						class="relative"
+					>
 						<input
 							type="text"
 							id="grad_level_of_study"
-							placeholder="Level of Study"
+							placeholder="Name of the Examination"
 							class="peer acc-input-text"
 							bind:value={$data.graduate_degree_or_equivalent.level_of_study}
 						/>
-						<label for="grad_level_of_study" class="acc-label">Level of Study</label>
+						<label for="grad_level_of_study" class="acc-label">Name of the Examination</label>
 					</div>
 					<div class="flex gap-x-2">
 						<div class="relative w-2/4">
@@ -1124,13 +1144,16 @@
 					</div>
 					<div class="flex gap-x-2">
 						<div class="relative w-1/3">
-							<input
-								type="text"
+							<select
 								id="grad_country_of_study"
+								name="grad_country_of_study"
 								placeholder="Country of Study"
-								class="peer acc-input-text"
-								bind:value={$data.graduate_degree_or_equivalent.country_of_study}
-							/>
+								class="peer acc-input-select"
+							>
+								{#each callingCountries.all as country}
+									<option value={country.name}>{country.name}</option>
+								{/each}
+							</select>
 							<label for="grad_country_of_study" class="acc-label">Country of Study</label>
 						</div>
 						<div class="relative w-1/3">
@@ -1238,7 +1261,11 @@
 			</div>
 
 			{#if $data.english_proficiency === 'ielts'}
-				<div in:fly={{ y: -50, duration: 500 }} out:fade class="relative">
+				<div
+					in:fly={{ y: -50, duration: 500 }}
+					out:fly={{ y: -50, duration: 300 }}
+					class="relative"
+				>
 					<select
 						id="ielts_waivers"
 						name="ielts_waivers"
@@ -1251,8 +1278,12 @@
 					</select>
 					<label for="ielts_waivers" class="acc-label">Do you have IELTS waiver?</label>
 				</div>
-				{#if !$data.ielts_waivers == 'true'}
-					<div in:fly={{ y: -50, duration: 500 }} out:fade class="relative">
+				{#if $data.ielts_waivers === 'false'}
+					<div
+						in:fly={{ y: -50, duration: 500 }}
+						out:fly={{ y: 50, duration: 300 }}
+						class="relative"
+					>
 						<input
 							type="date"
 							id="ielts_date_of_examination"
@@ -1329,7 +1360,7 @@
 				{/if}
 			{/if}
 			{#if $data.english_proficiency === 'toefl'}
-				<div in:fly={{ y: -50, duration: 500 }} out:fade class="relative">
+				<div in:fly={{ y: -50, duration: 500 }} out:fly={{ y: 50, duration: 300 }} class="relative">
 					<input
 						type="date"
 						id="toefl_date_of_examination"
@@ -1406,7 +1437,11 @@
 				</div>
 			{/if}
 			{#if $data.english_proficiency === 'duolingo'}
-				<div in:fly={{ y: -50, duration: 500 }} out:fade class="flex gap-x-2">
+				<div
+					in:fly={{ y: -50, duration: 500 }}
+					out:fly={{ y: 50, duration: 300 }}
+					class="flex gap-x-2"
+				>
 					<div class="relative w-2/4">
 						<input
 							type="date"
@@ -1453,39 +1488,18 @@
 					<label for="sat_date_of_examination" class="acc-label">Date of Examination</label>
 				</div>
 			</div>
-			<div class="flex gap-x-2">
-				<div class="relative w-1/3">
-					<input
-						type="text"
-						id="sat_ebrw"
-						name="sat_ebrw"
-						placeholder="SAT EBRW"
-						class="peer acc-input-text"
-						value={parseInt($data.sat_reading) + parseInt($data.sat_writing)}
-					/>
-					<label for="sat_ebrw" class="acc-label">SAT EBRW</label>
-				</div>
-				<div class="relative w-1/3">
-					<input
-						type="text"
-						id="sat_reading"
-						name="sat_reading"
-						placeholder="SAT Reading"
-						class="peer acc-input-text"
-					/>
-					<label for="sat_reading" class="acc-label">SAT Reading</label>
-				</div>
-				<div class="relative w-1/3">
-					<input
-						type="text"
-						id="sat_writing"
-						name="sat_writing"
-						placeholder="SAT Writing"
-						class="peer acc-input-text"
-					/>
-					<label for="sat_writing" class="acc-label">SAT Writing</label>
-				</div>
+
+			<div class="relative">
+				<input
+					type="text"
+					id="sat_ebrw"
+					name="sat_ebrw"
+					placeholder="SAT EBRW"
+					class="peer acc-input-text"
+				/>
+				<label for="sat_ebrw" class="acc-label">SAT EBRW</label>
 			</div>
+
 			<div class="relative">
 				<input
 					type="text"
@@ -1640,7 +1654,11 @@
 						<label for={`start_date${i}`} class="acc-label">Start Date</label>
 					</div>
 					{#if !$data.work_experience[i].currently_working === true}
-						<div in:fly={{ x: -50, duration: 500 }} out:fade class="relative w-2/4">
+						<div
+							in:fly={{ x: -50, duration: 500 }}
+							out:fly={{ y: 50, duration: 300 }}
+							class="relative w-2/4"
+						>
 							<input
 								type="date"
 								id={`end_date${i}`}
@@ -1680,7 +1698,7 @@
 				<label for="has_gap" class="acc-label">Do you have study gap?</label>
 			</div>
 			{#if $data.has_gap === 'true'}
-				<div in:fly={{ y: -50, duration: 500 }} out:fade class="relative">
+				<div in:fly={{ y: -50, duration: 500 }} out:fly={{ y: 50, duration: 300 }} class="relative">
 					<textarea
 						id="gap_explanation"
 						name="gap_explanation"

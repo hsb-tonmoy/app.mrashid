@@ -1,6 +1,16 @@
 <script context="module">
-	export function load({ props, stuff }) {
+	export async function load({ fetch, props, stuff }) {
 		let pre_application_form = props.pre_application_form;
+
+		const res = await fetch('/dashboard.json');
+		const data = await res.json();
+		const account_creation = data.summary;
+
+		if (res.ok && res.body) {
+			return {
+				props: { pre_application_form, summary: account_creation }
+			};
+		}
 
 		return {
 			props: { pre_application_form, summary: stuff.summary }

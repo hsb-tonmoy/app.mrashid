@@ -24,12 +24,6 @@
 			</div>
 			<ul class:hidden={dropdown_hide} class="userdropdown_list">
 				<li>
-					<a class="dropdown-item" href="#">Action</a>
-				</li>
-				<li>
-					<a class="dropdown-item" href="#">Another action</a>
-				</li>
-				<li>
 					<span on:click={logout} class="dropdown-item">Logout</span>
 				</li>
 			</ul>

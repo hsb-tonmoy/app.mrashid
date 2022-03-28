@@ -1,7 +1,3 @@
-<script>
-	import { facebook, google } from '$lib/svg/home';
-</script>
-
 <div class="flex flex-col justify-center items-center self-center">
 	<h2
 		class="animate__animated animate__slideInLeft text-2xl lg:text-5xl text-lightText font-semibold drop-shadow"

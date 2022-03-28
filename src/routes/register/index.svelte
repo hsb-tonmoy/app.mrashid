@@ -205,14 +205,7 @@
 
 					<button
 						class="mt-8 px-6 lg:px-12 py-2 lg:py-4 ml-2 lg:ml-0 bg-accent1 hover:bg-accent2 disabled:bg-thinAccent text-white font-light text-sm uppercase"
-						disabled={!$isValid ||
-							!(
-								$state.modified.first_name &&
-								$state.modified.last_name &&
-								$state.modified.email &&
-								$state.modified.password &&
-								$state.modified.passwordConfirmation
-							)}>Register</button
+						disabled={!$isValid}>Register</button
 					>
 					<span class="self-center text-xs md:text-sm mt-4 text-gray-600"
 						>Already have an account? Go ahead and <a

@@ -29,8 +29,20 @@
 </script>
 
 <button
-	type="button"
 	on:click={openGoogleLoginPage}
-	class="flex items-center h-12 bg-white text-sm px-4 text-center border border-gray-200 rounded shadow-lg hover:shadow transition-all ease-in-out duration-200"
-	><span class="block w-6 h-6">{@html google}</span></button
+	type="button"
+	class="google inline-flex items-center gap-x-3 px-4 w-60 h-12 text-sm"
+	>{@html google} <span class="text-black/50">Sign in with Google</span></button
 >
+
+<style lang="postcss">
+	.google {
+		box-shadow: 0px 0px 2.41919px rgba(0, 0, 0, 0.084), 0px 2.41919px 2.41919px rgba(0, 0, 0, 0.168);
+		@apply transition-all ease-in-out duration-300;
+	}
+
+	.google:hover {
+		box-shadow: 0px 0px 14.5152px rgba(66, 133, 244, 0.7);
+		border-radius: 4.83838px;
+	}
+</style>
