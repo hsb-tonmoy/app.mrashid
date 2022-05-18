@@ -2,6 +2,7 @@
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import { arrow_left, question, notes, timeline, spinner } from '$lib/svg/dashboard';
+	import { lifebuoy } from '$lib/svg/buoy.js';
 
 	import { submit_identifier, current_page_title, notes_count, form_submitting } from '../stores';
 
@@ -52,7 +53,7 @@
 			class="flex group hover:bg-[#08B295] justify-center items-center w-12 h-10 md:w-14 md:h-12 border border-gray-200 hover:border-[#08B295] rounded-xl cursor-pointer shadow-sm icons transition-all ease-in-out duration-200"
 		>
 			<span class="text-[#08B295] group-hover:text-white w-7 h-7 md:w-8 md:h-8"
-				>{@html question}</span
+				>{@html lifebuoy}</span
 			>
 		</div>
 		<div
