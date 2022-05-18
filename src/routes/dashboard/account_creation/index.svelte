@@ -1,16 +1,8 @@
-<script context="module">
-	export function load({ stuff }) {
-		return {
-			props: { summary: stuff.summary }
-		};
-	}
-</script>
-
 <script>
 	import AccountCreation from '$lib/dashboard/AccountCreation/AccountCreation.svelte';
 	import { current_page_title } from '$lib/dashboard/stores';
 
-	export let summary;
+	export let data;
 
 	$current_page_title = 'Account Creation';
 </script>
@@ -19,4 +11,4 @@
 	<title>app.mrashid.net - Account Creation</title>
 </svelte:head>
 
-<AccountCreation {summary} />
+<AccountCreation summary={data} />

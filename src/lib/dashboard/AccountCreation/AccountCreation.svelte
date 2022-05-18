@@ -1,5 +1,6 @@
 <script>
 	export let summary;
+	import { beforeNavigate } from '$app/navigation';
 	import { toast } from '@zerodevx/svelte-toast';
 	import { submit_identifier } from '$lib/dashboard/stores';
 	import { callingCountries } from 'country-data-list';
@@ -18,7 +19,12 @@
 		phoneRegex
 	} from './constants';
 
+	let confirm_leaving = false;
+
+	import BeforeLeaving from '$lib/layout/BeforeLeaving.svelte';
+
 	let form_id = 'account_creation_form';
+
 	$submit_identifier = form_id;
 
 	const schema = yup.object({
@@ -30,7 +36,7 @@
 			.trim()
 	});
 
-	const { form, data, errors } = createForm({
+	const { form, data, errors, isDirty } = createForm({
 		initialValues: {
 			email: summary.email,
 			first_name: summary.first_name,
@@ -61,6 +67,14 @@
 		}
 	});
 
+	$: form_modified = $isDirty;
+
+	beforeNavigate(({ from, to }) => {
+		if (form_modified) {
+			return 'Are you sure you want to leave this page? Your changes will be lost.';
+		}
+	});
+
 	async function handleAccountCreationSubmit(body) {
 		$form_submitting = true;
 		const response = await fetch(`/dashboard/account_creation/update/`, {
@@ -72,6 +86,7 @@
 		});
 
 		if (response.ok) {
+			form_modified = false;
 			toast.push(`Successfully updated`, {
 				duration: 3000,
 
