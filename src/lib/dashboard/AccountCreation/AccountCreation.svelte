@@ -1,5 +1,6 @@
 <script>
 	export let summary;
+	import { fly } from 'svelte/transition';
 	import { beforeNavigate } from '$app/navigation';
 	import { toast } from '@zerodevx/svelte-toast';
 	import { submit_identifier } from '$lib/dashboard/stores';
@@ -19,9 +20,9 @@
 		phoneRegex
 	} from './constants';
 
-	let confirm_leaving = false;
+	import BeforeLeaving from '$lib/dashboard/Layout/BeforeLeaving.svelte';
 
-	import BeforeLeaving from '$lib/layout/BeforeLeaving.svelte';
+	let confirm_leaving = false;
 
 	let form_id = 'account_creation_form';
 
@@ -69,9 +70,11 @@
 
 	$: form_modified = $isDirty;
 
-	beforeNavigate(({ from, to }) => {
+	beforeNavigate(({ from, to, cancel }) => {
+		console.log('Leaving');
 		if (form_modified) {
-			return 'Are you sure you want to leave this page? Your changes will be lost.';
+			confirm_leaving = true;
+			cancel();
 		}
 	});
 
@@ -125,6 +128,9 @@
 	}
 </script>
 
+{#if confirm_leaving}
+	<BeforeLeaving bind:hidden={confirm_leaving} />
+{/if}
 <h4 class="text-2xl text-lightText font-medium">Account Creation Form</h4>
 
 <form id={form_id} use:form class="w-full mt-8">
