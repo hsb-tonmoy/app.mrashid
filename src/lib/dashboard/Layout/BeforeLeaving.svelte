@@ -43,7 +43,7 @@
 					}}
 					class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-xs px-3 py-1.5 mr-2 text-center inline-flex items-center"
 				>
-					Stay
+					Continue
 				</button>
 				<button
 					on:click={() => {
@@ -55,7 +55,7 @@
 					data-dismiss-target="#alert-additional-content-2"
 					aria-label="Close"
 				>
-					Leave
+					Dismiss
 				</button>
 			</div>
 		</div>

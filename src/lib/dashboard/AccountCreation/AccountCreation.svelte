@@ -70,16 +70,10 @@
 
 	$: form_modified = $isDirty;
 
-	let leaving = false;
-
 	beforeNavigate(({ from, to, cancel }) => {
 		if (form_modified) {
 			confirm_leaving = true;
 			cancel();
-		}
-
-		if (leaving) {
-			goto(to);
 		}
 	});
 
@@ -134,7 +128,13 @@
 </script>
 
 {#if confirm_leaving}
-	<BeforeLeaving on:leave={() => (leaving = true)} bind:hidden={confirm_leaving} />
+	<BeforeLeaving
+		on:leave={() => {
+			form_modified = false;
+			confirm_leaving = false;
+		}}
+		bind:hidden={confirm_leaving}
+	/>
 {/if}
 <h4 class="text-2xl text-lightText font-medium">Account Creation Form</h4>
 
