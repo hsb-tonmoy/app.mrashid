@@ -1,4 +1,8 @@
 <script>
+	import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher();
+
 	export let hidden = true;
 </script>
 
@@ -33,19 +37,25 @@
 
 			<div class="flex mt-4">
 				<button
-					type="submit"
+					type="button"
+					on:click={() => {
+						hidden = !hidden;
+					}}
 					class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-xs px-3 py-1.5 mr-2 text-center inline-flex items-center"
 				>
-					Save
+					Stay
 				</button>
 				<button
-					on:click={() => (hidden = !hidden)}
+					on:click={() => {
+						hidden = !hidden;
+						dispatch('leave');
+					}}
 					type="button"
 					class="text-red-700 bg-transparent border border-red-700 hover:bg-red-800 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:border-red-800 dark:text-red-800 dark:hover:text-white"
 					data-dismiss-target="#alert-additional-content-2"
 					aria-label="Close"
 				>
-					Dismiss
+					Leave
 				</button>
 			</div>
 		</div>

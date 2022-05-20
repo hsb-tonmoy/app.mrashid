@@ -1,7 +1,7 @@
 <script>
 	export let summary;
 	import { fly } from 'svelte/transition';
-	import { beforeNavigate } from '$app/navigation';
+	import { beforeNavigate, goto } from '$app/navigation';
 	import { toast } from '@zerodevx/svelte-toast';
 	import { submit_identifier } from '$lib/dashboard/stores';
 	import { callingCountries } from 'country-data-list';
@@ -70,11 +70,16 @@
 
 	$: form_modified = $isDirty;
 
+	let leaving = false;
+
 	beforeNavigate(({ from, to, cancel }) => {
-		console.log('Leaving');
 		if (form_modified) {
 			confirm_leaving = true;
 			cancel();
+		}
+
+		if (leaving) {
+			goto(to);
 		}
 	});
 
@@ -129,7 +134,7 @@
 </script>
 
 {#if confirm_leaving}
-	<BeforeLeaving bind:hidden={confirm_leaving} />
+	<BeforeLeaving on:leave={() => (leaving = true)} bind:hidden={confirm_leaving} />
 {/if}
 <h4 class="text-2xl text-lightText font-medium">Account Creation Form</h4>
 
