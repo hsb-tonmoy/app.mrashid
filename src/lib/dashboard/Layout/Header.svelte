@@ -19,6 +19,8 @@
 			form.submit();
 		}
 	}
+
+	$: console.log($page.url.pathname);
 </script>
 
 <header
@@ -50,7 +52,12 @@
 			>
 		</div>
 		<div
-			class="flex group hover:bg-[#08B295] justify-center items-center w-12 h-10 md:w-14 md:h-12 border border-gray-200 hover:border-[#08B295] rounded-xl cursor-pointer shadow-sm icons transition-all ease-in-out duration-200"
+			on:click={() => {
+				goto('/dashboard/knowledgebase');
+			}}
+			class={`flex group justify-center items-center w-12 h-10 md:w-14 md:h-12 border border-gray-200 hover:border-red-500 rounded-xl cursor-pointer shadow-sm icons transition-all ease-in-out duration-200 ${
+				$page.url.pathname.includes('knowledgebase') ? 'border-2 border-red-600' : ''
+			} `}
 		>
 			<span class="text-[#08B295] group-hover:text-white w-7 h-7 md:w-8 md:h-8"
 				>{@html lifebuoy}</span
