@@ -7,8 +7,11 @@
 </script>
 
 <script>
+	import { current_page_title } from '$lib/dashboard/stores';
 	import Summary from '$lib/dashboard/Summary.svelte';
 	export let summary;
+
+	$current_page_title = 'Dashboard';
 </script>
 
 <svelte:head>
