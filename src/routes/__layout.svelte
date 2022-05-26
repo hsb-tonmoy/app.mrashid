@@ -27,19 +27,15 @@
 					><img class="w-36" src="/logo.png" alt="app.mrashid.net" /></a
 				>
 			</div>
-			<div id="promotion">
-				<a
-					class="flex items-center gap-x-2"
-					href="https://www.facebook.com/mrashidpage"
-					target="_blank"
-				>
+			<div id="login">
+				<a class="flex items-center gap-x-2" href="/dashboard">
 					<img
 						src="/images/play-button.png"
 						alt="play button"
 						class="w-8 h-8 animate__animated animate__headShake animate__slow animate__infinite"
 					/>
-					<span class="text-sm lg:text-base text-accent2 opacity-70"
-						>Hear from Dr. Rashid himself</span
+					<span class="text-sm lg:text-xl text-accent2 opacity-70"
+						>Already signed up? Go to your dashboard</span
 					>
 					<img
 						class="cta-arrow absolute top-[7%] lg:top-[3%] w-20 h-20 lg:w-32 lg:h-32"
