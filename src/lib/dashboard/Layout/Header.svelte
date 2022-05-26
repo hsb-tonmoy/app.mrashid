@@ -49,18 +49,17 @@
 				>{@html timeline}</span
 			>
 		</div>
-		<div
+		<button
+			type="button"
 			on:click={() => {
-				goto('/dashboard/knowledgebase');
+				goto('/dashboard/resource-center');
 			}}
-			class={`flex group justify-center items-center w-12 h-10 md:w-14 md:h-12 border border-gray-200 hover:border-red-500 rounded-xl cursor-pointer shadow-sm icons transition-all ease-in-out duration-200 ${
-				$page.url.pathname.includes('knowledgebase') ? 'border-2 border-red-600' : ''
+			class={`flex group justify-center items-center bg-green-600 text-white font-medium px-4 rounded-lg cursor-pointer shadow-xl hover:shadow icons transition-all ease-in-out duration-200 ${
+				$page.url.pathname.includes('resource-center') ? 'shadow' : ''
 			} `}
 		>
-			<span class="text-[#08B295] group-hover:text-white w-7 h-7 md:w-8 md:h-8"
-				>{@html lifebuoy}</span
-			>
-		</div>
+			Resource Center
+		</button>
 		<div
 			on:click={() => (notes_show = !notes_show)}
 			class={`flex relative group hover:bg-[#FF5959] justify-center items-center w-12 h-10 md:w-14 md:h-12 border border-gray-200 hover:border-[#FF5959] rounded-lg md:rounded-xl cursor-pointer shadow-sm icons transition-all ease-in-out duration-200 ${
