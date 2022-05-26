@@ -1,6 +1,7 @@
 <script>
 	import { session } from '$app/stores';
-	import { createForm } from 'svelte-forms-lib';
+	import { createForm } from 'felte';
+	import { validator } from '@felte/validator-yup';
 	import * as yup from 'yup';
 	import { toast } from '@zerodevx/svelte-toast';
 	import Uploader from './Uploader.svelte';
@@ -13,31 +14,35 @@
 
 	export let document_category;
 
-	const { form, state, isValid, handleChange, handleSubmit } = createForm({
+	const schema = yup.object({
+		title: yup.string().required()
+	});
+
+	const { form, data, errors } = createForm({
 		initialValues: {
 			title: '',
+			description: '',
 			category: 1,
 			student_data: $session.user.student_id,
 			document: null
 		},
-		validationSchema: yup.object().shape({
-			title: yup.string().required('Title is required').trim(),
-			category: yup.string().required()
-		}),
-		onSubmit: (values) => {
+
+		extend: validator({ schema }),
+		onSubmit: (values, context) => {
 			handleUpload(values);
 		}
 	});
 
-	$: $form.document = files.accepted && files.accepted[0];
-	$: $form.title = files.accepted[0] && files.accepted[0].name;
+	$: $data.document = files.accepted && files.accepted[0];
+	$: $data.title = files.accepted[0] && files.accepted[0].name;
 
 	async function handleUpload(values) {
 		let formData = new FormData();
-		formData.append('title', $form.title);
-		formData.append('category', $form.category);
-		formData.append('student_data', $form.student_data);
-		formData.append('document', $form.document);
+		formData.append('title', values.title);
+		formData.append('description', values.description);
+		formData.append('category', values.category);
+		formData.append('student_data', values.student_data);
+		formData.append('document', values.document);
 
 		const res = await fetch('document_submission', {
 			method: 'POST',
@@ -102,7 +107,7 @@
 				</button>
 			</div>
 
-			<form on:submit|preventDefault={handleSubmit}>
+			<form use:form>
 				<div class="flex flex-wrap pb-10">
 					<div class="w-full lg:w-12/12 px-4">
 						<h6 class="text-lg text-lightText mb-6">Upload a New Document</h6>
@@ -115,9 +120,8 @@
 									id="title"
 									name="title"
 									type="text"
+									bind:value={$data.title}
 									class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-									bind:value={$form.title}
-									on:change={handleChange}
 								/>
 							</div>
 							<div class="relative w-2/5 mb-3">
@@ -131,14 +135,29 @@
 									id="category"
 									name="category"
 									class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-									bind:value={$form.category}
-									on:change={handleChange}
 								>
 									{#each document_category as category}
 										<option value={category.id}>{category.name}</option>
 									{/each}
 								</select>
 							</div>
+						</div>
+					</div>
+					<div class="w-full lg:w-12/12 px-4 mt-4">
+						<div class="relative w-full mb-3">
+							<label
+								class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+								for="description"
+							>
+								Description
+							</label>
+							<textarea
+								id="description"
+								name="description"
+								rows="4"
+								type="text"
+								class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+							/>
 						</div>
 					</div>
 					<div class="w-full lg:w-12/12 px-4 mt-4">

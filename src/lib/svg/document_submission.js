@@ -13,6 +13,10 @@ tabindex="-1"
 /></svg
 >`;
 
+export const crossmark = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="inline text-red-600 w-4 h-4" fill="currentColor">
+<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+</svg>`;
+
 export const pending = `<svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" class="inline text-amber-600 w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" tabindex="-1"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path></svg>`;
 
 export const trash = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

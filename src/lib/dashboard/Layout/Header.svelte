@@ -19,8 +19,6 @@
 			form.submit();
 		}
 	}
-
-	$: console.log($page.url.pathname);
 </script>
 
 <header

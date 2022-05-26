@@ -1,5 +1,5 @@
 <script>
-	import { check, pending } from '$lib/svg/document_submission';
+	import { check, crossmark, pending } from '$lib/svg/document_submission';
 	import { convertDate } from '$lib/convertDate';
 	import UploadModal from './FileUpload/UploadModal.svelte';
 	import FilePreview from './FileUpload/FilePreview.svelte';
@@ -24,8 +24,10 @@
 					<tr class="text-sm">
 						<td class="p-2"><FilePreview pdf_title={doc.title} pdf_url={doc.document} /></td>
 						<td>
-							{#if doc.is_approved && !doc.is_rejected}
+							{#if doc.is_approved}
 								{@html check} Approved
+							{:else if doc.is_rejected}
+								{@html crossmark} Rejected
 							{:else}
 								{@html pending} Pending
 							{/if}
