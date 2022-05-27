@@ -101,7 +101,9 @@
 		/>
 	{/each}
 </section>
-<div class="bottom-0 left-0 w-full bg-thinAccent transition ease-in-out duration-500 px-4 py-2">
+<div
+	class="fixed lg:relative bottom-0 left-0 w-full bg-thinAccent transition ease-in-out duration-500 px-4 py-2"
+>
 	<ul class="flex items-center gap-x-3 text-lightText text-xs">
 		<li class=""><a href="/privacy-policy" target="_blank">Privacy Policy</a></li>
 		<li class=""><a href="/terms-conditions" target="_blank">Terms & Conditions</a></li>

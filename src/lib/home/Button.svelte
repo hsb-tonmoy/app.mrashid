@@ -82,7 +82,7 @@
 	}
 </script>
 
-<div class="buttons flex gap-x-2 lg:justify-end mt-12">
+<div class="buttons flex gap-x-2 lg:justify-end my-12">
 	{#if !firstStep}
 		<button
 			on:click|preventDefault={handlePrevious}
