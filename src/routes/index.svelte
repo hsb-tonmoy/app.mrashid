@@ -102,7 +102,7 @@
 	{/each}
 </section>
 <div
-	class="absolute bottom-0 left-0 w-full md:relative bg-thinAccent transition ease-in-out duration-500 px-4 py-2"
+	class="absolute bottom-0 left-0 w-full bg-thinAccent transition ease-in-out duration-500 px-4 py-2"
 >
 	<ul class="flex items-center gap-x-3 text-lightText text-xs">
 		<li class=""><a href="/privacy-policy" target="_blank">Privacy Policy</a></li>
