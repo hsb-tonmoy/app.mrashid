@@ -84,7 +84,7 @@
 	</section>
 </div>
 <section
-	class="footer hidden lg:flex items-center gap-x-8 bottom-0 left-0 bg-white w-full px-6 lg:px-12 2xl:px-16 border-b-8 border-thinAccent"
+	class="footer hidden lg:flex items-center gap-x-8 bottom-0 left-0 bg-white w-full px-6 lg:px-12 2xl:px-16"
 >
 	{#each multiStepOptions.stepsDescription as step, index}
 		<span
@@ -101,11 +101,19 @@
 		/>
 	{/each}
 </section>
+<div
+	class="absolute bottom-0 left-0 w-full md:relative bg-thinAccent transition ease-in-out duration-500 px-4 py-2"
+>
+	<ul class="flex items-center gap-x-3 text-lightText text-xs">
+		<li class=""><a href="/privacy-policy" target="_blank">Privacy Policy</a></li>
+		<li class=""><a href="/terms-conditions" target="_blank">Terms & Conditions</a></li>
+	</ul>
+</div>
 
 <style lang="postcss">
 	@media screen(lg) {
 		.body {
-			height: calc(100vh - var(--header-height) - var(--footer-height));
+			height: calc(100vh - var(--header-height) - var(--footer-height) - 2.5vh);
 		}
 	}
 	.footer {
