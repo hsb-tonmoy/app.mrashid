@@ -1,10 +1,15 @@
 <script>
+	import { degree } from '$lib/home/stores';
+
 	export let summary;
 </script>
 
-<div class="flex flex-col">
-	<div class="description w-9/12 mt-4 text-lightTextBody text-lg leading-loose">
-		You are <span class="highlight-text">{summary.first_name} </span><span class="highlight-text">
+<div class="flex flex-col w-9/12 mt-4">
+	<div class="hello">
+		<h3 class="text-[#404D61] font-medium text-3xl mb-4">Howdy, {summary.first_name}</h3>
+	</div>
+	<div class="description text-lightTextBody text-lg leading-loose">
+		<!-- You are <span class="highlight-text">{summary.first_name} </span><span class="highlight-text">
 			{summary.last_name}</span
 		>
 		and you wish to go to <span class="highlight-text">{summary.destination}</span>. You are
@@ -29,7 +34,16 @@
 		{summary.english_proficiency_score ? 'and acquired a score of' : ''}
 		<span class="highlight-text"
 			>{summary.english_proficiency_score ? summary.english_proficiency_score : ''}</span
-		>
+		> -->
+		{#if summary.degree == 'Other'}
+			Our custom-tailored resources are here to help you acheive your desired admission abroad!
+		{:else}
+			Our custom-tailored resources to help you acheive an admission in <span class="highlight-text"
+				>{summary.degree}</span
+			>
+			in <span class="highlight-text">{summary.major}</span>
+			will be populated here.
+		{/if}
 	</div>
 </div>
 

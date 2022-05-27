@@ -140,6 +140,13 @@
 							class="font-medium text-lightText hover:underline">Sign-up</a
 						></span
 					>
+					<span class="self-center flex gap-x-4 items-center text-xs md:text-sm mt-4 text-gray-600"
+						><a href="/privacy-policy" class="font-medium text-lightText hover:underline"
+							>Privacy Policy</a
+						><a href="/terms-conditions" class="font-medium text-lightText hover:underline"
+							>Terms & Conditions</a
+						></span
+					>
 				</fieldset>
 			</form>
 		</div>
