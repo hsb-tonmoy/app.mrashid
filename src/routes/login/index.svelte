@@ -64,7 +64,7 @@
 
 		<div
 			id="login"
-			class="flex flex-col w-full md:w-2/4 xl:w-3/4 2xl:w-2/4 mt-12 md:mt-20 xl:mt-12 2xl:mt-20"
+			class="flex flex-col w-full md:w-2/4 xl:w-3/4 2xl:w-3/5 mt-12 md:mt-20 xl:mt-12 2xl:mt-20"
 		>
 			<SocialLogin />
 			{#if $login_message.type === 'error'}

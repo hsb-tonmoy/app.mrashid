@@ -79,7 +79,7 @@
 		</h2>
 
 		<div
-			id="login"
+			id="register"
 			class="flex flex-col w-full md:w-2/4 xl:w-3/5 mt-12 md:mt-20 xl:mt-12 2xl:mt-20"
 		>
 			<SocialLogin />

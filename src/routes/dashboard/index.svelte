@@ -8,7 +8,7 @@
 
 <script>
 	import { current_page_title } from '$lib/dashboard/stores';
-	import Summary from '$lib/dashboard/Summary.svelte';
+	import Dashboard from '$lib/dashboard/Dashboard.svelte';
 	export let summary;
 
 	$current_page_title = 'Dashboard';
@@ -18,6 +18,4 @@
 	<title>app.mrashid.net - Dashboard</title>
 </svelte:head>
 
-<div class="flex">
-	<Summary {summary} />
-</div>
+<Dashboard {summary} />
