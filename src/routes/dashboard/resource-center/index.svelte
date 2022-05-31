@@ -12,14 +12,14 @@
 
 <script>
 	import { submit_identifier, current_page_title } from '$lib/dashboard/stores';
-	import ArticleList from '$lib/dashboard/Knowledgebase/ArticleList.svelte';
+	import ResourceCenter from '$lib/dashboard/ResourceCenter/ResourceCenter.svelte';
 
-	$current_page_title = 'Knowledgebase';
+	$current_page_title = 'Resource Center';
 	$submit_identifier = null;
 </script>
 
 <svelte:head>
-	<title>app.mrashid.net - Knowledgebase</title>
+	<title>app.mrashid.net - Resource Center</title>
 </svelte:head>
 
-<ArticleList />
+<ResourceCenter />
