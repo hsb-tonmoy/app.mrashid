@@ -126,7 +126,7 @@
 							/>
 						</label>
 					</div>
-					<a href="#" class="self-end text-sm mt-2 mb-8 text-lightText hover:text-black"
+					<a href="/login/forgot" class="self-end text-sm mt-2 mb-8 text-lightText hover:text-black"
 						>Forgot password?</a
 					>
 					<button
