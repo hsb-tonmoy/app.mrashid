@@ -3,17 +3,17 @@ import * as api from '$lib/api.js';
 export async function post({ request }) {
 	const json = await request.json();
 
-	const res = await api.post('auth/password/reset/', json);
+	const res = await api.post('auth/password/reset/confirm/', json);
 
-	if (res.errors) {
+	if (!res.detail) {
 		return {
 			status: 400,
-			res
+			body: res
 		};
 	}
 
 	return {
 		status: 200,
-		res
+		body: res
 	};
 }

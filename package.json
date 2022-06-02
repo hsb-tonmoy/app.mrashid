@@ -38,6 +38,7 @@
 		"svelte-file-dropzone": "^1.0.0-dev.1",
 		"svelte-forms-lib": "^2.0.1",
 		"toastify-js": "^1.11.2",
-		"yup": "^0.32.11"
+		"yup": "^0.32.11",
+		"yup-password": "^0.2.2"
 	}
 }

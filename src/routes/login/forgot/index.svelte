@@ -61,7 +61,7 @@
 
 		<div id="login" class="flex flex-col w-full md:w-2/4 xl:w-3/4 2xl:w-3/5 mt-6">
 			{#if success}
-				<div class="errors mt-12">
+				<div class="mt-12">
 					<span class="text-green-600 text-sm text-center font-medium"
 						>A password reset link has been sent to the email address.</span
 					>
