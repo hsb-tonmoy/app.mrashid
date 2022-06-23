@@ -19,7 +19,7 @@
 			<p class="card-text">Find answers to common questions.</p>
 		</div>
 	</a>
-	<a class="col-span-4" href="/dashboard/resource-center/happening">
+	<a class="col-span-4" href="/dashboard/resource-center/happening-now">
 		<div class="card happening">
 			<div class="card-icon bg-[#e2498a]">
 				<span class="card-icon-svg text-white">{@html trend}</span>
