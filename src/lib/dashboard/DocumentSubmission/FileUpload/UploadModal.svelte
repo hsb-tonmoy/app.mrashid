@@ -5,8 +5,11 @@
 	import * as yup from 'yup';
 	import { toast } from '@zerodevx/svelte-toast';
 	import Uploader from './Uploader.svelte';
+	import { loader } from '$lib/svg/document_submission';
 
 	let show = true;
+
+	let uploading = false;
 
 	let files = {
 		accepted: []
@@ -37,6 +40,7 @@
 	$: $data.title = files.accepted[0] && files.accepted[0].name;
 
 	async function handleUpload(values) {
+		uploading = true;
 		let formData = new FormData();
 		formData.append('title', values.title);
 		formData.append('description', values.description);
@@ -166,10 +170,11 @@
 						</div>
 						<div class="flex gap-x-2 mt-8">
 							<button
+								disabled={uploading}
 								type="submit"
-								class="bg-green-500 text-white active:bg-red-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+								class="flex bg-green-500 disabled:bg-green-500/50 text-white active:bg-red-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
 							>
-								Upload
+								Upload {#if uploading} <span class="block ml-2 w-4 h-4">{@html loader}</span> {/if}
 							</button>
 							<button
 								on:click={() => {
